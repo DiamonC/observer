@@ -19,10 +19,10 @@ Observer is a frontend for Arth Panel, an open-source & self-hosted minecraft se
 Contributions are very much appreciated! Feel free to contribute, preferably something on the to-do list. Feel free to open up an issue if you have questions about planned features, API, backend, etc.
 
 # To-do list
-✅ Setup a basic node application with Svelte, Tailwind, & DaisyUI.
-🔨 Navbar with Arth Panel, Servers, & Settings on left. On right: Night/darkmode button, Create server button, Account button.
-❌ Basic UI for all planned pages
-❌ Communication with backend (Appwrite as backend, which the project lead DiamonC is working on and will share details about soon.) 
-❌ Balance deposits & withdraws with paypal
-❌ Web Terminal using WebSockets
-❓ Balance deposits & withdraws with stripe
+✅ Setup a basic node application with Svelte, Tailwind, & DaisyUI.  
+🔨 Navbar with Arth Panel, Servers, & Settings on left. On right: Night/darkmode button, Create server button, Account button.  
+❌ Basic UI for all planned pages  
+❌ Communication with backend (Appwrite as backend, which the project lead DiamonC is working on and will share details about soon.)   
+❌ Balance deposits & withdraws with paypal  
+❌ Web Terminal using WebSockets  
+❓ Balance deposits & withdraws with stripe  
