@@ -66,7 +66,7 @@ onMount(() => {
         </div>
       </label>
 	  <div>
-		<button class="text-white btn btn-circle text-3xl btn-ghost">
+		<button class="text-base-content btn btn-circle text-3xl btn-ghost">
 			<a href="/newserver">+</a>
 	
 		  </button>
