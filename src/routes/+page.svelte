@@ -35,7 +35,7 @@
     <!-- TODO: all icons should probably be made into their own components or stored somewhere in $lib for cleaner code. -->
 </template>
 <body>
-    <div class="flex flex-wrap m-8">
+    <div class="flex flex-wrap">
         <ServerCard
             serverName="This is such a cool Server Name!"
             software="paper"

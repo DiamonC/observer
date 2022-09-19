@@ -5,5 +5,7 @@
 
 <div>
     <Navbar />
-    <slot />
+    <div class="m-8">
+        <slot />
+    </div>
 </div>
