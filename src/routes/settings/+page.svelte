@@ -1,61 +1,37 @@
-<style>
-    .topnav {
-		background-color: #e5e7ec;
-		color: black;
-		overflow: hidden;
-		padding: 12px;
-		margin: -8px;
-		
-	}
-	.topnav a {
-		padding: 2px 4px;
-		text-align: center;
-		float: left;
-		text-decoration: none;
-		color: #8c8c8c;
-		
-	}
-	.topnav a.active {
-		text-decoration: underline;
-		text-decoration-color: orange;
-		color: #1e1e1e;
-	}
-	.topnav a:hover {
-		color: #1e1e1e;
-		text-decoration: underline;
-	}
-	.topnavright {
-		float: right;
-		padding-right: 1ch;
-	}
-	.circle {
-		height: 2ch;
-		width: 2ch;
-    border-radius:50%;
-		background-color: #ffffff;
-		display: block;
-	}
-	.circle line {
-		stroke: black;
-		fill: none;
-	}
-	.circle:hover {
-		background-color: #aaaaaa;
-	}
-</style>
 
-<div class="topnav">
-	<a href="/#">Servers</a>
-	<a class="active" href="/settings" >Settings</a>
-	<div class="topnavright">
-	<div>
-	<a href="/newserver" class="circle">
-		<svg>
-			<line x1="10" y1="4" x2="10" y2="16"></line>
-			<line x1="4" y1="10" x2="16" y2="10"></line>
-		</svg>
-	</a>
+
+<div class="navbar bg-base-300">
+	<div class="flex-1">
+	  <p class=" normal-case text-xl">Observer</p>
 	</div>
+	<div class="flex-none">
+	  <ul class="menu menu-horizontal p-0">
+		<li><a href="/">Servers</a></li>
+		<li><a href="/settings">Settings</a></li>
+	  </ul>
+	  <div>
+		<button class="btn btn-circle text-3xl bg-base-100">
+			<a href="/newserver">+</a>
+		  </button>
+	  </div>
+	  <div class="avatar placeholder">
+		<div class=" ring ring-primary bg-neutral-focus text-neutral-content rounded-full w-10">
+		  <span class="text-2xl">EX</span>
+		</div>
+	  </div> 
 	</div>
+  </div>
+
+  <div id="settingsForm">
+	<form>
+
+		<label class="label" for="3">Webpanel URL:</label>
+		<input id="3" class="input-bordered input-primary input w-full max-w-xs bg-base-300" type="text" placeholder="ex: https://localhost:5173">
+
+		<label class="label" for="3">Webpanel Title:</label>
+		<input id="3" class="input-bordered input-primary input w-full max-w-xs bg-base-300" type="text" placeholder="ex: Panel">
+
+		<div><input type="submit" value="Save" class="btn"></div>
+		
+	</form>
 </div>
-<h1>Settings</h1>

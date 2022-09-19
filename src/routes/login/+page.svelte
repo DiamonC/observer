@@ -1,42 +1,3 @@
-<script>
-	import { onMount } from 'svelte'
-    import { missing_component } from 'svelte/internal';
-import { themeChange } from 'theme-change'
-
-// NOTE: the element that is using one of the theme attributes must be in the DOM on mount
-onMount(() => {
-  themeChange(false)
-  // 👆 false parameter is required for svelte
-  
-})
-	//Example
-	let ServerName = 'Server Name';
-	let name = 'world';
-	
-	//Icons
-	let paperico = 'https://raw.githubusercontent.com/modrinth/art/a05e2307b42762d64a370a3cf3e8b6b30735dce1/Icons/Paper.svg';
-	
-	var id = 0;
-	var servercreate = false;
-	const serverName = [];
-	const serverLoader = [];
-	const serverVersion = [];
-	function newserver() {
-
-	}
-</script>
-
-<style>
-
-	body {
-		margin: 0;
-		padding: 0ch;
-	}
-	.pad {
-		padding: 2ch;
-	}
-</style>
-<template>
 <div class="navbar bg-base-300">
 	<div class="flex-1">
 	  <p class=" normal-case text-xl">Observer</p>
@@ -80,26 +41,9 @@ onMount(() => {
 	</div>
   </div>
 
-</template>
-<body>
-<div class="pad">
-
-<div class="card w-96 bg-base-100 shadow-xl image-full">
-
-	<div class="card-body">
-	  <h2 class="card-title">{ServerName}</h2>
-	  <p><b>Version:</b> Latest | <b>Software: </b>Paper</p>
-	  <div class="card-actions justify-beginning">
-		<button class="btn btn-error">Stop</button>
-		<button class="btn btn-success">Start</button>
-		<button class="btn btn-primary">Terminal</button>
-	  </div>
-	  <div class="card-actions justify-end">
-		<div class="badge badge-outline">1/20</div> 
-	  </div>
-	</div>
-  </div>
+<h2 class="mt-5 mb-2 text-4xl font-extrabold md:text-6xl">Login to Arth Hosting</h2>
+<div class="mt-5">
+<button class="btn  btn-primary"><img alt="ms_logo" style="width:2.5ch" src="https://microsoft.com/favicon.ico">Sign in with Microsoft</button>
+<button class="btn  btn-primary"><img alt="ms_logo" style="width:2.5ch" src="https://metamask.io/icons/icon-96x96.png?v=48400a28770e10dd52a8c0e539aeb282">Sign in with MetaMask</button>
 </div>
 
-
-</body>
