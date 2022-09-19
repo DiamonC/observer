@@ -24,6 +24,7 @@
 	"type": "module",
 	"dependencies": {
 		"appwrite": "^10.0.1",
-		"daisyui": "^2.28.0"
+		"daisyui": "^2.28.0",
+		"theme-change": "^2.2.0"
 	}
 }
