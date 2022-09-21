@@ -1,15 +1,7 @@
 <script lang="ts">
-    import darkMode from "$lib/stores/darkMode"
-    import { onMount } from "svelte"
-    import { themeChange } from "theme-change"
-
     import ServerCard from "$lib/components/ui/ServerCard.svelte"
 
     // NOTE: the element that is using one of the theme attributes must be in the DOM on mount
-    onMount(() => {
-        themeChange(false)
-        // 👆 false parameter is required for svelte
-    })
 
     //Example
     let ServerName = "Server Name"
