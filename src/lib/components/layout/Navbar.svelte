@@ -119,15 +119,20 @@
         <div class="divider divider-horizontal py-1 pr-1.5" />
         <div class="flex-none gap-2">
             <div class="dropdown dropdown-end">
-                <div class="btn btn-ghost btn-circle avatar">
+                <label
+                    tabindex="0"
+                    for="profileDropdown"
+                    class="btn btn-ghost btn-circle avatar"
+                >
                     <div class="w-10 rounded-full">
                         <img
                             src="https://s.namemc.com/2d/skin/face.png?id=7b5f434f34e25c37&scale=4"
                             alt="profile avatar"
                         />
                     </div>
-                </div>
+                </label>
                 <ul
+                    id="profileDropdown"
                     tabindex="0"
                     class="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-200 rounded-box w-52"
                 >
