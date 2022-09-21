@@ -16,7 +16,7 @@
                         id="softwareDropdown"
                         name="softwareDropdown"
                         tabindex="0"
-                        class="select select-primary p-2 bg-base-100 rounded-box"
+                        class="select select-primary p-2 bg-base-100"
                     >
                         <div class="divider">Featured</div>
                         <option>Vanilla</option>
@@ -53,7 +53,8 @@
                         type="text"
                         placeholder="ex: latest, 1.16.5"
                     />
-                    <button type="submit" class="btn mt-4">Create</button>
+                    <button type="submit" class="btn mt-4">Create Server</button
+                    >
                 </div>
             </form>
         </div>
