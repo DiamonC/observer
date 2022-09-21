@@ -1,14 +1,5 @@
 <script lang="ts">
-  import darkMode from "$lib/stores/darkMode";
-  import { onMount } from "svelte";
-  import { missing_component } from "svelte/internal";
-  import { themeChange } from "theme-change";
-
-  // NOTE: the element that is using one of the theme attributes must be in the DOM on mount
-  onMount(() => {
-    themeChange(false);
-    // 👆 false parameter is required for svelte
-  });
+  //
 </script>
 
 <div class="hero min-h-screen bg-base-200">
