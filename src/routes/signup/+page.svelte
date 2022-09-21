@@ -5,10 +5,10 @@
 <div class="hero min-h-screen bg-base-200 rounded-3xl">
   <div class="hero-content text-center">
     <div class="max-w-md">
-      <h1 class="text-5xl font-bold">Welcome Back!</h1>
+      <h1 class="text-5xl font-bold">Sign up</h1>
       <p class="py-6">
-        Log into your account or <a class="link link-primary" href="/signup"
-          >sign up.</a
+        Sign up for an account or <a class="link link-primary" href="/login"
+          >log in.</a
         >
       </p>
       <div class="mt-5">
