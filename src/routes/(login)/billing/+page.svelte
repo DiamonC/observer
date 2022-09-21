@@ -15,21 +15,20 @@
             </div>
         </div>
         <div
-            class="flex flex-wrap justify-center button-container sm:space-x-3 w-[80%] sm:[90%]"
+            class="flex flex-wrap justify-center button-container sm:space-x-3 w-[90%]"
         >
             <a
                 href="/request-placeholder"
-                class="btn btn-primary grow sm:grow-0 sm:w-44 mr-1 sm:m-0"
+                class="btn btn-primary grow md:grow sm:w-44 mr-1 sm:m-0"
                 >Request Extension</a
             >
             <a
                 href="/request-placeholder"
-                class="btn grow sm:grow-0 sm:w-44 ml-1 sm:m-0"
-                >Payment Methods</a
+                class="btn grow md:grow sm:w-44 ml-1 md:m-0">Payment Methods</a
             >
             <a
                 href="/request-placeholder"
-                class="btn btn-success btn-block sm:w-44 mt-2.5 sm:m-0"
+                class="btn btn-success btn-block md:grow sm:w-44 mt-2.5 sm:m-0"
             >
                 Pay Bill
             </a>
