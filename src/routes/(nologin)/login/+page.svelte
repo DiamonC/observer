@@ -9,7 +9,7 @@
             <p class="py-6">
                 Login to your account or <a
                     class="link link-primary"
-                    href="https://duck.com">sign up.</a
+                    href="/signup">sign up.</a
                 >
             </p>
             <div
