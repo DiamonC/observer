@@ -4,9 +4,9 @@
 </script>
 
 <div class="flex flex-col justify-between h-[100vh]">
-    <Navbar />
+    <Navbar navType="default" />
     <div class="m-8">
         <slot />
     </div>
-    <Footer />
+    <Footer navType="default" />
 </div>
