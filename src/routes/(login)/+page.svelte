@@ -23,41 +23,39 @@
     <title>Observer</title>
 </svelte:head>
 
-<template>
-    <!-- TODO: all icons should probably be made into their own components or stored somewhere in $lib for cleaner code. -->
-</template>
-<body>
-    <div class="flex flex-wrap">
-        <ServerCard
-            serverName="This is such a cool Server Name!"
-            software="paper"
-        />
-        <ServerCard
-            serverName="This is a second Server Name!"
-            software="quilt"
-        />
-        <ServerCard
-            serverName="This is a third Server Name!"
-            software="forge"
-        />
-        <ServerCard
-            serverName="This is a fourth Server Name!"
-            software="waterfall"
-        />
-        <ServerCard
-            serverName="This is a fifth Server Name!"
-            software="velocity"
-        />
-        <ServerCard
-            serverName="This is a sixth Server Name!"
-            software="spigot"
-        />
+<!-- TODO: all icons should probably be made into their own components or stored somewhere in $lib for cleaner code. -->
+<div class="flex flex-col items-center space-y-20 mb-12">
+    <h1 class="text-4xl font-bold">My Servers</h1>
+    <div>
+        <div class="flex flex-wrap justify-center">
+            <ServerCard
+                serverName="This is such a cool Server Name!"
+                software="paper"
+            />
+            <ServerCard
+                serverName="This is a second Server Name!"
+                software="quilt"
+            />
+            <ServerCard
+                serverName="This is a third Server Name!"
+                software="forge"
+            />
+            <ServerCard
+                serverName="This is a fourth Server Name!"
+                software="waterfall"
+            />
+            <ServerCard
+                serverName="This is a fifth Server Name!"
+                software="velocity"
+            />
+            <ServerCard
+                serverName="This is a sixth Server Name!"
+                software="spigot"
+            />
+        </div>
     </div>
-</body>
+</div>
 
-<style>
-    body {
-        margin: 0;
-        padding: 0ch;
-    }
+<style lang="scss">
+    //
 </style>
