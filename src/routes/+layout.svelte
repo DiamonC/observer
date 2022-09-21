@@ -1,6 +1,7 @@
-<script>
+<script lang="ts">
     import Navbar from "$lib/components/layout/Navbar.svelte"
     import "../app.css"
+    import "$lib/styles/components.scss"
 
     import { onMount } from "svelte"
     import { themeChange } from "theme-change"
@@ -13,10 +14,4 @@
     // will break if not used here
 </script>
 
-<div class="flex flex-col justify-between h-[100vh]">
-    <Navbar />
-    <div class="m-8">
-        <slot />
-    </div>
-    <Footer />
-</div>
+<slot />
