@@ -54,7 +54,7 @@
         id="3"
         class="input-bordered input-primary input w-full max-w-xs bg-base-300 my-4"
         type="text"
-        placeholder="ex: modrinth.com,examplepluginsite.com"
+        placeholder="ex: modrinth.com,example.com"
       />
 
       <div>
