@@ -45,7 +45,7 @@
 
       <p>
         To protect your machine from users uploading malware posing as
-        plugins/mods, you can limit URLs to download from such as <a
+        plugins/mods, you can limit URLs to download from sites such as <a
           class="link link-primary"
           href="https://modrinth.com">modrinth</a
         >. Please seperate domains with commas!
