@@ -6,10 +6,8 @@
   <div class="flex flex-col max-w-2xl">
     <div class="divider px-10 text-3xl font-semibold">Webpanel Settings</div>
     <p class="text-center mt-2">
-      This text section should explain what this page is for! Lorem ipsum dolor
-      sit amet consectetur adipisicing elit. Adipisci natus sapiente ducimus
-      nihil. Iste labore, sapiente maxime aut, rem accusamus sint porro
-      inventore, temporibus sequi quae quos numquam deserunt asperiores!
+      Here you can find all the settings that affect this panel, such as site
+      URL, and trusted domains.
     </p>
     <div class="divider text-xl font-semibold mt-8">General Settings</div>
     <form id="settingsForm">
