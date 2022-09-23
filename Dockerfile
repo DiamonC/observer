@@ -17,4 +17,4 @@ COPY . .
 
 EXPOSE 5173
 
-RUN npm run dev
+CMD [ "npm", "run", "dev" ]
