@@ -11,16 +11,16 @@
     </p>
     <div class="divider text-xl font-semibold mt-8">General Settings</div>
     <form id="settingsForm">
-      <label class="label" for="3">Webpanel URL</label>
+      <label class="label" for="3">Webpanel Port</label>
       <div class="flex space-x-2">
         <input
           id="3"
           class="input-bordered input-primary input w-full max-w-xs bg-base-300"
           type="text"
-          placeholder="ex: https://localhost:5173"
+          placeholder="ex: 2048"
         />
         <Helper
-          tooltipText="This is the URL you use to get to this panel! It will most likely look something like 'https://localhost:5173'."
+          tooltipText="This is the port that this panel will run on (2048 by default). If you're not using a reverse proxy, you will see :port after the hostname in the URL."
         />
       </div>
 
