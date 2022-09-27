@@ -17,10 +17,10 @@
           id="3"
           class="input-bordered input-primary input w-full max-w-xs bg-base-300"
           type="text"
-          placeholder="ex: 2048"
+          placeholder="ex: 3000"
         />
         <Helper
-          tooltipText="This is the port that this panel will run on (2048 by default). If you're not using a reverse proxy, you will see :port after the hostname in the URL."
+          tooltipText="This is the port that this panel will run on (3000 by default). If you're not using a reverse proxy, you will see :port after the hostname in the URL."
         />
       </div>
 
