@@ -20,7 +20,7 @@
 </script>
 
 <svelte:head>
-  <title>Observer</title>
+  <title>Panel</title>
 </svelte:head>
 
 <!-- TODO: all icons should probably be made into their own components or stored somewhere in $lib for cleaner code. -->
