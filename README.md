@@ -1,7 +1,3 @@
-# Branch Info
-
-This branch contains certain alternatives to the backend that would not be used in the final product to allow for faster developnment of frontend features.
-
 # Observer
 
 Observer is a frontend for Arth Panel, an open-source & self-hosted minecraft server panel. Observer is meant to be run as a docker container, and is made with HTML/CSS/JS, Node, SvelteKit, TailwindCSS, and DaisyUI. 
