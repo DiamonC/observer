@@ -12,6 +12,6 @@ client
 ;
 
 // Go to OAuth provider login page
-account.createOAuth2Session('discord','https://panel.arthmc.xyz');
+account.createOAuth2Session('discord','http://servers.arthmc.xyz');
 
 </script>
