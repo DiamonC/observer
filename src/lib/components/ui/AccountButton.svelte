@@ -1,8 +1,11 @@
-<script>
+<script lang="ts">
     import accountName from "$lib/stores/accountName"
     import accountIcon from "$lib/stores/accountIcon"
-</script>
+    type loginStatus = "login" | "nologin"
 
+    export let loginStatus: string
+</script>
+{#if loginStatus === "login"}
 <div class="flex-none gap-2">
     <div class="dropdown dropdown-end">
         <label
@@ -33,3 +36,10 @@
         </ul>
     </div>
 </div>
+{:else if loginStatus === "nologin"}
+<button class="text-base-content btn btn-circle text-3xl btn-base-200">
+    <a href="/signin">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-in"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path><polyline points="10 17 15 12 10 7"></polyline><line x1="15" y1="12" x2="3" y2="12"></line></svg></a
+    >
+</button>
+{/if}

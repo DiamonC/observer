@@ -7,6 +7,7 @@
     type NavType = "default" | "welcome"
 
     export let navType: NavType
+
 </script>
 
 {#if navType === "default"}
@@ -64,7 +65,7 @@
                 >
             </button>
             <div class="divider divider-horizontal py-1 pr-1.5" />
-            <AccountButton />
+            <AccountButton loginStatus="nologin"/>
         </div>
     </div>
 {:else if navType === "welcome"}
