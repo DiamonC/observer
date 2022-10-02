@@ -7,7 +7,7 @@ const client = new Client();
 const account = new Account(client);
 
 client
-    .setEndpoint('https://panel.arthmc.xyz/v1') // Your API Endpoint
+    .setEndpoint('https://api.arthmc.xyz/v1') // Your API Endpoint
     .setProject('63266a05bd6143aa7953') // Your project ID
 ;
 
