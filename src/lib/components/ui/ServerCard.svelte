@@ -38,6 +38,19 @@
     //.then(response => console.log(response))
     .catch((err) => console.error(err));
 
+  //Tell backend to start or stop servers
+  const startStop = {
+    method: "FETCH",
+    headers: {
+      request: "start",
+    },
+  };
+
+  fetch("https://api.arthmc.xyz/server", getInfo)
+    .then((response) => response.json())
+    //.then(response => console.log(response))
+    .catch((err) => console.error(err));
+
   function status() {
     if (online == true) {
       stopcolor = "error";
