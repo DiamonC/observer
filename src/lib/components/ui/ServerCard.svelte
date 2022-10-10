@@ -1,4 +1,7 @@
 <script lang="ts">
+    import { src_url_equal } from "svelte/internal";
+
+
     type serverType =
         | "paper"
         | "spigot"
@@ -12,12 +15,26 @@
         | "vanilla"
 
     export let serverName: string
-    export let version: string = "latest"
-    export let software: serverType
+     let version: string = "latest"
+     let software: string = "paper"
 
     function uppercaseFirstLetter(string: string) {
         return string.charAt(0).toUpperCase() + string.slice(1)
     }
+
+    //grab server info
+    const options = {
+	method: 'GET',
+	headers: {
+		'techname': serverName
+	}
+};
+
+const response = fetch('https://api.arthmc.xyz/server', options)
+	.then(response => response.json())
+	.then(response => console.log(response))
+	.catch(err => console.error(err));
+
 </script>
 
 <div class="m-3">

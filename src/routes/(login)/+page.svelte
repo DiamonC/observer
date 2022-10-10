@@ -30,19 +30,19 @@
     <div class="flex flex-wrap justify-center">
       <ServerCard
         serverName="This is such a cool Server Name!"
-        software="paper"
+ 
       />
-      <ServerCard serverName="This is a second Server Name!" software="quilt" />
-      <ServerCard serverName="This is a third Server Name!" software="forge" />
+      <ServerCard serverName="This is a second Server Name!"  />
+      <ServerCard serverName="This is a third Server Name!"/>
       <ServerCard
         serverName="This is a fourth Server Name!"
-        software="waterfall"
+ 
       />
       <ServerCard
         serverName="This is a fifth Server Name!"
-        software="velocity"
+
       />
-      <ServerCard serverName="This is a sixth Server Name!" software="spigot" />
+      <ServerCard serverName="This is a sixth Server Name!"/>
     </div>
   </div>
 </div>
