@@ -28,21 +28,12 @@
   <div>
     <div class="divider px-10 text-3xl font-semibold">Your Servers</div>
     <div class="flex flex-wrap justify-center">
-      <ServerCard
-        serverName="This is such a cool Server Name!"
- 
-      />
-      <ServerCard serverName="This is a second Server Name!"  />
-      <ServerCard serverName="This is a third Server Name!"/>
-      <ServerCard
-        serverName="This is a fourth Server Name!"
- 
-      />
-      <ServerCard
-        serverName="This is a fifth Server Name!"
-
-      />
-      <ServerCard serverName="This is a sixth Server Name!"/>
+      <ServerCard serverName="This is such a cool Server Name!" />
+      <ServerCard serverName="This is a second Server Name!" />
+      <ServerCard serverName="This is a third Server Name!" />
+      <ServerCard serverName="This is a fourth Server Name!" />
+      <ServerCard serverName="This is a fifth Server Name!" />
+      <ServerCard serverName="This is a sixth Server Name!" />
     </div>
   </div>
 </div>
