@@ -22,7 +22,6 @@ The main difference between an alternative like pufferpanel or pterodactyl is th
 /settings (Configure things like site URL)
 /newserver (Page to create a new server)
 /server/[server technicalname] (page showing eventually terminal)
-/login
 /signin
 /account (manage account/profile)
 /billing (add to your balance and view your balance as well as next charges)
