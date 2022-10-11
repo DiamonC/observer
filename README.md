@@ -8,9 +8,7 @@ Observer is a frontend for Arth Panel, an open-source & self-hosted minecraft se
 
 The reccomended way to run observer is in a docker container. The name of the container is `diamonc/observer`. Make sure the default port (3000 by default) is forwarded. Quartz, our backend, will need to be running (as a docker container prefferably) as well for the panel to have function, but quartz is still in very very early developnment
 
-## Current State
-Currently, figuring out the appwrite backend is the main bottleneck. If you have some experience with appwrite, please contact us.
-
+### Check out our [backend](https://github.com/diamonc/quartz)'s progress
 
 ## Why Arth Panel?
 The main difference between an alternative like pufferpanel or pterodactyl is that it's meant to work in a way so that if an issue were to occur, you could easily just SSH into the machine and run the jar directly in a folder, so you know that your server's uptime is not dependant on a panel someone else made working flawlessly.  
@@ -36,8 +34,9 @@ Contributions are very much appreciated! Feel free to contribute, preferably som
 ✅ Setup a basic node application with Svelte, Tailwind, & DaisyUI.  
 ✅ Navbar with Arth Panel, Servers, & Settings on left. On right: Night/darkmode button, Create server button, Account button.  
 ✅ Basic UI for all planned pages  
-🔨 Basic UI and function for terminal on the frontend  
-❌ Communication with backend (No backend yet, I'm not experienced in backends)   
+🔨 Communication with backend
+❌ Basic UI and function for terminal on the frontend  
 ❌ Balance deposits & withdraws with paypal  
 ❌ Web Terminal using WebSockets  
 ❓ Balance deposits & withdraws with stripe  
+❓ Decentralized options for accounts and/or paynments  
