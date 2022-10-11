@@ -35,7 +35,7 @@ Contributions are very much appreciated! Feel free to contribute, preferably som
 ✅ Setup a basic node application with Svelte, Tailwind, & DaisyUI.  
 ✅ Navbar with Arth Panel, Servers, & Settings on left. On right: Night/darkmode button, Create server button, Account button.  
 ✅ Basic UI for all planned pages  
-🔨 Communication with backend
+🔨 Communication with backend  
 ❌ Basic UI and function for terminal on the frontend  
 ❌ Balance deposits & withdraws with paypal  
 ❌ Web Terminal using WebSockets  
