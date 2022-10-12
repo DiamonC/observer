@@ -6,11 +6,9 @@ Observer is a frontend for Arth Panel, an open-source & self-hosted minecraft se
 
 # How to Run
 
-The reccomended way to run observer is in a docker container. The name of the container is `diamonc/observer`. Make sure the default port (3000 by default) is forwarded. Quartz, our backend, will need to be running (as a docker container prefferably) as well for the panel to have function, but quartz is still in very very early developnment
+The reccomended way to run observer is in a docker container. You can pull the image with `docker pull arthmc/observer:latest`, and run with `docker run -p 3000:3000 arthmc/observer:latest`, with the `-p` flag exposing port 3000.
 
-### Check out our [backend](https://github.com/diamonc/quartz)'s progress  
-
-
+### Check out our [backend](https://github.com/arthmc/quartz)'s progress  
 
 ## Why Arth Panel?
 The main difference between an alternative like pufferpanel or pterodactyl is that it's meant to work in a way so that if an issue were to occur, you could easily just SSH into the machine and run the jar directly in a folder, so you know that your server's uptime is not dependant on a panel someone else made working flawlessly.  
