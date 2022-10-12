@@ -1,10 +1,12 @@
 <script lang="ts">
   import { src_url_equal } from "svelte/internal";
-
+  //Status variables
   let stopcolor = "info";
   let startcolor = "info";
   let starttext = "Start";
   let online = false;
+
+  //Server variables
   type serverType =
     | "paper"
     | "spigot"
@@ -25,7 +27,7 @@
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
-  //Request Configs
+  //Request Server Info
   const getInfo = {
     method: "GET",
     headers: {
@@ -34,22 +36,48 @@
   };
 
   const response = fetch("https://api.arthmc.xyz/server", getInfo)
-    .then((response) => response.json())
-    //.then(response => console.log(response))
+    .then((res) => res.text())
+    //.then((text) => console.log(text))
     .catch((err) => console.error(err));
 
-  //Tell backend to start or stop servers
-  const startStop = {
-    method: "FETCH",
-    headers: {
-      request: "start",
-    },
-  };
+  //Request server start/stop/restart
+  function changeState(reqstate: string) {
+    let startStop;
+    if (reqstate == "start") {
+      startStop = {
+        method: "GET",
+        headers: {
+          request: "start",
+        },
+      };
+    } else if (reqstate == "stop") {
+      startStop = {
+        method: "GET",
+        headers: {
+          request: "stop",
+        },
+      };
+    } else if (reqstate == "restart") {
+      startStop = {
+        method: "GET",
+        headers: {
+          request: "restart",
+        },
+      };
+    } else {
+      startStop = {
+        method: "GET",
+        headers: {
+          request: "x",
+        },
+      };
+    }
 
-  fetch("https://api.arthmc.xyz/server", getInfo)
-    .then((response) => response.json())
-    //.then(response => console.log(response))
-    .catch((err) => console.error(err));
+    fetch("https://api.arthmc.xyz/server/change-state", startStop)
+      .then((res) => res.text())
+      .then((text) => console.log(text))
+      .catch((err) => console.error(err));
+  }
 
   function status() {
     if (online == true) {
@@ -63,6 +91,7 @@
     }
   }
   status();
+  changeState("start");
 </script>
 
 <div class="m-3">
@@ -79,8 +108,10 @@
         <!-- placeholder for now? -->
         <div class="grow space-x-0.5">
           <button class="btn btn-primary btn-sm h-9">Terminal</button>
-          <button class="btn btn-{startcolor} btn-sm h-9">{starttext}</button>
-          <button class="btn btn-{stopcolor} btn-sm h-9">Stop</button>
+          <button type="submit" class="btn btn-{startcolor} btn-sm h-9"
+            >{starttext}</button
+          >
+          <button class="btn btn-{stopcolor} btn-sm h-9 stop-btn">Stop</button>
         </div>
         <div class="self-center">
           <div class="badge badge-outline">1/20</div>
