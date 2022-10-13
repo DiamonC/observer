@@ -1,3 +1,4 @@
+<script>
 $(function () {
   "use strict";
   // for better performance - to avoid searching in DOM
@@ -114,3 +115,5 @@ $(function () {
         + ': ' + message + '</p>');
   }
 });
+
+</script>
