@@ -15,4 +15,4 @@ COPY . .
 EXPOSE 3000
 
 # Run the app
-CMD ["npm", "i", "&&", "CI=", "npm", "run", "build", "&&", "node", "build" ]
+CMD ["node", "build"]
