@@ -12,7 +12,7 @@ RUN npm install
 # Bundle app source
 COPY . .
 
-EXPOSE 3301
+EXPOSE 3000
 
 # Run the app
-CMD ["npm", "i", "CI=", "npm", "run", "build", "&&", "node", "build" ]
+CMD ["npm", "i", "&&", "CI=", "npm", "run", "build", "&&", "node", "build" ]
