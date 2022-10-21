@@ -1,7 +1,7 @@
 FROM node:18
 
 # Create app directory
-WORKDIR /usr/src/site
+WORKDIR /usr/src/observer
 
 # Copy package files
 COPY package*.json ./
@@ -14,5 +14,8 @@ COPY . .
 
 EXPOSE 3000
 
+# Build the app
+CMD [ "npm", "run", "build" ]
+
 # Run the app
-CMD ["node", "build"]
+CMD [ "node", "build" ]
