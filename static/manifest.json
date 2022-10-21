@@ -1,0 +1,46 @@
+{
+    "theme_color": "#1c46ed",
+    "background_color": "#312f2c",
+    "display": "minimal-ui",
+    "scope": "/",
+    "start_url": "/",
+    "name": "Arth",
+    "short_name": "Arth",
+    "description": "Manage your servers, and learn more about Arth products & services.",
+    "prefer_related_applications": false,
+
+    "icons": [
+        {
+            "src": "icon/192.webp",
+            "sizes": "192x192",
+            "type": "image/webp"
+        },
+        {
+            "src": "icon/192-m.webp",
+            "sizes": "192x192",
+            "type": "image/webp",
+            "purpose": "maskable"
+        },
+        {
+            "src": "icon/256.webp",
+            "sizes": "256x256",
+            "type": "image/webp"
+        },
+        {
+            "src": "icon/384.webp",
+            "sizes": "384x384",
+            "type": "image/webp"
+        },
+        {
+            "src": "icon/512.webp",
+            "sizes": "512x512",
+            "type": "image/webp",
+            "purpose": "maskable"
+        },
+        {
+            "src": "icon/512-m.pnwebpg",
+            "sizes": "512x512",
+            "type": "image/webp"
+        }
+    ]
+}

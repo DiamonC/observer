@@ -7,7 +7,7 @@
 </script>
 
 {#if navType === "default"}
-  <footer class="footer footer-center p-4 bg-base-300 text-base-content">
+  <footer class="footer footer-center p-4 md:bg-base-300 text-base-content">
     <div>
       <p>
         {Webname}, licensed under
