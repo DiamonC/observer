@@ -1,4 +1,6 @@
-<script></script>
+<script>
+	import EmailSignin from "$lib/components/ui/EmailSignin.svelte";
+</script>
 
 <div class="hero min-h-screen bg-base-200">
   <div class="hero-content text-center">
@@ -17,14 +19,15 @@
             />Sign in with Discord</button
           ></a
         >
-        <button class="btn btn-primary btn-icon-text text-2xs"
+        <button class="btn btn-primary btn-icon-text text-2xs btn-disabled"
           ><img
             alt="metamastk logo"
             style="width:2.5ch"
             src="https://metamask.io/icons/icon-96x96.png?v=48400a28770e10dd52a8c0e539aeb282"
-          />Sign in with MetaMask</button
+          />MetaMask (Coming Soon)</button
         >
       </div>
+			<EmailSignin/>
     </div>
   </div>
 </div>
