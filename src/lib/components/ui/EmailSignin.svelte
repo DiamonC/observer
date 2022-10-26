@@ -1,5 +1,6 @@
 <script>
   import { onMount } from "svelte";
+	//import { createUser } from "$lib/scripts/req.js";
   let goodPwd = true;
   let matchPwd = true;
 
@@ -34,29 +35,14 @@
     //remove the class "tab-active" from the element with id="sin"
     document.getElementById("sup").classList.remove("tab-active");
     sign = "in";
+
+		
   }
 
-  /*
-  const createUser = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      email: document.getElementById("email").value,
-      password: document.getElementById("pwd").value,
-    }),
-  };
 
-  const response = fetch("http://localhost:8090", createUser)
-    .then((res) => res.text())
-    //.then((text) => console.log(text))
-    .catch((err) => console.error(err));
-  */
-  //run the function signIn() when the page loads
   onMount(() => {
     signUp();
-    createUser();
+		//createUser("diamoncyt@gmail.com", "12345678abcdefgh");
   });
 </script>
 
