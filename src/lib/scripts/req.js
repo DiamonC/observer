@@ -1,5 +1,6 @@
 import fetch from "node-fetch";
-const apiurl = "https://1e17-104-10-50-118.ngrok.io/api/"
+const apiurl = "https://api.arthmc.xyz/server"
+const pburl = "https://1e17-104-10-50-118.ngrok.io/api/"
 
 export function createUser(em, pwd) {
 	const req = {
@@ -15,7 +16,7 @@ export function createUser(em, pwd) {
   };
 	console.log("Request Sent: " + req.body)
 
-  const response = fetch((apiurl + "users"), req)
+  const response = fetch((pburl + "users"), req)
     .then((res) => res.text())
     .then((text) => console.log("Request Recieved: " + text))
     .catch((err) => console.error(err));
@@ -24,3 +25,23 @@ export function createUser(em, pwd) {
 }
 
 //console.log("response: " + createUser("diamoncyt@gmail.com", "12345678abcdefgh"));
+
+export function getServerInfo(em, pwd) {
+	const serverName = "tech"
+	const req2 = {
+    method: "GET",
+    headers: {
+      techname: serverName,
+    },
+  };
+	console.log("Request Sent: " + req2.headers)
+
+  const response = fetch((apiurl + ""), req2)
+    .then((res) => res.text())
+    .then((text) => console.log("Request Recieved: " + text))
+    .catch((err) => console.error(err));
+
+	return("done")
+}
+
+getServerInfo();
