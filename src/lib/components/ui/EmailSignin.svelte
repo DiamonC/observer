@@ -88,7 +88,7 @@
         {/if}
         <p class="text-xl">Sign in via Email:</p>
         <input
-          id="hi"
+          id="email"
           type="text"
           placeholder="Email Address"
           class="input w-full max-w-xs"
@@ -146,7 +146,7 @@
         {/if}
         <p class="text-xl">Sign up via Email:</p>
         <input
-          id="hi"
+          id="email"
           type="text"
           placeholder="Email Address"
           class="input w-full max-w-xs"
