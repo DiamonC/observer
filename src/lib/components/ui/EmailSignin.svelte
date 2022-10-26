@@ -36,7 +36,7 @@
     sign = "in";
   }
 
-  //Send web request to create a user
+  /*
   const createUser = {
     method: "POST",
     headers: {
@@ -52,7 +52,7 @@
     .then((res) => res.text())
     //.then((text) => console.log(text))
     .catch((err) => console.error(err));
-
+  */
   //run the function signIn() when the page loads
   onMount(() => {
     signUp();
@@ -66,7 +66,9 @@
   <a id="sin" on:click={signIn} class="tab tab-lifted">Signin</a>
 </div>
 {#if sign === "in"}
-  <div class="hero bg-base-300 border-dashed border-2 border-base-400 rounded ">
+  <div
+    class="hero bg-base-300 border-dashed border-2 border-accent-content rounded "
+  >
     <div class="hero-content text-center">
       <div class="max-w-md space-y-5">
         {#if goodPwd === false}
@@ -107,7 +109,9 @@
     </div>
   </div>
 {:else}
-  <div class="hero bg-base-300 border-dashed border-2 border-base-400 rounded ">
+  <div
+    class="hero bg-base-300 border-dashed border-2 border-accent-content rounded "
+  >
     <div class="hero-content text-center">
       <div class="max-w-md space-y-5">
         {#if goodPwd === false}
