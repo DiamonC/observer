@@ -1,6 +1,6 @@
 <script>
   import { onMount } from "svelte";
-  //import { createUser } from "$lib/scripts/req.js";
+  import { createUser } from "$lib/scripts/req.js";
   let goodPwd = true;
   let matchPwd = true;
 
@@ -39,8 +39,21 @@
 
   onMount(() => {
     signUp();
-    //createUser("diamoncyt@gmail.com", "12345678abcdefgh");
   });
+
+  function submit() {
+    checkPwd();
+    if (goodPwd && matchPwd) {
+      if (sign == "up") {
+        createUser(
+          document.getElementById("email").value,
+          document.getElementById("pwd").value
+        );
+      } else if (sign == "in") {
+        console.log("sign in isn't implemented yet");
+      }
+    }
+  }
 </script>
 
 <div class="divider" />
@@ -151,7 +164,7 @@
             placeholder="Confirm Password"
             class="input w-full max-w-xs"
           />
-          <button on:click={checkPwd} class="btn btn-primary">Submit</button>
+          <button on:click={submit} class="btn btn-primary">Submit</button>
         </div>
       </div>
     </div>

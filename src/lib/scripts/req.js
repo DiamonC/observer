@@ -1,6 +1,6 @@
-import fetch from "node-fetch";
+
 const apiurl = "https://api.arthmc.xyz/server"
-const pburl = "https://1e17-104-10-50-118.ngrok.io/api/"
+const pburl = "http://127.0.0.1:8090/api/"
 
 export function createUser(em, pwd) {
 	const req = {
@@ -43,5 +43,3 @@ export function getServerInfo(em, pwd) {
 
 	return("done")
 }
-
-getServerInfo();
