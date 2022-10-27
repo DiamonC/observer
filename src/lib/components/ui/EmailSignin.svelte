@@ -1,6 +1,6 @@
 <script>
   import { onMount } from "svelte";
-	//import { createUser } from "$lib/scripts/req.js";
+  //import { createUser } from "$lib/scripts/req.js";
   let goodPwd = true;
   let matchPwd = true;
 
@@ -35,14 +35,11 @@
     //remove the class "tab-active" from the element with id="sin"
     document.getElementById("sup").classList.remove("tab-active");
     sign = "in";
-
-		
   }
-
 
   onMount(() => {
     signUp();
-		//createUser("diamoncyt@gmail.com", "12345678abcdefgh");
+    //createUser("diamoncyt@gmail.com", "12345678abcdefgh");
   });
 </script>
 
