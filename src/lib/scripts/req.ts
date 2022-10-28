@@ -1,9 +1,8 @@
-
-const apiurl = "https://api.arthmc.xyz/server"
-const pburl = "http://127.0.0.1:8090/api/"
+const apiurl = "https://api.arthmc.xyz/server";
+const pburl = "http://127.0.0.1:8090/api/";
 
 export function createUser(em: string, pwd: string) {
-	const req = {
+  const req = {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -11,49 +10,41 @@ export function createUser(em: string, pwd: string) {
     body: JSON.stringify({
       email: em,
       password: pwd,
-			passwordConfirm: pwd,
+      passwordConfirm: pwd,
     }),
   };
-	console.log("Request Sent: " + req.body)
+  console.log("Request Sent: " + req.body);
 
-  const response = fetch((pburl + "users"), req)
+  return fetch(pburl + "users", req)
     .then((res) => res.text())
-    .then((text) => returnResponse(text))
-    .catch((err) => console.error(err));
-
-    console.log("Response Status: " + response)
-	
-    function returnResponse(input: string) {
-      console.log("Request Recieved: " + input)
+    .then((input: string) => {
+      console.log("Response Recieved: " + input);
       if (input.indexOf("400") > -1) {
-        console.log("js error")
-        return ("error")
+
+        return "error";
       } else {
-        console.log("js success")
-        return ("success")
+
+        return "success";
       }
-    }
-
-
+    })
+    .catch((err) => console.error(err));
 }
 
-//console.log("response: " + createUser("diamoncyt@gmail.com", "12345678abcdefgh"));
 
 export function getServerInfo(em: string, pwd: string) {
-	const serverName = "tech"
-	const req2 = {
+  const serverName = "tech";
+  const req2 = {
     method: "GET",
     headers: {
       techname: serverName,
     },
   };
-	console.log("Request Sent: " + req2.headers)
+  console.log("Request Sent: " + req2.headers);
 
-  const response = fetch((apiurl + ""), req2)
+  const response = fetch(apiurl + "", req2)
     .then((res) => res.text())
-    .then((text) => console.log("Request Recieved: " + text))
+    .then((text) => console.log("Response Recieved: " + text))
     .catch((err) => console.error(err));
 
-	return("done")
+  return "done";
 }
-

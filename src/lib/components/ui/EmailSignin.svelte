@@ -45,20 +45,21 @@
     checkPwd();
     if (goodPwd && matchPwd) {
       if (sign == "up") {
-        console.log("hi");
-        const response = createUser(
+        const res = createUser(
           document.getElementById("email").value,
           document.getElementById("pwd").value
-        );
-        if (response == "success") {
-          console.log("svelte success");
-          //redirect user to dashboard
-          window.location.href = "https://arthmc.xyz";
-        } else {
-          console.log("svelte error, response: " + response);
-        }
+        ).then((x) => {
+          console.log("response: " + x);
+          if (x == "success") {
+            //redirect user to dashboard
+            window.location.href = "/";
+          } else {
+          }
+        });
       } else if (sign == "in") {
-        console.log("sign in isn't implemented yet");
+        alert(
+          "Sorry, signing in isn't implemented yet. If it's urgent, look at pocketbase.io/docs to make the web request yourself."
+        );
       }
     }
   }
