@@ -1,5 +1,6 @@
 <script>
   import { onMount } from "svelte";
+  import { createUser } from "$lib/scripts/req.ts";
   let goodPwd = true;
   let matchPwd = true;
 
@@ -36,28 +37,32 @@
     sign = "in";
   }
 
-  /*
-  const createUser = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      email: document.getElementById("email").value,
-      password: document.getElementById("pwd").value,
-    }),
-  };
-
-  const response = fetch("http://localhost:8090", createUser)
-    .then((res) => res.text())
-    //.then((text) => console.log(text))
-    .catch((err) => console.error(err));
-  */
-  //run the function signIn() when the page loads
   onMount(() => {
     signUp();
-    createUser();
   });
+
+  function submit() {
+    checkPwd();
+    if (goodPwd && matchPwd) {
+      if (sign == "up") {
+        const res = createUser(
+          document.getElementById("email").value,
+          document.getElementById("pwd").value
+        ).then((x) => {
+          console.log("response: " + x);
+          if (x == "success") {
+            //redirect user to dashboard
+            window.location.href = "/";
+          } else {
+          }
+        });
+      } else if (sign == "in") {
+        alert(
+          "Sorry, signing in isn't implemented yet. If it's urgent, look at pocketbase.io/docs to make the web request yourself."
+        );
+      }
+    }
+  }
 </script>
 
 <div class="divider" />
@@ -168,7 +173,7 @@
             placeholder="Confirm Password"
             class="input w-full max-w-xs"
           />
-          <button on:click={checkPwd} class="btn btn-primary">Submit</button>
+          <button on:click={submit} class="btn btn-primary">Submit</button>
         </div>
       </div>
     </div>

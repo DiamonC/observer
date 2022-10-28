@@ -1,5 +1,6 @@
 <script lang="ts">
   import { src_url_equal } from "svelte/internal";
+  import { getServerInfo } from "$lib/scripts/req.js";
   //Status variables
   let stopcolor = "info";
   let startcolor = "info";
