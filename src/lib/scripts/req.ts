@@ -2,7 +2,7 @@
 const apiurl = "https://api.arthmc.xyz/server"
 const pburl = "http://127.0.0.1:8090/api/"
 
-export function createUser(em, pwd) {
+export function createUser(em: string, pwd: string) {
 	const req = {
     method: "POST",
     headers: {
@@ -18,15 +18,28 @@ export function createUser(em, pwd) {
 
   const response = fetch((pburl + "users"), req)
     .then((res) => res.text())
-    .then((text) => console.log("Request Recieved: " + text))
+    .then((text) => returnResponse(text))
     .catch((err) => console.error(err));
 
-	return("done")
+    console.log("Response Status: " + response)
+	
+    function returnResponse(input: string) {
+      console.log("Request Recieved: " + input)
+      if (input.indexOf("400") > -1) {
+        console.log("js error")
+        return ("error")
+      } else {
+        console.log("js success")
+        return ("success")
+      }
+    }
+
+
 }
 
 //console.log("response: " + createUser("diamoncyt@gmail.com", "12345678abcdefgh"));
 
-export function getServerInfo(em, pwd) {
+export function getServerInfo(em: string, pwd: string) {
 	const serverName = "tech"
 	const req2 = {
     method: "GET",
@@ -43,3 +56,4 @@ export function getServerInfo(em, pwd) {
 
 	return("done")
 }
+

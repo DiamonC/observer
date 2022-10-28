@@ -1,6 +1,6 @@
 <script>
   import { onMount } from "svelte";
-  import { createUser } from "$lib/scripts/req.js";
+  import { createUser } from "$lib/scripts/req.ts";
   let goodPwd = true;
   let matchPwd = true;
 
@@ -45,10 +45,18 @@
     checkPwd();
     if (goodPwd && matchPwd) {
       if (sign == "up") {
-        createUser(
+        console.log("hi");
+        const response = createUser(
           document.getElementById("email").value,
           document.getElementById("pwd").value
         );
+        if (response == "success") {
+          console.log("svelte success");
+          //redirect user to dashboard
+          window.location.href = "https://arthmc.xyz";
+        } else {
+          console.log("svelte error, response: " + response);
+        }
       } else if (sign == "in") {
         console.log("sign in isn't implemented yet");
       }
