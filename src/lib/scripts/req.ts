@@ -1,3 +1,4 @@
+import { backend } from "$lib/stores/backend";
 const apiurl = "https://api.arthmc.xyz/";
 const pburl = "http://127.0.0.1:8090/api/";
 
@@ -29,7 +30,6 @@ export function createUser(em: string, pwd: string) {
     })
     .catch((err) => console.error(err));
 }
-
 
 export function getServerInfo(serverName:string) {
 
