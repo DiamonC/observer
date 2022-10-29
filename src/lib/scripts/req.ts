@@ -31,8 +31,8 @@ export function createUser(em: string, pwd: string) {
 }
 
 
-export function getServerInfo(em: string, pwd: string) {
-  const serverName = "tech";
+export function getServerInfo(serverName:string) {
+
   const req2 = {
     method: "GET",
     headers: {
@@ -80,4 +80,4 @@ export function loginEmail(em: string, pwd: string) {
     .catch((err) => console.error(err));
 }
 
-loginEmail("diamoncyt@gmail.com", "12345678");
+//loginEmail("diamoncyt@gmail.com", "12345678");

@@ -27,7 +27,7 @@
   function uppercaseFirstLetter(string: string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
-
+  /*
   //Request Server Info
   const getInfo = {
     method: "GET",
@@ -40,7 +40,7 @@
     .then((res) => res.text())
     //.then((text) => console.log(text))
     .catch((err) => console.error(err));
-
+*/
   //Request server start/stop/restart
   function changeState(reqstate: string) {
     let startStop;
@@ -93,6 +93,7 @@
   }
   status();
   changeState("start");
+  getServerInfo(serverName);
 </script>
 
 <div class="m-3">
