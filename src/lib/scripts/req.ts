@@ -1,4 +1,4 @@
-const apiurl = "https://api.arthmc.xyz/server";
+const apiurl = "https://api.arthmc.xyz/";
 const pburl = "http://127.0.0.1:8090/api/";
 
 export function createUser(em: string, pwd: string) {
@@ -41,7 +41,7 @@ export function getServerInfo(serverName:string) {
   };
   console.log("Request Sent: " + req2.headers);
 
-  const response = fetch(apiurl + "", req2)
+  const response = fetch(apiurl + "server", req2)
     .then((res) => res.text())
     .then((text) => console.log("Response Recieved: " + text))
     .catch((err) => console.error(err));
@@ -80,4 +80,43 @@ export function loginEmail(em: string, pwd: string) {
     .catch((err) => console.error(err));
 }
 
-//loginEmail("diamoncyt@gmail.com", "12345678");
+export function changeServerState(reqstate:string) {
+let req3;
+  if (reqstate == "start") {
+    req3 = {
+      method: "GET",
+      headers: {
+        request: "start",
+      },
+    };
+  } else if (reqstate == "stop") {
+    req3 = {
+      method: "GET",
+      headers: {
+        request: "stop",
+      },
+    };
+  } else if (reqstate == "restart") {
+    req3 = {
+      method: "GET",
+      headers: {
+        request: "restart",
+      },
+    };
+  } else {
+    req3 = {
+      method: "GET",
+      headers: {
+        request: "x",
+      },
+    };
+  }
+  console.log("Request Sent: " + req3.headers);
+
+  const response = fetch(apiurl + "server/change-state", req3)
+    .then((res) => res.text())
+    .then((text) => console.log("Response Recieved: " + text))
+    .catch((err) => console.error(err));
+
+  return "done";
+}

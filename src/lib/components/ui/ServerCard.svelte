@@ -1,5 +1,6 @@
 <script lang="ts">
   import { src_url_equal } from "svelte/internal";
+  import { changeServerState } from "$lib/scripts/req.js";
   import { getServerInfo } from "$lib/scripts/req.js";
   //Status variables
   let stopcolor = "info";
@@ -42,7 +43,7 @@
     .catch((err) => console.error(err));
 */
   //Request server start/stop/restart
-  function changeState(reqstate: string) {
+  /* function changeState(reqstate: string) {
     let startStop;
     if (reqstate == "start") {
       startStop = {
@@ -78,7 +79,7 @@
       .then((res) => res.text())
       .then((text) => console.log(text))
       .catch((err) => console.error(err));
-  }
+  } */
 
   function status() {
     if (online == true) {
@@ -92,8 +93,8 @@
     }
   }
   status();
-  changeState("start");
-  getServerInfo(serverName);
+  //changeServerState("start");
+  //getServerInfo(serverName);
 </script>
 
 <div class="m-3">
