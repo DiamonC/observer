@@ -1,4 +1,5 @@
-const apiurl = "https://api.arthmc.xyz/server";
+import { backend } from "$lib/stores/backend";
+const apiurl = "https://api.arthmc.xyz/";
 const pburl = "http://127.0.0.1:8090/api/";
 
 export function createUser(em: string, pwd: string) {
@@ -30,9 +31,8 @@ export function createUser(em: string, pwd: string) {
     .catch((err) => console.error(err));
 }
 
+export function getServerInfo(serverName:string) {
 
-export function getServerInfo(em: string, pwd: string) {
-  const serverName = "tech";
   const req2 = {
     method: "GET",
     headers: {
@@ -41,7 +41,79 @@ export function getServerInfo(em: string, pwd: string) {
   };
   console.log("Request Sent: " + req2.headers);
 
-  const response = fetch(apiurl + "", req2)
+  const response = fetch(apiurl + "server", req2)
+    .then((res) => res.text())
+    .then((text) => console.log("Response Recieved: " + text))
+    .catch((err) => console.error(err));
+
+  return "done";
+}
+
+export function loginEmail(em: string, pwd: string) {
+  const req = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email: em,
+      password: pwd,
+    }),
+  };
+  console.log("Request Sent: " + req.body);
+
+  return fetch(pburl + "users/auth-via-email", req)
+    .then((res) => res.text())
+    .then((input: string) => {
+      console.log("Response Recieved: " + input);
+      //log the next 15 characters after the word "token"
+      const token = input.substring(input.indexOf("token") + 8, input.indexOf("token") + 163);
+      console.log(token)
+
+
+      if (input.indexOf("400") > -1) {
+        return "error";
+      } else {
+        return "success";
+      }
+    })
+    .catch((err) => console.error(err));
+}
+
+export function changeServerState(reqstate:string) {
+let req3;
+  if (reqstate == "start") {
+    req3 = {
+      method: "GET",
+      headers: {
+        request: "start",
+      },
+    };
+  } else if (reqstate == "stop") {
+    req3 = {
+      method: "GET",
+      headers: {
+        request: "stop",
+      },
+    };
+  } else if (reqstate == "restart") {
+    req3 = {
+      method: "GET",
+      headers: {
+        request: "restart",
+      },
+    };
+  } else {
+    req3 = {
+      method: "GET",
+      headers: {
+        request: "x",
+      },
+    };
+  }
+  console.log("Request Sent: " + req3.headers);
+
+  const response = fetch(apiurl + "server/change-state", req3)
     .then((res) => res.text())
     .then((text) => console.log("Response Recieved: " + text))
     .catch((err) => console.error(err));
