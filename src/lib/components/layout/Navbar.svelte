@@ -1,9 +1,9 @@
 <script lang="ts">
   import ThemeToggle from "./../ui/ThemeToggle.svelte";
   import AccountButton from "./../ui/AccountButton.svelte";
-
-  let Webname = "Arth Panel";
-
+  import { settings } from "$lib/stores/settings";
+  $: webname = $settings.webname;
+  $: enablePay = $settings.enablePay;
   type NavType = "default" | "welcome";
 
   export let navType: NavType;
@@ -12,7 +12,7 @@
 {#if navType === "default"}
   <div class="navbar bg-base-300 px-4">
     <div class="hidden sm:block flex-1">
-      <a class="btn btn-ghost normal-case text-xl" href="/">{Webname}</a>
+      <a class="btn btn-ghost normal-case text-xl" href="/">{webname}</a>
     </div>
     <div class="flex-1 md:flex-none space-x-2 navbar-end">
       <ul class="invisible md:visible md:space-x-0 menu menu-horizontal p-0">
@@ -60,24 +60,29 @@
       </div>
 
       <ThemeToggle />
-      <a href="/billing" class="btn btn-ghost btn-circle"
-        ><svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="22"
-          height="22"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="feather feather-shopping-cart"
-          ><circle cx="9" cy="21" r="1" /><circle cx="20" cy="21" r="1" /><path
-            d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
-          /></svg
-        >
-      </a>
-
+      {#if enablePay === true}
+        <a href="/billing" class="btn btn-ghost btn-circle"
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-shopping-cart"
+            ><circle cx="9" cy="21" r="1" /><circle
+              cx="20"
+              cy="21"
+              r="1"
+            /><path
+              d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
+            /></svg
+          >
+        </a>
+      {/if}
       <a href="/newserver" class="btn btn-ghost btn-circle">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -104,7 +109,7 @@
   </div>
 {:else if navType === "welcome"}
   <div class="navbar fixed justify-between px-6">
-    <a class="btn btn-ghost normal-case text-2xl" href="/">{Webname}</a>
+    <a class="btn btn-ghost normal-case text-2xl" href="/">{webname}</a>
     <ThemeToggle />
   </div>
 {/if}

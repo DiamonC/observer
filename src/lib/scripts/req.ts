@@ -48,3 +48,36 @@ export function getServerInfo(em: string, pwd: string) {
 
   return "done";
 }
+
+export function loginEmail(em: string, pwd: string) {
+  const req = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email: em,
+      password: pwd,
+    }),
+  };
+  console.log("Request Sent: " + req.body);
+
+  return fetch(pburl + "users/auth-via-email", req)
+    .then((res) => res.text())
+    .then((input: string) => {
+      console.log("Response Recieved: " + input);
+      //log the next 15 characters after the word "token"
+      const token = input.substring(input.indexOf("token") + 8, input.indexOf("token") + 163);
+      console.log(token)
+
+
+      if (input.indexOf("400") > -1) {
+        return "error";
+      } else {
+        return "success";
+      }
+    })
+    .catch((err) => console.error(err));
+}
+
+loginEmail("diamoncyt@gmail.com", "12345678");
