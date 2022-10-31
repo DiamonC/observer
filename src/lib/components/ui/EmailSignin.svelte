@@ -1,6 +1,7 @@
 <script>
   import { onMount } from "svelte";
   import { createUser } from "$lib/scripts/req.ts";
+  import { loginEmail } from "$lib/scripts/req.ts";
   let goodPwd = true;
   let matchPwd = true;
 
@@ -43,8 +44,8 @@
 
   function submit() {
     checkPwd();
-    if (goodPwd && matchPwd) {
-      if (sign == "up") {
+    if (goodPwd) {
+      if (sign == "up" && matchPwd) {
         const res = createUser(
           document.getElementById("email").value,
           document.getElementById("pwd").value
@@ -57,9 +58,17 @@
           }
         });
       } else if (sign == "in") {
-        alert(
-          "Sorry, signing in isn't implemented yet. If it's urgent, look at pocketbase.io/docs to make the web request yourself."
-        );
+        /* const res = loginEmail(
+          document.getElementById("email2").value,
+          document.getElementById("pwd2").value
+        ).then((x) => {
+          console.log("response: " + x);
+          if (x == "success") {
+            //redirect user to dashboard
+            window.location.href = "/";
+          } else {
+          }
+        }); */
       }
     }
   }
@@ -95,7 +104,7 @@
         {/if}
         <p class="text-xl">Sign in via Email:</p>
         <input
-          id="email"
+          id="email2"
           type="text"
           placeholder="Email Address"
           class="input w-full max-w-xs"
@@ -103,7 +112,7 @@
         <div class="space-x-2 space-y-5">
           <input
             type="text"
-            id="pwd"
+            id="pwd2"
             placeholder="Password"
             class="input w-full max-w-xs"
           />

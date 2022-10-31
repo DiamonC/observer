@@ -1,5 +1,32 @@
-<script>
+<script lang="ts">
   import Helper from "$lib/components/ui/Helper.svelte";
+  import { settings } from "$lib/stores/settings";
+  $: webname = $settings.webname;
+  $: webtitle = $settings.webtitle;
+  $: webport = $settings.webtitle;
+  $: trustedDomains = $settings.webtitle;
+  $: enablePay = $settings.enablePay;
+
+  function writeSettings() {
+    let xWebname = document.getElementById("webname").value;
+    console.log(xWebname);
+    $settings.webname = xWebname;
+
+    let xTrustedDomains = document.getElementById("trustedDomains").value;
+    console.log(xTrustedDomains);
+    $settings.trustedDomains = xTrustedDomains;
+
+    let xWebport = document.getElementById("webport").value;
+    console.log(xWebname);
+    $settings.webport = xWebport;
+
+    let xWebtitle = document.getElementById("webtitle").value;
+    console.log(xWebname);
+    $settings.webtitle = xWebtitle;
+
+    let xPayEnable = document.getElementById("payEnable").checked;
+    $settings.webname = xPayEnable;
+  }
 </script>
 
 <div class="flex justify-center">
@@ -24,19 +51,34 @@
         />
       </div>
 
-      <label class="label" for="3">Webpanel Title</label>
+      <label class="label" for="3">Browser Title</label>
       <div class="flex space-x-2">
         <input
-          id="3"
+          id="webtitle"
           class="input-bordered input-primary input w-full max-w-xs bg-base-300"
           type="text"
-          placeholder="ex: Panel"
+          placeholder={webtitle}
         />
       </div>
 
-      <label class="label cursor-pointer">
+      <label class="label" for="3">Webpanel Title</label>
+      <div class="flex space-x-2">
+        <input
+          id="webname"
+          class="input-bordered input-primary input w-full max-w-xs bg-base-300"
+          type="text"
+          placeholder={webname}
+        />
+      </div>
+
+      <label id="payEnable" class="label cursor-pointer">
         <span class="label-text">Paynment & Billing Features</span>
-        <input type="checkbox" class="toggle toggle-primary" checked />
+        <input
+          id="payEnable"
+          type="checkbox"
+          class="toggle toggle-primary"
+          checked
+        />
       </label>
 
       <div class="divider text-xl font-semibold mt-8 mb-6">Trusted Domains</div>
@@ -56,7 +98,12 @@
       />
 
       <div>
-        <input type="submit" value="Save" class="btn btn-block" />
+        <input
+          type="submit"
+          value="Save"
+          class="btn btn-block"
+          on:click={writeSettings}
+        />
       </div>
     </form>
   </div>
