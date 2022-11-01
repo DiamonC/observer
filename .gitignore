@@ -6,3 +6,10 @@ node_modules
 .env
 .env.*
 !.env.example
+/target
+/node_modules
+/servers/java/17
+/pocketbase/pb_data
+.breakpoints
+.replit
+replit.nix

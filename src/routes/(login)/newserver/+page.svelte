@@ -1,5 +1,12 @@
 <script lang="ts">
-  //
+    import { createServer } from "$lib/scripts/req.ts";
+	function send() {
+	let sVersion = document.getElementById("versionInput").value;
+	let sName = document.getElementById("nameInput").value;
+	let sSoftware = document.getElementById("softwareDropdown").value;
+
+	createServer(sName, sSoftware, sVersion) 
+	}
 </script>
 
 <div class="flex place-content-center">
@@ -29,28 +36,22 @@
           </select>
           <label class="label" for="1">Server Name</label>
           <input
-            id="1"
+            id="nameInput"
             class="input-bordered input-primary input w-full bg-base-300"
             type="text"
             placeholder="ex: My Minecraft Server"
           />
 
-          <label class="label" for="2">Technical Server Name</label>
-          <input
-            id="2"
-            class="input-bordered input-primary input w-full bg-base-300"
-            type="text"
-            placeholder="ex: my_minecraft_server"
-          />
+          
 
           <label class="label" for="3">Minecraft version:</label>
           <input
-            id="3"
+            id="versionInput"
             class="input-bordered input-primary input w-full bg-base-300"
             type="text"
             placeholder="ex: latest, 1.16.5"
           />
-          <button type="submit" class="btn mt-4">Create Server</button>
+          <button type="submit" on:click={send} class="btn mt-4">Create Server</button>
         </div>
       </form>
     </div>
