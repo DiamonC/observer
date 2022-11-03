@@ -1,6 +1,6 @@
 import { backend } from "$lib/stores/backend";
-const apiurl = "https://db.arthmc.xyz/";
-const pburl = "https://api.arthmc.xyz/";
+const apiurl = "https://api.arthmc.xyz/";
+const pburl = "https://pb.arthmc.xyz/";
 
 export function createUser(em: string, pwd: string) {
 	const req = {
