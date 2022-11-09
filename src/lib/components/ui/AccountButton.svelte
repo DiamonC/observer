@@ -1,5 +1,5 @@
 <script lang="ts">
-  import accountName from "$lib/stores/accountName";
+  import accountName from "$lib/stores/token";
   import accountIcon from "$lib/stores/accountIcon";
   type loginStatus = "login" | "nologin";
 
