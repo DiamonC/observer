@@ -1,6 +1,6 @@
 import { backend } from "$lib/stores/backend";
-const apiurl = "https://api.arthmc.xyz/";
-const pburl = "https://pb.arthmc.xyz/";
+const apiurl = "http://localhost:4000/";
+const pburl = "http://localhost:8090/";
 
 export function createUser(em: string, pwd: string) {
 	const req = {
@@ -69,6 +69,11 @@ export function loginEmail(em: string, pwd: string) {
 			//log the next 15 characters after the word "token"
 			const token = input.substring(input.indexOf("token") + 8, input.indexOf("token") + 163);
 			console.log(token)
+
+			//set the token in local storage
+			if (typeof window !== "undefined") {
+				window.localStorage.setItem("token", token);
+			}
 
 
 			if (input.indexOf("400") > -1) {

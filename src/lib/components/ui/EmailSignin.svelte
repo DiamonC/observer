@@ -43,9 +43,12 @@
   });
 
   function submit() {
-    checkPwd();
-    if (goodPwd) {
-      if (sign == "up" && matchPwd) {
+    
+   
+      if (sign == "up") {
+        checkPwd();
+        if (goodPwd && matchPwd) {
+          
         const res = createUser(
           document.getElementById("email").value,
           document.getElementById("pwd").value
@@ -56,9 +59,10 @@
             window.location.href = "/";
           } else {
           }
-        });
+        
+        }); }
       } else if (sign == "in") {
-        /* const res = loginEmail(
+         const res = loginEmail(
           document.getElementById("email2").value,
           document.getElementById("pwd2").value
         ).then((x) => {
@@ -68,10 +72,10 @@
             window.location.href = "/";
           } else {
           }
-        }); */
+        }); 
       }
     }
-  }
+  9
 </script>
 
 <div class="divider" />
@@ -117,7 +121,7 @@
             class="input w-full max-w-xs"
           />
 
-          <button on:click={checkPwd} class="btn btn-primary">Submit</button>
+          <button on:click={submit} class="btn btn-primary">Submit</button>
         </div>
       </div>
     </div>
