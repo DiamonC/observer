@@ -1,7 +1,7 @@
 import token from "$lib/stores/token";
 
-const apiurl = "http://api.arthmc.xyz:4000/";
-const pburl = "http://pb.arthmc.xyz:8090/api/";
+const apiurl = "http://localhost:4000/";
+const pburl = "http://localhost:8090/api/";
 
 export function createUser(em: string, pwd: string) {
 	const req = {

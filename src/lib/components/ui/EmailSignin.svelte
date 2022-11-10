@@ -39,7 +39,7 @@
   }
 
   onMount(() => {
-    signUp();
+    signIn();
   });
 
   function submit() {
@@ -80,8 +80,8 @@
 
 <div class="divider" />
 <div class="tabs ">
-  <a id="sup" on:click={signUp} class="tab tab-lifted">Signup</a>
   <a id="sin" on:click={signIn} class="tab tab-lifted">Signin</a>
+  <a id="sup" on:click={signUp} class="tab tab-lifted">Signup</a>
 </div>
 {#if sign === "in"}
   <div
