@@ -1,12 +1,12 @@
 <script lang="ts">
   import accountName from "$lib/stores/token";
   import accountIcon from "$lib/stores/accountIcon";
-  type loginStatus = "login" | "nologin";
+  type loginStatus = true | false;
 
-  export let loginStatus: string;
+  export let loginStatus: boolean;
 </script>
 
-{#if loginStatus === "login"}
+{#if loginStatus === true}
   <div class="flex-none gap-2">
     <div class="dropdown dropdown-end">
       <label
@@ -34,7 +34,7 @@
       </ul>
     </div>
   </div>
-{:else if loginStatus === "nologin"}
+{:else if loginStatus === false}
   <a href="/signin" class="btn btn-ghost btn-circle">
     <svg
       xmlns="http://www.w3.org/2000/svg"

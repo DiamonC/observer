@@ -1,6 +1,7 @@
-import { backend } from "$lib/stores/backend";
-const apiurl = "http://localhost:4000/";
-const pburl = "http://localhost:8090/";
+import token from "$lib/stores/token";
+
+const apiurl = "http://api.arthmc.xyz:4000/";
+const pburl = "http://pb.arthmc.xyz:8090/api/";
 
 export function createUser(em: string, pwd: string) {
 	const req = {
@@ -21,10 +22,9 @@ export function createUser(em: string, pwd: string) {
 		.then((input: string) => {
 			console.log("Response Recieved: " + input);
 			if (input.indexOf("400") > -1) {
-
 				return "error";
 			} else {
-
+				loginEmail(em, pwd);
 				return "success";
 			}
 		})
@@ -32,7 +32,6 @@ export function createUser(em: string, pwd: string) {
 }
 
 export function getServerInfo(serverName: string) {
-
 	const req2 = {
 		method: "GET",
 		headers: {
@@ -67,18 +66,23 @@ export function loginEmail(em: string, pwd: string) {
 		.then((input: string) => {
 			console.log("Response Recieved: " + input);
 			//log the next 15 characters after the word "token"
-			const token = input.substring(input.indexOf("token") + 8, input.indexOf("token") + 163);
-			console.log(token)
+			const token = input.substring(
+				input.indexOf("token") + 8,
+				input.indexOf("token") + 163
+			);
+			console.log(token);
 
 			//set the token in local storage
 			if (typeof window !== "undefined") {
 				window.localStorage.setItem("token", token);
 			}
 
-
 			if (input.indexOf("400") > -1) {
 				return "error";
 			} else {
+				if (typeof window !== "undefined") {
+					window.localStorage.setItem("loggedIn", "true");
+				}
 				return "success";
 			}
 		})
@@ -127,7 +131,6 @@ export function changeServerState(reqstate: string) {
 }
 
 export function createServer(n: string, s: string, v: string) {
-
 	const req4 = {
 		method: "POST",
 		headers: {
@@ -148,4 +151,3 @@ export function createServer(n: string, s: string, v: string) {
 
 	return "done";
 }
-
