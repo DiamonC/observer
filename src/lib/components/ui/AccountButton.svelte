@@ -1,9 +1,13 @@
 <script lang="ts">
-  import accountName from "$lib/stores/token";
-  import accountIcon from "$lib/stores/accountIcon";
+  import accountEmail from "$lib/stores/accountEmail";
   type loginStatus = true | false;
 
   export let loginStatus: boolean;
+
+  function signOut() {
+    localStorage.setItem("token", "");
+    loginStatus = false;
+  }
 </script>
 
 {#if loginStatus === true}
@@ -12,11 +16,25 @@
       <label
         tabindex="0"
         for="profileDropdown"
-        class="btn btn-ghost btn-circle avatar"
+        class="btn btn-ghost btn-circle"
       >
-        <div class="w-10 rounded-full">
-          <img src={$accountIcon} alt="profile avatar" />
-        </div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="feather feather-user"
+          ><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle
+            cx="12"
+            cy="7"
+            r="4"
+          /></svg
+        >
       </label>
       <ul
         id="profileDropdown"
@@ -25,12 +43,12 @@
       >
         <li>
           <p class="justify-between">
-            {$accountName} <span class="badge">Admin</span>
+            {$accountEmail}
           </p>
         </li>
         <li><a>Profile</a></li>
         <li><a>Account Settings</a></li>
-        <li><a>Logout</a></li>
+        <li><a on:click={signOut}>Logout</a></li>
       </ul>
     </div>
   </div>

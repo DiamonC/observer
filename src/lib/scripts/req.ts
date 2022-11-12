@@ -1,7 +1,7 @@
 import token from "$lib/stores/token";
 
-const apiurl = "http://localhost:4000/";
-const pburl = "http://localhost:8090/api/";
+const apiurl = "https://api.arthmc.xyz/";
+const pburl = "https://pb.arthmc.xyz/api/";
 
 export function createUser(em: string, pwd: string) {
 	const req = {
@@ -75,6 +75,7 @@ export function loginEmail(em: string, pwd: string) {
 			//set the token in local storage
 			if (typeof window !== "undefined") {
 				window.localStorage.setItem("token", token);
+				window.localStorage.setItem("accountEmail", em);
 			}
 
 			if (input.indexOf("400") > -1) {
@@ -82,6 +83,7 @@ export function loginEmail(em: string, pwd: string) {
 			} else {
 				if (typeof window !== "undefined") {
 					window.localStorage.setItem("loggedIn", "true");
+					
 				}
 				return "success";
 			}
@@ -150,4 +152,8 @@ export function createServer(n: string, s: string, v: string) {
 		.catch((err) => console.error(err));
 
 	return "done";
+}
+
+export function getAccountInfo() {
+	//send a request to pburl + ""
 }

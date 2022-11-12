@@ -2,13 +2,15 @@
   import ThemeToggle from "./../ui/ThemeToggle.svelte";
   import AccountButton from "./../ui/AccountButton.svelte";
   import { settings } from "$lib/stores/settings";
-  import { setLogin } from "$lib/scripts/req.ts";
   $: webname = $settings.webname;
   let enablePay = true;
   let login = false;
   type NavType = "default" | "welcome";
-  // set login to true if the localstorage token is not empty only on browser
+
   if (typeof window !== "undefined") {
+    if (localStorage.getItem("token") == null) {
+      localStorage.setItem("token", "");
+    }
     if (localStorage.getItem("token") !== "") {
       login = true;
     } else {
@@ -113,7 +115,7 @@
           /></svg
         ></a
       >
-      <div class="hidden sm:flex divider divider-horizontal py-1 pr-1.5" />
+
       <AccountButton loginStatus={login} />
     </div>
   </div>
