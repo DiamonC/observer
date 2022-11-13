@@ -5,6 +5,15 @@
   let goodPwd = true;
   let matchPwd = true;
 
+  function pwdVisibility() {
+    var x = document.getElementById("pwd");
+    if (x.type === "password") {
+      x.type = "text";
+    } else {
+      x.type = "password";
+    }
+  }
+
   //set goodPwd to false if length of the element with id="pwd" is less than 8
   function checkPwd() {
     if (document.getElementById("pwd").value.length < 8) {
@@ -43,12 +52,9 @@
   });
 
   function submit() {
-    
-   
-      if (sign == "up") {
-        checkPwd();
-        if (goodPwd && matchPwd) {
-          
+    if (sign == "up") {
+      checkPwd();
+      if (goodPwd && matchPwd) {
         const res = createUser(
           document.getElementById("email").value,
           document.getElementById("pwd").value
@@ -59,23 +65,23 @@
             window.location.href = "/";
           } else {
           }
-        
-        }); }
-      } else if (sign == "in") {
-         const res = loginEmail(
-          document.getElementById("email2").value,
-          document.getElementById("pwd2").value
-        ).then((x) => {
-          console.log("response: " + x);
-          if (x == "success") {
-            //redirect user to dashboard
-            window.location.href = "/";
-          } else {
-          }
-        }); 
+        });
       }
+    } else if (sign == "in") {
+      const res = loginEmail(
+        document.getElementById("email2").value,
+        document.getElementById("pwd2").value
+      ).then((x) => {
+        console.log("response: " + x);
+        if (x == "success") {
+          //redirect user to dashboard
+          window.location.href = "/";
+        } else {
+        }
+      });
     }
-  9
+  }
+  9;
 </script>
 
 <div class="divider" />
@@ -115,7 +121,7 @@
         />
         <div class="space-x-2 space-y-5">
           <input
-            type="text"
+            type="password"
             id="pwd2"
             placeholder="Password"
             class="input w-full max-w-xs"
@@ -174,14 +180,15 @@
           class="input w-full max-w-xs"
         />
         <input
-          type="text"
+          type="password"
           id="pwd"
           placeholder="Password"
           class="input w-full max-w-xs"
         />
+
         <div class="space-x-2 space-y-5">
           <input
-            type="text"
+            type="password"
             id="confPwd"
             placeholder="Confirm Password"
             class="input w-full max-w-xs"
