@@ -3,9 +3,21 @@
   import AccountButton from "./../ui/AccountButton.svelte";
   import { settings } from "$lib/stores/settings";
   $: webname = $settings.webname;
-  $: enablePay = $settings.enablePay;
+  let enablePay = true;
+  let login = false;
   type NavType = "default" | "welcome";
 
+  if (typeof window !== "undefined") {
+    if (localStorage.getItem("token") == null) {
+      localStorage.setItem("token", "");
+    }
+    if (localStorage.getItem("token") !== "") {
+      login = true;
+    } else {
+      login = false;
+    }
+  }
+  console.log(login);
   export let navType: NavType;
 </script>
 
@@ -103,8 +115,8 @@
           /></svg
         ></a
       >
-      <div class="hidden sm:flex divider divider-horizontal py-1 pr-1.5" />
-      <AccountButton loginStatus="nologin" />
+
+      <AccountButton loginStatus={login} />
     </div>
   </div>
 {:else if navType === "welcome"}

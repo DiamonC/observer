@@ -16,7 +16,7 @@ Observer is a frontend for Arth Panel, an open-source & self-hosted minecraft se
 
 ## Contributing Guidelines
 
-- Please format your code with the Svelte for VS Code extension, or an alternative that achieves the same results.  
+- Please format your code with Prettier, or an alternative that achieves the same results.  
 - Please use [feather](https://feathericons.com) for svg icons & use webp for raster images whenever possible. If you're wondering what tools have been used to make images like the arth logo (seen on arthmc.xyz) and the favicon, they were made with Lunacy.
 
 ### Check out our [backend](https://github.com/arthmc/quartz)'s progress  
