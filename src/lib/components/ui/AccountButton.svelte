@@ -1,7 +1,7 @@
 <script lang="ts">
   import accountEmail from "$lib/stores/accountEmail";
   type loginStatus = true | false;
-
+  import { t, locale, locales } from "$lib/scripts/i18n";
   export let loginStatus: boolean;
 
   function signOut() {
@@ -46,9 +46,9 @@
             {$accountEmail}
           </p>
         </li>
-        <li><a>Profile</a></li>
-        <li><a>Account Settings</a></li>
-        <li><a on:click={signOut}>Logout</a></li>
+        <li><a>{$t("account.profile")}</a></li>
+        <li><a>{$t("account.settings")}</a></li>
+        <li><a on:click={signOut}>{$t("account.logout")}</a></li>
       </ul>
     </div>
   </div>
