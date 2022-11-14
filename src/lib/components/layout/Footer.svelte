@@ -19,7 +19,7 @@
     </div>
   </footer>
 {:else}
-  <div class="footer footer-center fixed bottom-0 p-4">
+  <div class="footer footer-center fixed text-xs bottom-0 p-2">
     <div>
       <p>
         {Webname}{$t("site.footer")}

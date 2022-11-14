@@ -4,7 +4,7 @@
   import { loginEmail } from "$lib/scripts/req.ts";
   let goodPwd = true;
   let matchPwd = true;
-
+	let sign = "in";
   function pwdVisibility() {
     var x = document.getElementById("pwd");
     if (x.type === "password") {
@@ -32,7 +32,6 @@
     }
     console.log(matchPwd);
   }
-  let sign;
   //give the element with id="pwd" the class "tab-active"
   function signUp() {
     document.getElementById("sup").classList.add("tab-active");
@@ -48,7 +47,7 @@
   }
 
   onMount(() => {
-    signIn();
+
   });
 
   function submit() {
@@ -69,8 +68,8 @@
       }
     } else if (sign == "in") {
       const res = loginEmail(
-        document.getElementById("email2").value,
-        document.getElementById("pwd2").value
+        document.getElementById("email").value,
+        document.getElementById("pwd").value
       ).then((x) => {
         console.log("response: " + x);
         if (x == "success") {
@@ -81,12 +80,12 @@
       });
     }
   }
-  9;
+  
 </script>
 
 <div class="divider" />
 <div class="tabs ">
-  <a id="sin" on:click={signIn} class="tab tab-lifted">Signin</a>
+  <a id="sin" on:click={signIn} class="tab tab-lifted tab-active">Signin</a>
   <a id="sup" on:click={signUp} class="tab tab-lifted">Signup</a>
 </div>
 {#if sign === "in"}
@@ -114,7 +113,7 @@
         {/if}
         <p class="text-xl">Sign in via Email:</p>
         <input
-          id="email2"
+          id="email"
           type="text"
           placeholder="Email Address"
           class="input w-full max-w-xs"
@@ -122,7 +121,7 @@
         <div class="space-x-2 space-y-5">
           <input
             type="password"
-            id="pwd2"
+            id="pwd"
             placeholder="Password"
             class="input w-full max-w-xs"
           />
