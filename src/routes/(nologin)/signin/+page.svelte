@@ -1,7 +1,7 @@
 <script>
   import EmailSignin from "$lib/components/ui/EmailSignin.svelte";
 
-	import { t, locale, locales } from "$lib/scripts/i18n.ts"
+  import { t, locale, locales } from "$lib/scripts/i18n.ts";
 </script>
 
 <div class="hero min-h-screen bg-base-200">

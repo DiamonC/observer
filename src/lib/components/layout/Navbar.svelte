@@ -1,10 +1,10 @@
 <script lang="ts">
   import ThemeToggle from "./../buttons/ThemeToggle.svelte";
   import AccountButton from "./../buttons/AccountButton.svelte";
-	import Home from "./../buttons/Home.svelte";
-	import Billing from "./../buttons/Billing.svelte";
-	import NewServer from "./../buttons/NewServer.svelte";
-	import Settings from "./../buttons/Settings.svelte";
+  import Home from "./../buttons/Home.svelte";
+  import Billing from "./../buttons/Billing.svelte";
+  import NewServer from "./../buttons/NewServer.svelte";
+  import Settings from "./../buttons/Settings.svelte";
   import { settings } from "$lib/stores/settings";
   import { t, locale, locales } from "$lib/scripts/i18n";
 
@@ -44,12 +44,10 @@
         <li><a href="/settings">{$t("navbar.settings")}</a></li>
       </ul>
 
-      
-      
-			<Home />
-			<Settings />
+      <Home />
+      <Settings />
       <ThemeToggle />
-			
+
       {#if enablePay === true}
         <Billing />
       {/if}
@@ -60,11 +58,11 @@
   </div>
 {:else if navType === "welcome"}
   <div class="navbar fixed justify-between px-6">
-		<Home class="md:invisible"/>
+    <Home class="md:invisible" />
     <a class="invisible md:visible btn btn-ghost normal-case text-2xl" href="/"
       >{$t("navbar.webname")}</a
     >
-		
+
     <ThemeToggle />
   </div>
 {/if}

@@ -2,10 +2,10 @@
   import { onMount } from "svelte";
   import { createUser } from "$lib/scripts/req.ts";
   import { loginEmail } from "$lib/scripts/req.ts";
-	import { t, locale, locales } from "$lib/scripts/i18n.ts"
+  import { t, locale, locales } from "$lib/scripts/i18n.ts";
   let goodPwd = true;
   let matchPwd = true;
-	let sign = "in";
+  let sign = "in";
   function pwdVisibility() {
     var x = document.getElementById("pwd");
     if (x.type === "password") {
@@ -47,9 +47,7 @@
     sign = "in";
   }
 
-  onMount(() => {
-
-  });
+  onMount(() => {});
 
   function submit() {
     if (sign == "up") {
@@ -81,12 +79,13 @@
       });
     }
   }
-  
 </script>
 
 <div class="divider" />
 <div class="tabs ">
-  <a id="sin" on:click={signIn} class="tab tab-lifted tab-active">{$t("signin")}</a>
+  <a id="sin" on:click={signIn} class="tab tab-lifted tab-active"
+    >{$t("signin")}</a
+  >
   <a id="sup" on:click={signUp} class="tab tab-lifted">{$t("signup")}</a>
 </div>
 {#if sign === "in"}
@@ -193,7 +192,9 @@
             placeholder={$t("signin.l.cpwd")}
             class="input w-full max-w-xs"
           />
-          <button on:click={submit} class="btn btn-primary">{$t("button.submit")}</button>
+          <button on:click={submit} class="btn btn-primary"
+            >{$t("button.submit")}</button
+          >
         </div>
       </div>
     </div>
