@@ -2,9 +2,10 @@
   import { onMount } from "svelte";
   import { createUser } from "$lib/scripts/req.ts";
   import { loginEmail } from "$lib/scripts/req.ts";
+  import { t, locale, locales } from "$lib/scripts/i18n.ts";
   let goodPwd = true;
   let matchPwd = true;
-
+  let sign = "in";
   function pwdVisibility() {
     var x = document.getElementById("pwd");
     if (x.type === "password") {
@@ -32,7 +33,6 @@
     }
     console.log(matchPwd);
   }
-  let sign;
   //give the element with id="pwd" the class "tab-active"
   function signUp() {
     document.getElementById("sup").classList.add("tab-active");
@@ -47,9 +47,7 @@
     sign = "in";
   }
 
-  onMount(() => {
-    signIn();
-  });
+  onMount(() => {});
 
   function submit() {
     if (sign == "up") {
@@ -69,8 +67,8 @@
       }
     } else if (sign == "in") {
       const res = loginEmail(
-        document.getElementById("email2").value,
-        document.getElementById("pwd2").value
+        document.getElementById("email").value,
+        document.getElementById("pwd").value
       ).then((x) => {
         console.log("response: " + x);
         if (x == "success") {
@@ -81,13 +79,14 @@
       });
     }
   }
-  9;
 </script>
 
 <div class="divider" />
 <div class="tabs ">
-  <a id="sin" on:click={signIn} class="tab tab-lifted">Signin</a>
-  <a id="sup" on:click={signUp} class="tab tab-lifted">Signup</a>
+  <a id="sin" on:click={signIn} class="tab tab-lifted tab-active"
+    >{$t("signin")}</a
+  >
+  <a id="sup" on:click={signUp} class="tab tab-lifted">{$t("signup")}</a>
 </div>
 {#if sign === "in"}
   <div
@@ -112,18 +111,18 @@
             Your password must be 8 characters long.
           </div>
         {/if}
-        <p class="text-xl">Sign in via Email:</p>
+        <p class="text-xl">{$t("signin.h.email")}</p>
         <input
-          id="email2"
+          id="email"
           type="text"
-          placeholder="Email Address"
+          placeholder={$t("signin.l.email")}
           class="input w-full max-w-xs"
         />
         <div class="space-x-2 space-y-5">
           <input
             type="password"
-            id="pwd2"
-            placeholder="Password"
+            id="pwd"
+            placeholder={$t("signin.l.pwd")}
             class="input w-full max-w-xs"
           />
 
@@ -176,13 +175,13 @@
         <input
           id="email"
           type="text"
-          placeholder="Email Address"
+          placeholder={$t("signin.l.email")}
           class="input w-full max-w-xs"
         />
         <input
           type="password"
           id="pwd"
-          placeholder="Password"
+          placeholder={$t("signin.l.pwd")}
           class="input w-full max-w-xs"
         />
 
@@ -190,10 +189,12 @@
           <input
             type="password"
             id="confPwd"
-            placeholder="Confirm Password"
+            placeholder={$t("signin.l.cpwd")}
             class="input w-full max-w-xs"
           />
-          <button on:click={submit} class="btn btn-primary">Submit</button>
+          <button on:click={submit} class="btn btn-primary"
+            >{$t("button.submit")}</button
+          >
         </div>
       </div>
     </div>

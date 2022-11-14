@@ -2,13 +2,14 @@
   import { src_url_equal } from "svelte/internal";
   import { changeServerState } from "$lib/scripts/req.js";
   import { getServerInfo } from "$lib/scripts/req.js";
+  import { t, locale, locales } from "$lib/scripts/i18n";
   //Status variables
   let stopcolor = "info";
   let startcolor = "info";
   let starttext = "Start";
   let online = false;
 
-  //Server variables
+  //Software variables
   type serverType =
     | "paper"
     | "spigot"
@@ -28,58 +29,6 @@
   function uppercaseFirstLetter(string: string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
-  /*
-  //Request Server Info
-  const getInfo = {
-    method: "GET",
-    headers: {
-      techname: serverName,
-    },
-  };
-
-  const response = fetch("https://api.arthmc.xyz/server", getInfo)
-    .then((res) => res.text())
-    //.then((text) => console.log(text))
-    .catch((err) => console.error(err));
-*/
-  //Request server start/stop/restart
-  /* function changeState(reqstate: string) {
-    let startStop;
-    if (reqstate == "start") {
-      startStop = {
-        method: "GET",
-        headers: {
-          request: "start",
-        },
-      };
-    } else if (reqstate == "stop") {
-      startStop = {
-        method: "GET",
-        headers: {
-          request: "stop",
-        },
-      };
-    } else if (reqstate == "restart") {
-      startStop = {
-        method: "GET",
-        headers: {
-          request: "restart",
-        },
-      };
-    } else {
-      startStop = {
-        method: "GET",
-        headers: {
-          request: "x",
-        },
-      };
-    }
-
-    fetch("https://api.arthmc.xyz/server/change-state", startStop)
-      .then((res) => res.text())
-      .then((text) => console.log(text))
-      .catch((err) => console.error(err));
-  } */
 
   function status() {
     if (online == true) {
@@ -110,11 +59,15 @@
       <div class="card-actions justify-end pt-4">
         <!-- placeholder for now? -->
         <div class="grow space-x-0.5">
-          <button class="btn btn-primary btn-sm h-9">Terminal</button>
+          <button class="btn btn-primary btn-sm h-9"
+            >{$t("button.terminal")}</button
+          >
           <button type="submit" class="btn btn-{startcolor} btn-sm h-9"
             >{starttext}</button
           >
-          <button class="btn btn-{stopcolor} btn-sm h-9 stop-btn">Stop</button>
+          <button class="btn btn-{stopcolor} btn-sm h-9 stop-btn"
+            >{$t("button.stop")}</button
+          >
         </div>
         <div class="self-center">
           <div class="badge badge-outline">1/20</div>
