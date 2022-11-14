@@ -65,12 +65,12 @@ export function loginEmail(em: string, pwd: string) {
 		.then((res) => res.text())
 		.then((input: string) => {
 			console.log("Response Recieved: " + input);
-			//log the next 15 characters after the word "token"
+
+			//grabs token from response
 			const token = input.substring(
 				input.indexOf("token") + 8,
 				input.indexOf("token") + 163
 			);
-			console.log(token);
 
 			//set the token in local storage
 			if (typeof window !== "undefined") {
@@ -83,7 +83,7 @@ export function loginEmail(em: string, pwd: string) {
 			} else {
 				if (typeof window !== "undefined") {
 					window.localStorage.setItem("loggedIn", "true");
-					
+
 				}
 				return "success";
 			}
@@ -152,8 +152,4 @@ export function createServer(n: string, s: string, v: string) {
 		.catch((err) => console.error(err));
 
 	return "done";
-}
-
-export function getAccountInfo() {
-	//send a request to pburl + ""
 }
