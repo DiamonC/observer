@@ -50,9 +50,7 @@
           type="text"
           placeholder="{$t('general.ex')} 3000"
         />
-        <Helper
-          tooltipText="This is the port that this panel will run on (3000 by default). If you're not using a reverse proxy, you will see :port after the hostname in the URL."
-        />
+        <Helper tooltipText={$t("settings.t.webport")} />
       </div>
 
       <label class="label" for="3">{$t("settings.l.webtitle")}</label>
