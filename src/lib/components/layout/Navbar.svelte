@@ -2,7 +2,6 @@
   import ThemeToggle from "./../ui/ThemeToggle.svelte";
   import AccountButton from "./../ui/AccountButton.svelte";
   import { settings } from "$lib/stores/settings";
-  import LangButton from "../ui/LangButton.svelte";
   import { t, locale, locales } from "$lib/scripts/i18n";
 
   let enablePay = true;
