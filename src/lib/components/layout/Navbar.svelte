@@ -2,7 +2,9 @@
   import ThemeToggle from "./../ui/ThemeToggle.svelte";
   import AccountButton from "./../ui/AccountButton.svelte";
   import { settings } from "$lib/stores/settings";
-  $: webname = $settings.webname;
+  import LangButton from "../ui/LangButton.svelte";
+  import { t, locale, locales } from "$lib/scripts/i18n";
+
   let enablePay = true;
   let login = false;
   type NavType = "default" | "welcome";
@@ -24,12 +26,14 @@
 {#if navType === "default"}
   <div class="navbar bg-base-300 px-4">
     <div class="hidden sm:block flex-1">
-      <a class="btn btn-ghost normal-case text-xl" href="/">{webname}</a>
+      <a class="btn btn-ghost normal-case text-xl" href="/"
+        >{$t("navbar.webname")}</a
+      >
     </div>
     <div class="flex-1 md:flex-none space-x-2 navbar-end">
       <ul class="invisible md:visible md:space-x-0 menu menu-horizontal p-0">
-        <li><a href="/">Servers</a></li>
-        <li><a href="/settings">Settings</a></li>
+        <li><a href="/">{$t("navbar.servers")}</a></li>
+        <li><a href="/settings">{$t("navbar.settings")}</a></li>
       </ul>
 
       <div class="visible md:hidden">
@@ -70,7 +74,7 @@
           >
         </a>
       </div>
-
+      <LangButton />
       <ThemeToggle />
       {#if enablePay === true}
         <a href="/billing" class="btn btn-ghost btn-circle"
@@ -121,7 +125,9 @@
   </div>
 {:else if navType === "welcome"}
   <div class="navbar fixed justify-between px-6">
-    <a class="btn btn-ghost normal-case text-2xl" href="/">{webname}</a>
+    <a class="btn btn-ghost normal-case text-2xl" href="/"
+      >{$t("navbar.webname")}</a
+    >
     <ThemeToggle />
   </div>
 {/if}
