@@ -79,7 +79,7 @@
           >
         </a>
       </div>
-      <LangButton />
+
       <ThemeToggle />
       {#if enablePay === true}
         <a href="/billing" class="btn btn-ghost btn-circle"
