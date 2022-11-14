@@ -9,7 +9,7 @@
   let starttext = "Start";
   let online = false;
 
-  //Server variables
+  //Software variables
   type serverType =
     | "paper"
     | "spigot"
@@ -29,58 +29,6 @@
   function uppercaseFirstLetter(string: string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
-  /*
-  //Request Server Info
-  const getInfo = {
-    method: "GET",
-    headers: {
-      techname: serverName,
-    },
-  };
-
-  const response = fetch("https://api.arthmc.xyz/server", getInfo)
-    .then((res) => res.text())
-    //.then((text) => console.log(text))
-    .catch((err) => console.error(err));
-*/
-  //Request server start/stop/restart
-  /* function changeState(reqstate: string) {
-    let startStop;
-    if (reqstate == "start") {
-      startStop = {
-        method: "GET",
-        headers: {
-          request: "start",
-        },
-      };
-    } else if (reqstate == "stop") {
-      startStop = {
-        method: "GET",
-        headers: {
-          request: "stop",
-        },
-      };
-    } else if (reqstate == "restart") {
-      startStop = {
-        method: "GET",
-        headers: {
-          request: "restart",
-        },
-      };
-    } else {
-      startStop = {
-        method: "GET",
-        headers: {
-          request: "x",
-        },
-      };
-    }
-
-    fetch("https://api.arthmc.xyz/server/change-state", startStop)
-      .then((res) => res.text())
-      .then((text) => console.log(text))
-      .catch((err) => console.error(err));
-  } */
 
   function status() {
     if (online == true) {
