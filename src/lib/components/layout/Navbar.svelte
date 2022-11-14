@@ -8,7 +8,12 @@
   let enablePay = true;
   let login = false;
   type NavType = "default" | "welcome";
+  if (typeof navigator !== "undefined") {
+    console.log(navigator.language);
 
+    //set locale to the browser's language
+    locale.set(navigator.language);
+  }
   if (typeof window !== "undefined") {
     if (localStorage.getItem("token") == null) {
       localStorage.setItem("token", "");
