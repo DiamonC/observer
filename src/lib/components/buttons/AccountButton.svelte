@@ -14,7 +14,6 @@
     if (localStorage.getItem("token") === "") {
       window.location.href = "/signin";
     }
-
   }
 </script>
 
@@ -54,8 +53,6 @@
             {$accountEmail}
           </p>
         </li>
-        <li><a>{$t("account.profile")}</a></li>
-        <li><a>{$t("account.settings")}</a></li>
         <li><a on:click={signOut}>{$t("account.logout")}</a></li>
       </ul>
     </div>

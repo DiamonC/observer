@@ -69,7 +69,13 @@
           console.log("response: " + x);
           if (x == "success") {
             //redirect user to dashboard
-            window.location.href = "/pay";
+            const res = loginEmail(
+              document.getElementById("email").value,
+              document.getElementById("pwd").value
+            ).then((x) => {
+              console.log("response: " + x);
+              window.location.href = "/pay";
+            });
           } else {
             if (x == undefined) {
               networkerror = true;
