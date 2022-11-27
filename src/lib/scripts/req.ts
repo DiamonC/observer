@@ -1,7 +1,7 @@
 import accountEmail from "$lib/stores/accountEmail";
 import { browser } from "$app/environment";
 
-const apiurl = "http://localhost:4000/";
+const apiurl = "https://api.arthmc.xyz/";
 const pburl = "https://pb.arthmc.xyz/api/";
 
 export function getServers(em:string) {
