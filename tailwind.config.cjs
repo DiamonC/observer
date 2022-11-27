@@ -14,14 +14,16 @@ module.exports = {
                         "[data-theme=dark]"
                     ],
                     primary: "#088385",
-                    secondary: "#a80200",
+                    secondary: "#cc4304",
+
                 },
                 light: {
                     ...require("daisyui/src/colors/themes")[
                         "[data-theme=light]"
                     ],
                     primary: "#088385",
-                    secondary: "#a80200",
+                    secondary: "#cc4304",
+
                 },
             },
         ],

@@ -1,6 +1,7 @@
 <script lang="ts">
-  import { createServer } from "$lib/scripts/req.ts";
+  import { createServer } from "$lib/scripts/req";
   import { t, locale, locales } from "$lib/scripts/i18n";
+  import Helper from "$lib/components/ui/Helper.svelte";
 
   function send() {
     let sVersion = document.getElementById("versionInput").value;
@@ -55,6 +56,38 @@
             type="text"
             placeholder="{$t('general.ex')} latest, 1.16.5"
           />
+          <div class="p-2" />
+          <div class="justify-center flex">
+            <p class="label ">Worldgen Mods</p>
+            <Helper
+              tooltipText="Enabling a worldgen mod can add new biomes and enhance the look of your natural terrain. They aren't made by Arth or Mojang, so we can't guarentee it'll be completely stable."
+            />
+          </div>
+
+          <div class="flex justify-center">
+            <img
+              class="mask mask-hexagon"
+              src="/images/terralith.webp"
+              width="100ch"
+            />
+
+            <img
+              class="mask mask-hexagon"
+              src="/images/nullscape.webp"
+              width="100ch"
+            />
+            <img
+              class="mask mask-hexagon"
+              src="/images/incendium.webp"
+              width="100ch"
+            />
+          </div>
+          <div class="p-2" />
+          <div class="flex justify-center space-x-20">
+            <input type="checkbox" class="checkbox checkbox-secondary" />
+            <input type="checkbox" class="checkbox checkbox-secondary" />
+            <input type="checkbox" class="checkbox checkbox-secondary" />
+          </div>
           <button type="submit" on:click={send} class="btn mt-4"
             >{$t("button.createServer")}</button
           >

@@ -1,10 +1,12 @@
 <script>
   import { onMount } from "svelte";
-  import { createUser } from "$lib/scripts/req.ts";
-  import { loginEmail } from "$lib/scripts/req.ts";
-  import { t, locale, locales } from "$lib/scripts/i18n.ts";
+  import { createUser } from "$lib/scripts/req";
+  import { loginEmail } from "$lib/scripts/req";
+  import { t, locale, locales } from "$lib/scripts/i18n";
+  import { browser } from "$app/environment";
   let goodPwd = true;
   let matchPwd = true;
+  let networkerror = false;
   let sign = "in";
   function pwdVisibility() {
     var x = document.getElementById("pwd");
@@ -47,12 +49,19 @@
     sign = "in";
   }
 
-  onMount(() => {});
+  onMount(() => {
+    //run signUp() if token == "" if window is defined
+    if (browser) {
+      if (localStorage.getItem("token") == "") {
+        signUp();
+      }
+    }
+  });
 
   function submit() {
     if (sign == "up") {
       checkPwd();
-      if (goodPwd && matchPwd) {
+      if (goodPwd) {
         const res = createUser(
           document.getElementById("email").value,
           document.getElementById("pwd").value
@@ -60,8 +69,17 @@
           console.log("response: " + x);
           if (x == "success") {
             //redirect user to dashboard
-            window.location.href = "/";
+            const res = loginEmail(
+              document.getElementById("email").value,
+              document.getElementById("pwd").value
+            ).then((x) => {
+              console.log("response: " + x);
+              window.location.href = "/pay";
+            });
           } else {
+            if (x == undefined) {
+              networkerror = true;
+            }
           }
         });
       }
@@ -75,6 +93,10 @@
           //redirect user to dashboard
           window.location.href = "/";
         } else {
+          //if the console says "error" then set networkerror to true
+          if (x == undefined) {
+            networkerror = true;
+          }
         }
       });
     }
@@ -109,6 +131,23 @@
               /></svg
             >
             Your password must be 8 characters long.
+          </div>
+        {/if}
+        {#if networkerror === true}
+          <div class="badge badge-error gap-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              class="inline-block w-4 h-4 stroke-current"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
+              /></svg
+            >
+            You encountered a network error.
           </div>
         {/if}
         <p class="text-xl">{$t("signin.h.email")}</p>
@@ -152,6 +191,23 @@
               /></svg
             >
             Your password must be 8 characters long.
+          </div>
+        {/if}
+        {#if networkerror === true}
+          <div class="badge badge-error gap-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              class="inline-block w-4 h-4 stroke-current"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
+              /></svg
+            >
+            You encountered a network error.
           </div>
         {/if}
         {#if matchPwd === false}

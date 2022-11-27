@@ -8,6 +8,13 @@
     localStorage.setItem("token", "");
     loginStatus = false;
   }
+
+  //send user to /signin page if token == ""
+  if (typeof window !== "undefined") {
+    if (localStorage.getItem("token") === "") {
+      window.location.href = "/signin";
+    }
+  }
 </script>
 
 {#if loginStatus === true}
@@ -46,8 +53,6 @@
             {$accountEmail}
           </p>
         </li>
-        <li><a>{$t("account.profile")}</a></li>
-        <li><a>{$t("account.settings")}</a></li>
         <li><a on:click={signOut}>{$t("account.logout")}</a></li>
       </ul>
     </div>

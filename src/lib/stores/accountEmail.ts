@@ -1,7 +1,7 @@
 import { browser } from "$app/environment"
 import { writable } from "svelte/store"
 
-const defaultValue = "No Email Found. Are you logged in?";
+const defaultValue = "noemail";
 const initialValue = browser ? window.localStorage.getItem('accountEmail') ?? defaultValue : defaultValue;
 
 const accountEmail = writable(initialValue)

@@ -22,9 +22,9 @@
     | "mohist"
     | "vanilla";
 
-  export let serverName: string;
-  let version: string = "latest";
-  let software: string = "paper";
+  export let name: string;
+  export let version: string;
+  export let software: string;
 
   function uppercaseFirstLetter(string: string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -49,7 +49,7 @@
 <div class="m-3">
   <div class="card w-96 bg-base-100 shadow-xl image-full">
     <div class="card-body">
-      <h2 class="card-title">{serverName}</h2>
+      <h2 class="card-title">{name}</h2>
       <p>
         <b>Version:</b>
         {uppercaseFirstLetter(version)} |

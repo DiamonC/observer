@@ -38,7 +38,7 @@
             "purpose": "maskable"
         },
         {
-            "src": "icon/512-m.pnwebpg",
+            "src": "icon/512-m.webp",
             "sizes": "512x512",
             "type": "image/webp"
         }

@@ -5,9 +5,15 @@
   import Billing from "./../buttons/Billing.svelte";
   import NewServer from "./../buttons/NewServer.svelte";
   import Settings from "./../buttons/Settings.svelte";
-  import { settings } from "$lib/stores/settings";
+  import { browser } from "$app/environment";
   import { t, locale, locales } from "$lib/scripts/i18n";
-
+  import { goto } from "$app/navigation";
+  //sends user to /signin if localstorage token is ""
+  if (browser) {
+    if (localStorage.getItem("token") == "") {
+      goto("/signin");
+    }
+  }
   let enablePay = true;
   let login = false;
   type NavType = "default" | "welcome";
@@ -34,14 +40,20 @@
 {#if navType === "default"}
   <div class="navbar bg-base-300 px-4">
     <div class="hidden sm:block flex-1">
-      <a class="btn btn-ghost normal-case text-xl" href="/"
-        >{$t("navbar.webname")}</a
+      <a class="btn btn-ghost normal-case text-xl invisible sm:visible" href="/"
+        ><img src="/images/sitelogo.svg" alt="Arth" width="75" height="75" /></a
       >
     </div>
     <div class="flex-1 md:flex-none space-x-2 navbar-end">
       <ul class="invisible md:visible md:space-x-0 menu menu-horizontal p-0">
         <li><a href="/">{$t("navbar.servers")}</a></li>
-        <li><a href="/settings">{$t("navbar.settings")}</a></li>
+        <div>
+          {#if typeof window !== "undefined"}
+            {#if localStorage.getItem("adminToken") == "placeholder"}
+              <li><a href="/settings">{$t("navbar.settings")}</a></li>
+            {/if}
+          {/if}
+        </div>
       </ul>
 
       <Home />
@@ -59,8 +71,8 @@
 {:else if navType === "welcome"}
   <div class="navbar fixed justify-between px-6">
     <Home class="md:invisible" />
-    <a class="invisible md:visible btn btn-ghost normal-case text-2xl" href="/"
-      >{$t("navbar.webname")}</a
+    <a class="btn btn-ghost normal-case text-xl invisible sm:visible" href="/"
+      ><img src="/images/sitelogo.svg" alt="Arth" width="75" height="75" /></a
     >
 
     <ThemeToggle />
