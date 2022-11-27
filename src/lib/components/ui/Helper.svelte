@@ -2,7 +2,7 @@
   export let tooltipText: string;
 </script>
 
-<div class="tooltip tooltip-bottom" data-tip={tooltipText}>
+<div class="tooltip tooltip-right" data-tip={tooltipText}>
   <div class="btn btn-circle btn-ghost btn-md">
     <svg
       xmlns="http://www.w3.org/2000/svg"

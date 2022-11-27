@@ -8,6 +8,14 @@
     localStorage.setItem("token", "");
     loginStatus = false;
   }
+
+  //send user to /signin page if token == ""
+  if (typeof window !== "undefined") {
+    if (localStorage.getItem("token") === "") {
+      window.location.href = "/signin";
+    }
+
+  }
 </script>
 
 {#if loginStatus === true}

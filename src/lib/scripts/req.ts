@@ -1,8 +1,35 @@
-import token from "$lib/stores/token";
+import accountEmail from "$lib/stores/accountEmail";
+import { browser } from "$app/environment";
 
-const apiurl = "https://api.arthmc.xyz/";
+const apiurl = "http://localhost:4000/";
 const pburl = "https://pb.arthmc.xyz/api/";
 
+export function getServers(em:string) {
+	console.log("hi" + em);
+	const req = {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify({
+			email: em,
+		}),
+}
+	console.log("Request Sent: " + req.body);
+	return fetch(apiurl + "servers", req)
+		.then((res) => res.text())
+		.then((input: string) => {
+			console.log("Response Recieved: " + input);
+			if (input.indexOf("400") > -1) {
+				return "error";
+			} else {
+				//return input as json
+				return JSON.parse(input);
+			}
+		})
+		.catch((err) => console.error(err));
+
+}
 export function createUser(em: string, pwd: string) {
 	const req = {
 		method: "POST",
@@ -73,7 +100,7 @@ export function loginEmail(em: string, pwd: string) {
 			);
 
 			//set the token in local storage
-			if (typeof window !== "undefined") {
+			if (browser) {
 				window.localStorage.setItem("token", token);
 				window.localStorage.setItem("accountEmail", em);
 			}
@@ -81,7 +108,7 @@ export function loginEmail(em: string, pwd: string) {
 			if (input.indexOf("400") > -1) {
 				return "error";
 			} else {
-				if (typeof window !== "undefined") {
+				if (browser) {
 					window.localStorage.setItem("loggedIn", "true");
 
 				}
@@ -142,6 +169,7 @@ export function createServer(n: string, s: string, v: string) {
 			name: n,
 			software: s,
 			version: v,
+			email: window.localStorage.getItem("accountEmail"),
 		}),
 	};
 	console.log("Request Sent: " + req4.body);
