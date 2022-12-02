@@ -1,10 +1,29 @@
 import accountEmail from "$lib/stores/accountEmail";
 import { browser } from "$app/environment";
+export const apiurl = "https://api.arthmc.xyz/";
+export const pburl = "https://pb.arthmc.xyz/api/";
 
-const apiurl = "https://api.arthmc.xyz/";
-const pburl = "https://pb.arthmc.xyz/api/";
+export function getSettings() {
+	const req = {
+		method: "GET",
 
-export function getServers(em:string) {
+	}
+	console.log("Request Sent");
+	return fetch(apiurl + "settings", req)
+		.then((res) => res.text())
+		.then((input: string) => {
+			console.log("Response Recieved: " + input);
+
+
+			return JSON.parse(input);
+
+		})
+		.catch((err) => console.error(err));
+
+
+
+}
+export function getServers(em: string) {
 	console.log("hi" + em);
 	const req = {
 		method: "POST",
@@ -14,7 +33,7 @@ export function getServers(em:string) {
 		body: JSON.stringify({
 			email: em,
 		}),
-}
+	}
 	console.log("Request Sent: " + req.body);
 	return fetch(apiurl + "servers", req)
 		.then((res) => res.text())
@@ -181,3 +200,4 @@ export function createServer(n: string, s: string, v: string) {
 
 	return "done";
 }
+getSettings();

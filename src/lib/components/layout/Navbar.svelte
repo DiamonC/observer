@@ -8,6 +8,7 @@
   import { browser } from "$app/environment";
   import { t, locale, locales } from "$lib/scripts/i18n";
   import { goto } from "$app/navigation";
+
   //sends user to /signin if localstorage token is ""
   if (browser) {
     if (localStorage.getItem("token") == "") {
@@ -46,7 +47,11 @@
     </div>
     <div class="flex-1 md:flex-none space-x-2 navbar-end">
       <ul class="invisible md:visible md:space-x-0 menu menu-horizontal p-0">
-        <li><a href="/">{$t("navbar.servers")}</a></li>
+        <li>
+          <a href="/" class="btn btn-ghost rounded-lg">{$t("navbar.servers")}</a
+          >
+          <!-- todo: get font back to normal and find out why the button is square-->
+        </li>
         <div>
           {#if typeof window !== "undefined"}
             {#if localStorage.getItem("adminToken") == "placeholder"}
@@ -70,10 +75,7 @@
   </div>
 {:else if navType === "welcome"}
   <div class="navbar fixed justify-between px-6">
-    <Home class="md:invisible" />
-    <a class="btn btn-ghost normal-case text-xl invisible sm:visible" href="/"
-      ><img src="/images/sitelogo.svg" alt="Arth" width="75" height="75" /></a
-    >
+    <img src="/images/sitelogo.svg" alt="Arth" width="75" height="75" />
 
     <ThemeToggle />
   </div>

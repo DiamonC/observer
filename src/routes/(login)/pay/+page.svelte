@@ -15,49 +15,42 @@
   }
 </script>
 
-
-
 <div class="flex justify-center  hero  bg-base-100 rounded-xl">
   <div class="flex flex-col hero-content">
     {#if email == ""}
-    <div class="space-x-10">
-      <p class="text-left text-3xl ">
-        Looks like you're subscribed.
-
-        
-      </p>
-    </div>
-    <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://billing.stripe.com/p/login/test_3csdUN00Ccpa1zi7ss?prefilled_email={email}
+      <div class="space-x-10">
+        <p class="text-left text-3xl ">{$t("pay.h.subscribed")}</p>
+      </div>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://billing.stripe.com/p/login/test_3csdUN00Ccpa1zi7ss?prefilled_email={email}
       
     "
-          on:click={subscribe}
-        >
-          <button class="btn btn-secondary btn-outline">
-            Manage Subscription
-          </button></a
-        >
+        on:click={subscribe}
+      >
+        <button class="btn btn-secondary btn-outline">
+          {$t("button.manage")}
+        </button></a
+      >
     {:else}
       <div class="space-x-10">
         <p class="text-left text-2xl">
-          You'll be charged $7 dollars per month after a 7 day free trial.
+          {$t("pay.h")}
         </p>
       </div>
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://buy.stripe.com/test_4gw02leq9cg83DiaEE?prefilled_email={email}
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://buy.stripe.com/test_4gw02leq9cg83DiaEE?prefilled_email={email}
           https
         "
-            on:click={subscribe}
-          >
-            <button class="btn btn-secondary btn-outline"> Subscribe </button></a
-          >
-
-
-
+        on:click={subscribe}
+      >
+        <button class="btn btn-secondary btn-outline">
+          {$t("button.subscribe")}
+        </button></a
+      >
     {/if}
   </div>
 </div>
