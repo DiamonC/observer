@@ -1,6 +1,6 @@
 <script>
   let steps = 0;
-	import { t } from "$lib/scripts/i18n";
+  import { t } from "$lib/scripts/i18n";
   import APISettings from "$lib/components/ui/ApiSettings.svelte";
   import Navbar from "$lib/components/layout/Navbar.svelte";
   import { apiurl } from "$lib/scripts/req";
@@ -9,9 +9,9 @@
 
   function step() {
     steps++;
-    var step2 = steps + "";
+
     //add the class "step-secondary" to the element with the id of steps
-    document.getElementById(step2).classList.add("step-secondary");
+    document.getElementById(step).classList.add("step-secondary");
     if (steps == 1) {
       //add property disabled to id "ckbx"
       document.getElementById("ckbx").disabled = true;
@@ -26,6 +26,7 @@
     }
   }
 </script>
+
 <Navbar navType="welcome" />
 <div class="p-7" />
 <div class="grid  items-center">
