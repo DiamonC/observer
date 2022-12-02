@@ -9,9 +9,9 @@
 
   function step() {
     steps++;
-
+    let step2 = steps + "";
     //add the class "step-secondary" to the element with the id of steps
-    document.getElementById(step).classList.add("step-secondary");
+    document.getElementById(step2).classList.add("step-secondary");
     if (steps == 1) {
       //add property disabled to id "ckbx"
       document.getElementById("ckbx").disabled = true;
@@ -49,7 +49,7 @@
       on:click={step}
     />
   </div>
-  <div class="flex flex-col items-center idden" id="step2">
+  <div class="flex flex-col items-center hidden" id="step2">
     <div class="divider text-xl">{$t("setup.h2")}</div>
     <p class="p-3">
       {$t("setup.desc2")}
@@ -61,11 +61,11 @@
     >
   </div>
 
-  <div class="flex flex-col pl-10 idden" id="step3">
+  <div class="flex flex-col pl-10 hidden" id="step3">
     <div class="divider text-xl p-3">{$t("setup.h3")}</div>
     <Settings />
   </div>
-  <button class="btn btn-block ivisible" id="finish" on:click={step}
+  <button class="btn btn-block invisible" id="finish" on:click={step}
     ><a href="/">{$t("button.finish")}</a></button
   >
 </div>
