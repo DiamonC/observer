@@ -30,6 +30,10 @@
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
+  let tname: string;
+  
+  tname = name.toLowerCase().replace(/ /g, "-");
+
   function status() {
     if (online == true) {
       stopcolor = "error";
@@ -58,10 +62,10 @@
       <!-- <div class="card-actions justify-beginning" /> -->
       <div class="card-actions justify-end pt-4">
         <!-- placeholder for now? -->
-        <div class="grow space-x-0.5">
-          <button class="btn btn-primary btn-sm h-9"
-            >{$t("button.terminal")}</button
-          >
+        <div class="grow space-x-1.5 flex">
+          <a href="/server/{tname}"><button class="btn btn-primary btn-sm h-9"
+            ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg></button
+          ></a>
           <button type="submit" class="btn btn-{startcolor} btn-sm h-9"
             >{starttext}</button
           >
