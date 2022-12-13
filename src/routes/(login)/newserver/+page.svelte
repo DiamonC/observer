@@ -2,6 +2,7 @@
   import { createServer } from "$lib/scripts/req";
   import { t, locale, locales } from "$lib/scripts/i18n";
   import Helper from "$lib/components/ui/Helper.svelte";
+    import { goto } from "$app/navigation";
 
   function send() {
     let sVersion = document.getElementById("versionInput").value;
@@ -9,6 +10,10 @@
     let sSoftware = document.getElementById("softwareDropdown").value;
 
     createServer(sName, sSoftware, sVersion);
+
+
+      goto(`/server/${sName}`);
+
   }
 </script>
 
@@ -88,9 +93,8 @@
             <input type="checkbox" class="checkbox checkbox-secondary" />
             <input type="checkbox" class="checkbox checkbox-secondary" />
           </div>
-          <button type="submit" on:click={send} class="btn mt-4"
-            >{$t("button.createServer")}</button
-          >
+          <a on:click={send} class="btn mt-4">{$t("button.createServer")}</a>
+
         </div>
       </form>
     </div>
