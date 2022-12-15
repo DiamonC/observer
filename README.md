@@ -27,7 +27,7 @@ Observer is a frontend for Arth Panel, an open-source & self-hosted minecraft se
 ### Check out our [backend](https://github.com/arthmc/quartz)'s progress  
 
 ## Why Arth Panel?
-The main difference between an alternative like pufferpanel or pterodactyl is that it's meant to work in a way so that if an issue were to occur, you could easily just SSH into the machine and run the jar directly in a folder, so you know that your server's uptime is not dependant on a panel someone else made working flawlessly.  
+The main difference between Arth Panel and an alternative like pufferpanel or pterodactyl is that it's meant to work in a way so that if an issue were to occur, you could easily just SSH into the machine and run the jar directly in a folder, so you know that your server's uptime is not dependant on a panel someone else made working flawlessly.  
 
 ## Planned Pages
 
