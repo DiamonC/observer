@@ -12,9 +12,12 @@
     createServer(sName, sSoftware, sVersion);
 
 
-    if (sName != "") {
+    //wait 5 seconds
+    setTimeout(function () {
+      if (sName != "") {
       window.location.href = "/server/" + sName;
     }
+    }, 1000);
 
   }
 </script>
