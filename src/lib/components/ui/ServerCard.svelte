@@ -38,11 +38,11 @@
     if (online == true) {
       stopcolor = "error";
       startcolor = "warning";
-      starttext = "Restart";
+      starttext = $t("button.restart");
     } else if (online == false) {
       stopcolor = "disabled";
       startcolor = "success";
-      starttext = "Start";
+      starttext = $t("button.start");
     }
   }
   status();
@@ -55,7 +55,7 @@
     <div class="card-body">
       <h2 class="card-title">{name}</h2>
       <p>
-        <b>Version:</b>
+        <b>{$t("version")}:</b>
         {uppercaseFirstLetter(version)} |
         <b>Software: </b>{uppercaseFirstLetter(software)}
       </p>

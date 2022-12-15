@@ -70,7 +70,7 @@
           <div class="justify-center flex">
             <p class="label ">Worldgen Mods</p>
             <Helper
-              tooltipText="Enabling a worldgen mod can add new biomes and enhance the look of your natural terrain. They aren't made by Arth or Mojang, so we can't guarentee it'll be completely stable."
+              tooltipText="{$t('newserver.t.worldgen')}"
             />
           </div>
 
