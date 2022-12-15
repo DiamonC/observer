@@ -12,7 +12,9 @@
     createServer(sName, sSoftware, sVersion);
 
 
-      goto(`/server/${sName}`);
+    if (sName != "") {
+      window.location.href = "/server/" + sName;
+    }
 
   }
 </script>
