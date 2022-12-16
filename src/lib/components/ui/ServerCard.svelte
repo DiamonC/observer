@@ -25,6 +25,7 @@
   export let name: string;
   export let version: string;
   export let software: string;
+  export let id: number;
 
   function uppercaseFirstLetter(string: string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -46,7 +47,9 @@
     }
   }
   status();
-  //changeServerState("start");
+  function start() {
+    changeServerState("start", id);
+  }
   //getServerInfo(serverName);
 </script>
 
@@ -66,7 +69,7 @@
           <a href="/server/{tname}"><button class="btn btn-primary btn-sm h-9"
             ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg></button
           ></a>
-          <button type="submit" class="btn btn-{startcolor} btn-sm h-9"
+          <button on:click={start} type="submit" class="btn btn-{startcolor} btn-sm h-9"
             >{starttext}</button
           >
           <button class="btn btn-{stopcolor} btn-sm h-9 stop-btn"
