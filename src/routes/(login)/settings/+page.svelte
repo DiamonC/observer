@@ -25,7 +25,11 @@
       <Settings />
 
       <div>
-        <input type="submit disabled" value={$t("button.save")} class="btn btn-block" />
+        <input
+          type="submit"
+          value={$t("button.save")}
+          class="btn btn-block btn-disabled"
+        />
       </div>
     </form>
   </div>
