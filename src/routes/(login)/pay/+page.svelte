@@ -13,6 +13,9 @@
       localStorage.setItem("subscribed", "true");
     }
   }
+
+  //turn all @s into %40s
+  email = email.replace("@", "%40");
 </script>
 
 <div class="flex justify-center  hero  bg-base-100 rounded-xl">
@@ -21,7 +24,7 @@
     <a
     target="_blank"
     rel="noopener noreferrer"
-    href="https://buy.stripe.com/test_4gw02leq9cg83DiaEE?prefilled_email={email}
+    href="https://buy.stripe.com/6oEg2hbEpf917L2cMM?prefilled_email={email}
       https
     "
     on:click={subscribe}
@@ -34,7 +37,7 @@
     <a
     target="_blank"
     rel="noopener noreferrer"
-    href="https://billing.stripe.com/p/login/test_3csdUN00Ccpa1zi7ss?prefilled_email={email}
+    href="https://billing.stripe.com/p/login/fZeaHs7161SWaWcaEE?prefilled_email={email}
   
 "
     on:click={subscribe}
