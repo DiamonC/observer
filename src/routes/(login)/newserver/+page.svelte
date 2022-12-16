@@ -2,6 +2,7 @@
   import { createServer } from "$lib/scripts/req";
   import { t, locale, locales } from "$lib/scripts/i18n";
   import Helper from "$lib/components/ui/Helper.svelte";
+    import { goto } from "$app/navigation";
 
   function send() {
     let sVersion = document.getElementById("versionInput").value;
@@ -9,6 +10,15 @@
     let sSoftware = document.getElementById("softwareDropdown").value;
 
     createServer(sName, sSoftware, sVersion);
+
+
+    //wait 5 seconds
+    setTimeout(function () {
+      if (sName != "") {
+      window.location.href = "/server/" + sName;
+    }
+    }, 1000);
+
   }
 </script>
 
@@ -60,7 +70,7 @@
           <div class="justify-center flex">
             <p class="label ">Worldgen Mods</p>
             <Helper
-              tooltipText="Enabling a worldgen mod can add new biomes and enhance the look of your natural terrain. They aren't made by Arth or Mojang, so we can't guarentee it'll be completely stable."
+              tooltipText="{$t('newserver.t.worldgen')}"
             />
           </div>
 
@@ -88,9 +98,8 @@
             <input type="checkbox" class="checkbox checkbox-secondary" />
             <input type="checkbox" class="checkbox checkbox-secondary" />
           </div>
-          <button type="submit" on:click={send} class="btn mt-4"
-            >{$t("button.createServer")}</button
-          >
+          <a on:click={send} class="btn mt-4">{$t("button.createServer")}</a>
+
         </div>
       </form>
     </div>
