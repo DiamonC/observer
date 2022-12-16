@@ -38,6 +38,7 @@
       let serverName = res2.names[i];
       let serverLoader = res2.softwares[i];
       let serverVersion = res2.versions[i];
+      let serverID = res2.ids[i];
 
       // run code if its on the browser
 
@@ -49,6 +50,7 @@
             name: serverName,
             version: serverVersion,
             software: serverLoader,
+            id: serverID,
           },
         });
       }

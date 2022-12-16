@@ -137,27 +137,30 @@ export function loginEmail(em: string, pwd: string) {
 		.catch((err) => console.error(err));
 }
 
-export function changeServerState(reqstate: string) {
+export function changeServerState(reqstate: string, id: number) {
 	let req3;
 	if (reqstate == "start") {
 		req3 = {
 			method: "GET",
 			headers: {
-				request: "start",
+				state: "start",
+				id: id,
 			},
 		};
 	} else if (reqstate == "stop") {
 		req3 = {
 			method: "GET",
 			headers: {
-				request: "stop",
+				state: "stop",
+				id: id,
 			},
 		};
 	} else if (reqstate == "restart") {
 		req3 = {
 			method: "GET",
 			headers: {
-				request: "restart",
+				state: "restart",
+				id: id,
 			},
 		};
 	} else {
