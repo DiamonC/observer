@@ -51,7 +51,7 @@
 
             }
         });
-        const gp = getPlayers('arthmc.xyz:'+ port + 1000).then((response) => {
+        const gp = getPlayers('arthmc.xyz:'+ port).then((response) => {
             if (browser) {
                 console.log(response);
                 apo = response;
