@@ -5,9 +5,9 @@
     let name:string = "-";
     let tname:string;
     let url:string;
-    let apo = 12;
+    let apo = 0;
     let po = 0;
-    let port = '10000';
+    let port = 10000;
     let id = 0;
     let length = 0;
     let s = 'Paper';
@@ -22,11 +22,15 @@
     
     function getID(res: any) {
     for (var i = 0; i < length; i++) {
+      console.log("id: " + id);
+                console.log("length: " + length);
       //res2 is res but a string
       let res2 = res.names[i];
+
+
       //if index of tname in res2 is not -1, set id to i
-      console.log(res2);
-      if (res2.indexOf(tname) != -1) {
+      console.log(tname.toUpperCase());
+      if (res2 == name) {
         id = i;
         s = res.softwares[i];
         v = res.versions[i];
@@ -40,13 +44,13 @@
             if (browser) {
               //set length to amount
                 length = response.amount;
-
+                name = localStorage.getItem("serverName");
                 getID(response)
                 console.log(response.ids);
-                console.log(id);
+
               
                 if (response.ids != "undefined") {
-                    port = '1000' + response.ids[id];
+                    port+=parseInt(response.ids[id]);
                 }
 
             }
@@ -69,12 +73,11 @@
          url = window.location.href;
          //set tname to url after the last slash
     tname = url.substring(url.lastIndexOf('/') + 1);
-    name = tname.charAt(0).toUpperCase() + tname.slice(1);
-
-    //if tname has character encoding, decode it
-    if (tname.includes("%")) {
+        //if tname has character encoding, decode it
+        if (tname.includes("%")) {
         tname = decodeURIComponent(tname);
     }
+
 }
 
     

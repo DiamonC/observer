@@ -34,7 +34,9 @@
   let tname: string;
   
   tname = name.toLowerCase().replace(/ /g, "-");
-
+  function setName() {
+    localStorage.setItem("serverName", name);
+  }
   function status() {
     if (online == true) {
       stopcolor = "error";
@@ -66,7 +68,7 @@
       <div class="card-actions justify-end pt-4">
         <!-- placeholder for now? -->
         <div class="grow space-x-1.5 flex">
-          <a href="/server/{tname}"><button class="btn btn-primary btn-sm h-9"
+          <a href="/server/{tname}"><button on:click={setName} class="btn btn-primary btn-sm h-9"
             ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg></button
           ></a>
           <button on:click={start} type="submit" class="btn btn-success btn-sm h-9"

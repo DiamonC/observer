@@ -212,5 +212,3 @@ export function getPlayers(address: string) {
       // return input as a number
     });
 }
-
-getPlayers("tubnet.gg");
