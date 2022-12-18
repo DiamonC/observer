@@ -5,6 +5,7 @@
   import { browser, dev } from "$app/environment";
   import { goto } from "$app/navigation";
 
+  
   // NOTE: the element that is using one of the theme attributes must be in the DOM on mount
 
   //Example
@@ -56,13 +57,24 @@
       }
     }
   }
+
+  // if amount is 0, set showmsg to true
+  let showmsg = true;
+  if (id == 0) {
+    showmsg = false;
+  }
 </script>
 
 <div class="flex flex-col items-center space-y-20 mb-12">
   <div>
-    <div class="divider px-10 text-3xl font-semibold">
+    <div class="text-center px-10 text-3xl font-semibold">
       {$t("homepage.title")}
     </div>
+    {#if showmsg}
+    <div class="divider"></div>
+        Looks like you dont have any servers. Click <a class="link link-primary" href="/newserver"> here</a> to make one.
+
+    {/if}
     <div class="flex flex-wrap justify-center" id="serverList">
       <!-- <ServerCard name="Server Name" loader="Loader" version="Version" /> -->
     </div>

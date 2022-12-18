@@ -8,15 +8,33 @@
     let sVersion = document.getElementById("versionInput").value;
     let sName = document.getElementById("nameInput").value;
     let sSoftware = document.getElementById("softwareDropdown").value;
+    let addons = [];
 
-    createServer(sName, sSoftware, sVersion);
+    //for all 3 checkboxes, if checked, add their ids to the addons array
+    if (document.getElementById("terralith").checked) {
+      addons.push("terralith");
+    }
+    if (document.getElementById("incendium").checked) {
+      addons.push("incendium");
+    }
+    if (document.getElementById("nullscape").checked) {
+      addons.push("nullscape");
+    }
+
+
+    createServer(sName, sSoftware, sVersion, addons);
 
 
     //wait 5 seconds
     setTimeout(function () {
-      if (sName != "") {
-      window.location.href = "/server/" + sName;
-    }
+      //if x in localstorage is false, run code
+      if (localStorage.getItem("x") == "false") {
+        //go to the server page
+        goto("/server/" + sName);
+      } else {
+        //set it to false
+        localStorage.setItem("x", "false");
+      }
     }, 1000);
 
   }
@@ -94,9 +112,9 @@
           </div>
           <div class="p-2" />
           <div class="flex justify-center space-x-20">
-            <input type="checkbox" class="checkbox checkbox-secondary" />
-            <input type="checkbox" class="checkbox checkbox-secondary" />
-            <input type="checkbox" class="checkbox checkbox-secondary" />
+            <input id="terralith" type="checkbox" class="checkbox checkbox-secondary" />
+            <input id="incendium" type="checkbox" class="checkbox checkbox-secondary" />
+            <input id="nullscape" type="checkbox" class="checkbox checkbox-secondary" />
           </div>
           <a on:click={send} class="btn mt-4">{$t("button.createServer")}</a>
 
