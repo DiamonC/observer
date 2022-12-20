@@ -47,12 +47,13 @@ console.log(cmd);
     setTimeout(function () {
       //if x in localstorage is false, run code
       if (localStorage.getItem("x") == "false") {
+        //set localStorage z to true
+        localStorage.setItem("z", "true");
         //go to the servers page
         goto("/");
-        //wait half a second
-        setTimeout(function () {
-          goto("/server" + sName)
-        }, 500);
+
+
+
       } else {
         //set it to false
         localStorage.setItem("x", "false");

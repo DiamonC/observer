@@ -5,6 +5,7 @@
   import { browser, dev } from "$app/environment";
   import { goto } from "$app/navigation";
 
+
   
   // NOTE: the element that is using one of the theme attributes must be in the DOM on mount
 
@@ -26,6 +27,7 @@
   console.log("yo" + email);
   // getServers and store "amount" given in the response in a variable
   getServers(email).then((response) => {
+    
     if(browser) {
     console.log(response);
     if (response.amount != "undefined") {
@@ -63,6 +65,7 @@
   if (id == 0) {
     showmsg = false;
   }
+
 </script>
 
 <div class="flex flex-col items-center space-y-20 mb-12">
