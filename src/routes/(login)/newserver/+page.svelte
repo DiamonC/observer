@@ -24,7 +24,7 @@
       addons.push("nullscape");
     }
 
-    cmd.push("gamemode " + sGamemode);
+    cmd.push("defaultgamemode " + sGamemode);
     cmd.push("op " + sAdmin);
 
 console.log(cmd);
