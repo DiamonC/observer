@@ -185,6 +185,8 @@ export function createServer(n: string, s: string, v: string, a, c) {
 
         //set localstorage x to true
         window.localStorage.setItem("x", "true");
+      } else if (text.indexOf("email") > -1) {
+        alert("Please subscribe first");
       }
     })
     .catch((err) => console.error(err));
