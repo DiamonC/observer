@@ -113,7 +113,7 @@ export function loginEmail(em: string, pwd: string) {
     .catch((err) => console.error(err));
 }
 
-export function changeServerState(reqstate: string, id: number) {
+export function changeServerState(reqstate: string, id: number, em: string) {
   let req3;
   if (reqstate == "start") {
     req3 = {
@@ -121,6 +121,7 @@ export function changeServerState(reqstate: string, id: number) {
       headers: {
         state: "start",
         id: id,
+        email: em,
       },
     };
   } else if (reqstate == "stop") {
@@ -157,7 +158,7 @@ export function changeServerState(reqstate: string, id: number) {
   return "done";
 }
 
-export function createServer(n: string, s: string, v: string, a) {
+export function createServer(n: string, s: string, v: string, a, c) {
   const req4 = {
     method: "POST",
     headers: {
@@ -168,6 +169,7 @@ export function createServer(n: string, s: string, v: string, a) {
       software: s,
       version: v,
       addons: a,
+      cmd: c,
       email: window.localStorage.getItem("accountEmail"),
     }),
   };

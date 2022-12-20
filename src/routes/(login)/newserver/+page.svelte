@@ -5,10 +5,13 @@
     import { goto } from "$app/navigation";
 
   function send() {
-    let sVersion = document.getElementById("versionInput").value;
+    let sVersion = document.getElementById("versionDropdown").value;
     let sName = document.getElementById("nameInput").value;
     let sSoftware = document.getElementById("softwareDropdown").value;
+    let sGamemode = document.getElementById("gamemodeDropdown").value;
+    let sAdmin = document.getElementById("adminInput").value;
     let addons = [];
+    let cmd = [];
 
     //for all 3 checkboxes, if checked, add their ids to the addons array
     if (document.getElementById("terralith").checked) {
@@ -21,8 +24,12 @@
       addons.push("nullscape");
     }
 
+    cmd.push("gamemode " + sGamemode);
+    cmd.push("op " + sAdmin);
 
-    createServer(sName, sSoftware, sVersion, addons);
+console.log(cmd);
+
+    createServer(sName, sSoftware, sVersion, addons, cmd);
 
 
     //wait 5 seconds
@@ -50,15 +57,17 @@
         <div class="flex flex-col w-[22rem]">
           <!-- svelte-ignore a11y-label-has-associated-control -->
           <label class="label" for="softwareDropdown"
-            >{$t("newserver.l.choose")}</label
+            >Server Software</label
           >
           <select
             id="softwareDropdown"
             name="softwareDropdown"
             tabindex="0"
             class="select select-primary p-2 bg-base-100"
+
           >
-            <option>{$t("software.paper")}</option>
+          
+            <option>Paper</option>
             <option>Velocity</option>
             <option>Quilt</option>
             <option>Vanilla</option>
@@ -69,6 +78,35 @@
             <option>Snapshot</option>
             <option>Spigot</option>
           </select>
+          <label class="label" for="softwareDropdown"
+          >Minecraft Version</label
+        >
+        <select
+          id="versionDropdown"
+          name="versionDropdown"
+          tabindex="0"
+          class="select select-primary p-2 bg-base-100"
+        >
+          <option>Latest</option>
+          <option>1.18.2</option>
+          <option>1.16.5</option>
+          <option>1.12.2</option>
+          <option>1.8.8</option>
+        </select>
+        <label class="label" for="softwareDropdown"
+        >Gamemode</label
+      >
+      <select
+        id="gamemodeDropdown"
+        name="gamemodeDropdown"
+        tabindex="0"
+        class="select select-primary p-2 bg-base-100"
+      >
+        <option>Survival</option>
+        <option>Creative</option>
+        <option>Spectator</option>
+        <option>Adventure</option>
+      </select>
           <label class="label" for="1">{$t("newserver.l.name")}</label>
           <input
             id="nameInput"
@@ -77,12 +115,12 @@
             placeholder="{$t('general.ex')} My Minecraft Server"
           />
 
-          <label class="label" for="3">{$t("newserver.l.version")}</label>
+          <label class="label" for="3">Set Admin</label>
           <input
-            id="versionInput"
+            id="adminInput"
             class="input-bordered input-primary input w-full bg-base-300"
             type="text"
-            placeholder="{$t('general.ex')} latest, 1.16.5"
+            placeholder="Enter Minecraft Username"
           />
           <div class="p-2" />
           <div class="justify-center flex">

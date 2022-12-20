@@ -8,6 +8,7 @@
   let startcolor = "info";
   let starttext = "Start";
   let online = true;
+  let email = localStorage.getItem("accountEmail");
 
   //Software variables
   type serverType =
@@ -50,7 +51,7 @@
   }
   status();
   function start() {
-    changeServerState("start", id);
+    changeServerState("start", id, email);
   }
   //getServerInfo(serverName);
 </script>
