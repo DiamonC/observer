@@ -3,6 +3,8 @@
   import { t, locale, locales } from "$lib/scripts/i18n";
   import Helper from "$lib/components/ui/Helper.svelte";
     import { goto } from "$app/navigation";
+  import { browser } from "$app/environment";
+  let version = "Latest";
 
   function send() {
     let sVersion = document.getElementById("versionDropdown").value;
@@ -13,6 +15,8 @@
     let addons = [];
     let cmd = [];
 
+
+
     //for all 3 checkboxes, if checked, add their ids to the addons array
     if (document.getElementById("terralith").checked) {
       addons.push("terralith");
@@ -22,6 +26,13 @@
     }
     if (document.getElementById("nullscape").checked) {
       addons.push("nullscape");
+    }
+        //if versioon isnt Latest, set worldgen to true
+        if (sVersion != "Latest") {
+      worldgen = true;
+      addons = [];
+    } else {
+      worldgen = false;
     }
 
     cmd.push("defaultgamemode " + sGamemode);
@@ -36,8 +47,12 @@ console.log(cmd);
     setTimeout(function () {
       //if x in localstorage is false, run code
       if (localStorage.getItem("x") == "false") {
-        //go to the server page
-        goto("/server/" + sName);
+        //go to the servers page
+        goto("/");
+        //wait half a second
+        setTimeout(function () {
+          goto("/server" + sName)
+        }, 500);
       } else {
         //set it to false
         localStorage.setItem("x", "false");
@@ -45,6 +60,16 @@ console.log(cmd);
     }, 1000);
 
   }
+  let worldgen = true;
+  function checkV() {
+    if (version != "Latest") {
+      worldgen = false;
+    } else {
+      worldgen = true;
+    }
+  }
+  
+
 </script>
 
 <div class="flex place-content-center">
@@ -52,6 +77,7 @@ console.log(cmd);
     <div class="divider px-10 text-3xl font-semibold">
       {$t("newserver.title")}
     </div>
+
     <div id="serverForm">
       <form>
         <div class="flex flex-col w-[22rem]">
@@ -82,13 +108,15 @@ console.log(cmd);
           >Minecraft Version</label
         >
         <select
+        bind:value={version}
+        on:change={checkV}
           id="versionDropdown"
           name="versionDropdown"
           tabindex="0"
           class="select select-primary p-2 bg-base-100"
         >
           <option>Latest</option>
-          <option>1.18.2</option>
+          <option >1.18.2</option>
           <option>1.16.5</option>
           <option>1.12.2</option>
           <option>1.8.8</option>
@@ -104,7 +132,6 @@ console.log(cmd);
       >
         <option>Survival</option>
         <option>Creative</option>
-        <option>Spectator</option>
         <option>Adventure</option>
       </select>
           <label class="label" for="1">{$t("newserver.l.name")}</label>
@@ -122,38 +149,40 @@ console.log(cmd);
             type="text"
             placeholder="Enter Minecraft Username"
           />
-          <div class="p-2" />
-          <div class="justify-center flex">
-            <p class="label ">Worldgen Mods</p>
-            <Helper
-              tooltipText="{$t('newserver.t.worldgen')}"
-            />
-          </div>
+{#if worldgen}
+<div class="p-2" />
+<div class="justify-center flex">
+  <p class="label ">Worldgen Mods</p>
+  <Helper
+    tooltipText="{$t('newserver.t.worldgen')}"
+  />
+</div>
 
-          <div class="flex justify-center">
-            <img
-              class="mask mask-hexagon"
-              src="/images/terralith.webp"
-              width="100ch"
-            />
+<div class="flex justify-center">
+  <img
+    class="mask mask-hexagon"
+    src="/images/terralith.webp"
+    width="100ch"
+  />
 
-            <img
-              class="mask mask-hexagon"
-              src="/images/nullscape.webp"
-              width="100ch"
-            />
-            <img
-              class="mask mask-hexagon"
-              src="/images/incendium.webp"
-              width="100ch"
-            />
-          </div>
-          <div class="p-2" />
-          <div class="flex justify-center space-x-20">
-            <input id="terralith" type="checkbox" class="checkbox checkbox-secondary" />
-            <input id="incendium" type="checkbox" class="checkbox checkbox-secondary" />
-            <input id="nullscape" type="checkbox" class="checkbox checkbox-secondary" />
-          </div>
+  <img
+    class="mask mask-hexagon"
+    src="/images/nullscape.webp"
+    width="100ch"
+  />
+  <img
+    class="mask mask-hexagon"
+    src="/images/incendium.webp"
+    width="100ch"
+  />
+</div>
+<div class="p-2" />
+<div class="flex justify-center space-x-20">
+  <input id="terralith" type="checkbox" class="checkbox checkbox-secondary" />
+  <input id="incendium" type="checkbox" class="checkbox checkbox-secondary" />
+  <input id="nullscape" type="checkbox" class="checkbox checkbox-secondary" />
+</div>
+{/if}
           <a on:click={send} class="btn mt-4">{$t("button.createServer")}</a>
 
         </div>
