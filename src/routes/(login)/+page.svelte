@@ -42,6 +42,7 @@
       let serverLoader = res2.softwares[i];
       let serverVersion = res2.versions[i];
       let serverID = res2.ids[i];
+      let serverState = res2.states[i];
 
       // run code if its on the browser
 
@@ -53,7 +54,9 @@
             name: serverName,
             version: serverVersion,
             software: serverLoader,
+            state: serverState,
             id: serverID,
+
           },
         });
       }

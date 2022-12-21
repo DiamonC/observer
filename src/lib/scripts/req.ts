@@ -1,7 +1,7 @@
 import accountEmail from "$lib/stores/accountEmail";
 import { browser } from "$app/environment";
 import { goto } from "$app/navigation";
-export const apiurl = "https://api.arthmc.xyz/";
+export const apiurl = "http://localhost:4000/";
 export const pburl = "https://pb.arthmc.xyz/api/";
 
 export function getSettings() {

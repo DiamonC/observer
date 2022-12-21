@@ -30,6 +30,7 @@
   export let name: string;
   export let version: string;
   export let software: string;
+  export let state: boolean;
   export let id: number;
 
   function uppercaseFirstLetter(string: string) {
@@ -43,11 +44,11 @@
     localStorage.setItem("serverName", name);
   }
   function status() {
-    if (online == true) {
+    if (state == true) {
       stopcolor = "error";
       startcolor = "warning";
       starttext = $t("button.restart");
-    } else if (online == false) {
+    } else if (state == false) {
       stopcolor = "disabled";
       startcolor = "success";
       starttext = $t("button.start");
@@ -78,10 +79,10 @@ if (version == ( "Latest")) {
           <a href="/server/{tname}"><button on:click={setName} class="btn btn-primary btn-sm h-9"
             >Info</button
           ></a>
-          <button on:click={start} type="submit" class="btn btn-success btn-sm h-9"
-            >Start</button
+          <button on:click={start} type="submit" class="btn btn-{startcolor} btn-sm h-9"
+            >{starttext}</button
           >
-          <button class="btn btn-error btn-sm h-9 stop-btn"
+          <button class="btn btn-{stopcolor} btn-sm h-9 stop-btn"
             >{$t("button.stop")}</button
           >
         </div>
