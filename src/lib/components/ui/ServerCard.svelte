@@ -30,9 +30,8 @@
   export let name: string;
   export let version: string;
   export let software: string;
-  export let state: boolean;
+  export let state: string;
   export let id: number;
-
   function uppercaseFirstLetter(string: string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
@@ -44,19 +43,31 @@
     localStorage.setItem("serverName", name);
   }
   function status() {
-    if (state == true) {
+    if (state == "true") {
       stopcolor = "error";
       startcolor = "warning";
       starttext = $t("button.restart");
-    } else if (state == false) {
+    } else if (state == "false") {
       stopcolor = "disabled";
       startcolor = "success";
       starttext = $t("button.start");
+    } else if (state == "starting") {
+      stopcolor = "error";
+      startcolor = "disabled";
+      starttext = "Starting";
     }
   }
   status();
   function start() {
-    changeServerState("start", id, email);
+    if (state == "true") {
+      changeServerState("restart", id, email);
+    } else if (state == "false") {
+      changeServerState("start", id, email);
+    }
+  }
+
+  function stop() {
+    changeServerState("stop", id, email);
   }
 
 let v = version;
@@ -82,7 +93,7 @@ if (version == ( "Latest")) {
           <button on:click={start} type="submit" class="btn btn-success btn-sm h-9"
             >{starttext}</button
           >
-          <button class="btn btn-{stopcolor} btn-sm h-9 stop-btn"
+          <button on:click={stop} class="btn btn-error btn-{stopcolor} btn-sm h-9 stop-btn"
             >{$t("button.stop")}</button
           >
         </div>
