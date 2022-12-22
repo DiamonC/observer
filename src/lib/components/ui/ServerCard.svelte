@@ -79,7 +79,7 @@ if (version == ( "Latest")) {
           <a href="/server/{tname}"><button on:click={setName} class="btn btn-primary btn-sm h-9"
             >Info</button
           ></a>
-          <button on:click={start} type="submit" class="btn btn-{startcolor} btn-sm h-9"
+          <button on:click={start} type="submit" class="btn btn-success btn-sm h-9"
             >{starttext}</button
           >
           <button class="btn btn-{stopcolor} btn-sm h-9 stop-btn"
