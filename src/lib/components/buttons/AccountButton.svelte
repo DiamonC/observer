@@ -7,6 +7,7 @@
   function signOut() {
     localStorage.setItem("token", "");
     loginStatus = false;
+    window.location.href = "/signin";
   }
 
   //send user to /signin page if token == ""
@@ -15,6 +16,17 @@
       window.location.href = "/signin";
     }
   }
+  let accountEmailChopped = "noemail";
+  //if accountEmail is longer than 20 characters
+  if ($accountEmail.length > 20) {
+    //slice it to 20 characters
+     accountEmailChopped = $accountEmail.slice(0, 20);
+    accountEmailChopped+="...";
+  } else {
+    //else, just use accountEmail
+     accountEmailChopped = $accountEmail;
+  }
+
 </script>
 
 {#if loginStatus === true}
@@ -50,7 +62,7 @@
       >
         <li>
           <p class="justify-between">
-            {$accountEmail}
+            {accountEmailChopped}
           </p>
         </li>
         <li><a on:click={signOut}>{$t("account.logout")}</a></li>

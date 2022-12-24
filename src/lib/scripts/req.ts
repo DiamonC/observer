@@ -1,9 +1,12 @@
 import accountEmail from "$lib/stores/accountEmail";
 import { browser } from "$app/environment";
 import { goto } from "$app/navigation";
-export const apiurl = "https://api.arthmc.xyz/";
+export const apiurl = "http://localhost:4000/";
 export const pburl = "https://pb.arthmc.xyz/api/";
-
+//set email from local storage to variable
+if (browser) {
+  accountEmail.set(window.localStorage.getItem("accountEmail"));
+}
 export function getSettings() {
   const req = {
     method: "GET",
@@ -181,13 +184,33 @@ export function createServer(n: string, s: string, v: string, a, c) {
     .then((text) => {
       console.log("Response Recieved: " + text);
       if (text.indexOf("exists") > -1) {
-        alert("Server name already exists");
+        alert("Sorry, that name is taken.");
 
         //set localstorage x to true
         window.localStorage.setItem("x", "true");
-      } else if (text.indexOf("email") > -1) {
-        alert("Please subscribe first");
+      } else if (text.indexOf("Funds") > -1) {
+        alert("You don't have enough money to make a new server.");
         window.localStorage.setItem("x", "true");
+      } else if (text.indexOf("Subscribe") > -1) {
+        alert("You need to subscribe first.");
+        window.localStorage.setItem("x", "true");
+      } else if (text.indexOf("Success") == -1) {
+        alert("Sorry, something went wrong.");
+        window.localStorage.setItem("x", "true");
+      } else {
+        //set text.subscription to localstorage
+        if (browser) {
+          window.localStorage.setItem("subs", JSON.parse(text).subscriptions);
+          //if localstorage servers is null, set it to 0
+          if (window.localStorage.getItem("servers") == null) {
+            window.localStorage.setItem("servers", "0");
+          }
+          //increase localstorage servers by 1
+          window.localStorage.setItem(
+            "servers",
+            (parseInt(window.localStorage.getItem("servers")) + 1).toString()
+          );
+        }
       }
     })
     .catch((err) => console.error(err));
@@ -215,5 +238,94 @@ export function getPlayers(address: string) {
       );
 
       // return input as a number
+    });
+}
+
+export function getServer(id: number) {
+  const req = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      id: id,
+    }),
+  };
+
+  return fetch(apiurl + "server/", req)
+    .then((res) => res.text())
+    .then((input: string) => {
+      if (input.indexOf("400") > -1) {
+        return "error";
+      } else {
+        //return input as json
+        return JSON.parse(input);
+      }
+    });
+}
+
+export function deleteServer(id: number) {
+  const req = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      id: id,
+    }),
+  };
+
+  return fetch(apiurl + "server/delete", req)
+    .then((res) => res.text())
+    .then((input: string) => {
+      if (input.indexOf("400") > -1) {
+        return "error";
+      } else {
+        //return input as json
+        return JSON.parse(input);
+      }
+    });
+}
+
+export function writeTerminal(id: number, cmd: string) {
+  const req = {
+    method: "POST",
+    headers: {
+      id: id,
+      cmd: cmd,
+    },
+  };
+  console.log("Request Sent: " + JSON.stringify(req));
+  return fetch(apiurl + "terminal", req)
+    .then((res) => res.text())
+    .then((input: string) => {
+      console.log("" + req);
+      if (input.indexOf("400") > -1) {
+        return "error";
+      } else {
+        //return input as json
+        return JSON.parse(input);
+      }
+    });
+}
+
+export function readTerminal(id: number) {
+  const req = {
+    method: "GET",
+    headers: {
+      id: id,
+    },
+  };
+  console.log("Request Sent: " + JSON.stringify(req));
+  return fetch(apiurl + "terminal", req)
+    .then((res) => res.text())
+    .then((input: string) => {
+      console.log("" + JSON.stringify(input));
+      if (input.indexOf("400") > -1) {
+        return "error";
+      } else {
+        //return input as json
+        return input;
+      }
     });
 }

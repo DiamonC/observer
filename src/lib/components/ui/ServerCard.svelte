@@ -2,7 +2,7 @@
   import { src_url_equal } from "svelte/internal";
   import { changeServerState } from "$lib/scripts/req.js";
   
-  import { getPlayers } from "$lib/scripts/req.js";
+  import { getServer } from "$lib/scripts/req.js";
   import { t, locale, locales } from "$lib/scripts/i18n";
   import { browser } from "$app/environment";
   //Status variables
@@ -13,7 +13,7 @@
   let email = localStorage.getItem("accountEmail");
   let po = '?';
   let apo = 0;
-
+  let lock = false;
   //Software variables
   type serverType =
     | "paper"
@@ -36,11 +36,14 @@
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
+  software = uppercaseFirstLetter(software);
+
   let tname: string;
   
   tname = name.toLowerCase().replace(/ /g, "-");
   function setName() {
     localStorage.setItem("serverName", name);
+    localStorage.setItem("serverID", id);
   }
   function status() {
     if (state == "true") {
@@ -59,10 +62,14 @@
   }
   status();
   function start() {
-    if (state == "true") {
+    
+    if (!lock) {
+      if (state == "true") {
       changeServerState("restart", id, email);
     } else if (state == "false") {
       changeServerState("start", id, email);
+    }
+    lock = true;
     }
   }
 
@@ -71,9 +78,31 @@
   }
 
 let v = version;
-if (version == ( "Latest")) {
+if (version == ( "latest")) {
   v = ""
 }
+function getStatus() {
+
+  getServer(id).then((data) => {
+   
+    if (data.state != state) {
+      lock = false;
+    }
+    state = data.state;
+    console.log("state " + state)
+    status();
+  });
+}
+  //Run status function every 5 seconds if theyre still on this page
+  if (browser) {
+    setInterval(function () {
+      if (window.location.pathname=="/") {
+        getStatus();
+      }
+    }, 5000);
+
+  }
+
 </script>
 
 <div class="m-3">

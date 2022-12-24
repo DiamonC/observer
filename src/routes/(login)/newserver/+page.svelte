@@ -5,6 +5,8 @@
     import { goto } from "$app/navigation";
   import { browser } from "$app/environment";
   let version = "Latest";
+  let software = "Paper (Reccomended)";
+  let snapshot = false;
 
   function send() {
     let sVersion = document.getElementById("versionDropdown").value;
@@ -16,7 +18,18 @@
     let cmd = [];
 
 
+    switch (sSoftware) {
+      case "Paper (Reccomended)":
+        sSoftware = "paper";
+        break;
+      case "Latest Snapshot":
+        sSoftware = "snapshot";
+        break;
+      case "Latest":
+        sSoftware = "latest";
+        break;
 
+    }
     //for all 3 checkboxes, if checked, add their ids to the addons array
     if (document.getElementById("terralith").checked) {
       addons.push("terralith");
@@ -27,13 +40,7 @@
     if (document.getElementById("nullscape").checked) {
       addons.push("nullscape");
     }
-        //if versioon isnt Latest, set worldgen to true
-        if (sVersion != "Latest") {
-      worldgen = true;
-      addons = [];
-    } else {
-      worldgen = false;
-    }
+
 
     cmd.push("defaultgamemode " + sGamemode);
     cmd.push("op " + sAdmin);
@@ -63,13 +70,21 @@ console.log(cmd);
   }
   let worldgen = true;
   function checkV() {
-    if (version != "Latest") {
+    if (version != "Latest" && (snapshot == false)) {
       worldgen = false;
     } else {
       worldgen = true;
     }
   }
   
+  function checkS() {
+    if (software == "Latest Snapshot") {
+      worldgen = false;
+      snapshot = true;
+    } else {
+      worldgen = true;
+    }
+  }
 
 </script>
 
@@ -87,6 +102,8 @@ console.log(cmd);
             >Server Software</label
           >
           <select
+          bind:value={software}
+          on:change={checkS}
             id="softwareDropdown"
             name="softwareDropdown"
             tabindex="0"
@@ -94,20 +111,21 @@ console.log(cmd);
 
           >
           
-            <option>Paper</option>
+            <option>Paper (Reccomended)</option>
             <option>Velocity</option>
             <option>Quilt</option>
             <option>Vanilla</option>
-            <option>Waterfall</option>
             <option>Forge</option>
+            <option>Latest Snapshot</option>
+            <option>Waterfall</option>
             <option>Fabric</option>
             <option>Mohist</option>
-            <option>Snapshot</option>
             <option>Spigot</option>
           </select>
           <label class="label" for="softwareDropdown"
           >Minecraft Version</label
         >
+        { #if snapshot == false} 
         <select
         bind:value={version}
         on:change={checkV}
@@ -117,14 +135,25 @@ console.log(cmd);
           class="select select-primary p-2 bg-base-100"
         >
           <option>Latest</option>
-          <option >1.18.2</option>
+
+          <option>1.19.3</option>
+          <option>1.18.2</option>
+          <option>1.17.1</option>
           <option>1.16.5</option>
+          <option>1.15.2</option>
+          <option>1.14.4</option>
+          <option>1.13.2</option>
           <option>1.12.2</option>
+          <option>1.11.2</option>
+          <option>1.10.2</option>
+          <option>1.9.4</option>
           <option>1.8.8</option>
+
         </select>
         <label class="label" for="softwareDropdown"
         >Gamemode</label
       >
+      { /if }
       <select
         id="gamemodeDropdown"
         name="gamemodeDropdown"

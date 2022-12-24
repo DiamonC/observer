@@ -1,7 +1,11 @@
 <script lang="ts">
     import { browser, dev } from "$app/environment";
     import { onMount } from "svelte";
-    import {getPlayers, getServers} from "$lib/scripts/req";
+    import {getPlayers, changeServerState, deleteServer, writeTerminal, readTerminal} from "$lib/scripts/req";
+    import { getServer } from "$lib/scripts/req.js";
+    import  Admin  from "$lib/components/icons/admin.svelte";
+    import  Banned  from "$lib/components/icons/banned.svelte";
+    import  User  from "$lib/components/icons/user.svelte";
     let name:string = "-";
     let tname:string;
     let url:string;
@@ -9,52 +13,30 @@
     let po = 0;
     let port = 10000;
     let id = 0;
-    let length = 0;
+    let lock = false;
     let s = 'Paper';
     let v = 'latest';
-    //email = localStorage.getItem("accountEmail");
+
     let email:string = "";
+    let state = "false";
     if (browser) {
         email = localStorage.getItem("accountEmail");
+        //hide horizontal scrollbar
+    document.body.style.overflowX = "hidden";
 
     }
-
     
-    function getID(res: any) {
-    for (var i = 0; i < length; i++) {
-      console.log("id: " + id);
-                console.log("length: " + length);
-      //res2 is res but a string
-      let res2 = res.names[i];
+    
 
-
-      //if index of tname in res2 is not -1, set id to i
-      console.log(tname.toUpperCase());
-      if (res2 == name) {
-        id = i;
-        s = res.softwares[i];
-        v = res.versions[i];
-      }
-    }
-  }
     
     onMount(() => {
-      //getservers and store ids in a variable
-        const gs = getServers(email).then((response) => {
-            if (browser) {
-              //set length to amount
-                length = response.amount;
-                name = localStorage.getItem("serverName");
-                getID(response)
-                console.log(response.ids);
+      name = localStorage.getItem("serverName");
+      id = localStorage.getItem("serverID");
 
-              
-                if (response.ids != "undefined") {
-                    port+=parseInt(response.ids[id]);
-                }
+                    port+=parseInt(id);
+                
 
-            }
-        });
+        
 //wait half a second
         setTimeout(() => {
             //get players and store amount in a variable
@@ -83,39 +65,216 @@
     }
 
 }
+  function getStatus() {
+    //get server status
+    getServer(id).then((response) => {
 
+        //set state to response
+        state = response.state;
+        console.log(id + "'s state is " + state);
+    });
+  }
+
+
+
+
+  function start() {
     
+    if (!lock) {
+      if (state == "true") {
+      changeServerState("restart", id, email);
+    } else if (state == "false") {
+      changeServerState("start", id, email);
+    }
+    lock = true;
+    }
+  }
+  function del() {
+    deleteServer(id);
+  }
+  function stop() {
+    changeServerState("stop", id, email);
+  }
+
+onMount(() => {
+    getStatus();
+});
+
+function writeCmd() {
+    //take input value
+    let input = document.getElementById("input").value;
+  //if key pressed is enter, send alert
+  if (event.keyCode == 13) {
+    console.log("sending " + input + " to " + id)
+    writeTerminal(id, input);
+    //clear input
+    document.getElementById("input").value = "";
+  }
+  
+
+
+}
+
+
+
+function readCmd() {
+  let rt;
+    readTerminal(id).then((response) => {
+        //set rt to response
+        rt = response;
+        if (browser) {
+            console.log(rt)
+            //todo: fix everything being on one line
+          
+            //set terminal's text to rt
+            document.getElementById("terminal").innerHTML = rt;
+        }
+    });
+    //set terminal's text to rt
+
+  }
+  readCmd();
+  //Run status function every 5 seconds if theyre still on this page
+  if (browser) {
+    setInterval(function () {
+      if (window.location.pathname == "/server/" + tname) {
+        getStatus();
+        readCmd();
+        if (browser) {
+    let terminal = document.getElementById("terminal");
+   
+  }
+      }
+    }, 5000);
+  }
 </script>
 
-<div class="flex flex-col">
-  <div class="text-5xl font-bold divider ">{name}</div>
+<div class="yo h-[75vh] h-screen">
+<div class=" flex justify-between">
+<div class='space-x-2'>
+  <a href="/" class="btn btn-info "><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>  Back</a>
+  <a on:click={del} href="/" class="btn btn-warning "><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>  Delete</a>
+  
+</div>
+<!-- TODO: these should be on the right, add an if for not reaching the backend -->
+<div class="space-x-2">
+  { #if state == "true" }
+  <a on:click={start} class="btn btn-success"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-repeat"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>  Restart</a>
+  <a on:click={stop} class="btn btn-error"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-stop-circle"><circle cx="12" cy="12" r="10"></circle><rect x="9" y="9" width="6" height="6"></rect></svg>  Stop</a>
+  {:else if state == "false"}
+  <a on:click={start} class="btn btn-success"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-play-circle"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>  Start</a>
+  <a href="/" class="btn btn-disabled "><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-stop-circle"><circle cx="12" cy="12" r="10"></circle><rect x="9" y="9" width="6" height="6"></rect></svg>  Stop</a>
+  {:else}
+  <a href="" class="btn btn-success"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-loader animate-spin"><line x1="12" y1="2" x2="12" y2="6"></line><line x1="12" y1="18" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="6" y2="12"></line><line x1="18" y1="12" x2="22" y2="12"></line><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line></svg>
+    Starting</a>
+  <a on:click={stop} class="btn btn-error"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-stop-circle"><circle cx="12" cy="12" r="10"></circle><rect x="9" y="9" width="6" height="6"></rect></svg>  Stop</a>
+  {/if}
 </div>
 
-<div class="space-x-7 flex justify-center p-10">
-  <div class="stats shadow bg-base-200">
-  
-    <div class="stat">
-      <div class="stat-title">IP Address:</div>
-      <div class="stat-value">arthmc.xyz:{port}</div>
-      <div class="stat-desc flex">Confused? <p class="link">Learn how to join servers.</p></div>
-    </div>
-    
-  </div>
-  <div class="stats shadow bg-base-200">
-  
-    <div class="stat">
-      <div class="stat-title">Software</div>
-      <div class="stat-value">{s}</div>
-    </div>
-    <div class="stat">
-      <div class="stat-title">Version</div>
-      <div class="stat-value">{v}</div>
-    </div>
-    <div class="stat">
-      <div class="stat-title">Players Online</div>
-      <div class="stat-value tabular-nums">{po}</div>
-    </div>
-    
-    
-  </div>
 </div>
+  <div class="flex flex-col">
+    <div class="text-5xl font-bold divider ">{name}</div>
+  </div>
+  
+  <div class="space-x-7 flex justify-between p-10">
+
+      <div class="overflow-x-auto hidden">
+        <table class="table">
+          <!-- head -->
+          <thead>
+            <tr>
+
+              <th>Player</th>
+              <th>Role</th>
+            </tr>
+          </thead>
+          <tbody class="">
+            <!-- row 1 -->
+            <tr>
+              <td>Cy Ganderton</td>
+              <td><Admin/></td>
+            </tr>
+            <!-- row 2 -->
+            <tr>
+              <td>Hart Hagerty</td>
+              <td><Banned/></td>
+
+            </tr>
+            <!-- row 3 -->
+            <tr>
+              <td class="space-x-2"><input type="text" placeholder="Enter Username" style="width: 16ch" class="input bg-base-200" /><select
+
+                  tabindex="0"
+                  class="select select-primary p-2 bg-base-100"
+                  style="width: 10ch"
+      
+                >
+                
+                  <option>Admin</option>
+                  <option>Ban</option>
+                  <option>Reset</option>
+
+                </select>
+              </td>
+              <td><a class="btn">Add</a></td>
+            </tr>
+            
+          </tbody>
+        </table>
+        <div class="overflow-x-auto">
+          <table class="table">
+            <!-- head -->
+            <thead>
+              <tr>
+  
+                <th>Plugin</th>
+                <th></th>
+  
+              </tr>
+            </thead>
+            <tbody class="">
+              <!-- row 1 -->
+              <tr>
+                <td>ArthCore</td>
+                <td><button class="btn btn-ghost btn-sm btn-circle"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-3"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg></button></td>
+  
+              </tr>
+              <!-- row 2 -->
+              <tr>
+                <td>PlayerPlot-Modded</td>
+                <td><button class="btn btn-ghost btn-sm btn-circle"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-3"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg></button></td>
+  
+  
+              </tr>
+              <!-- row 3 -->
+              <tr class="flex justify-center">
+                <td><a class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-upload"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg></a></td>
+  
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <div class="bg-base-300 h-96 rounded-xl shadow-xl overflow-auto" style="width: 100ch">
+          <p class="p-5 text-lg font-mono" id="terminal"></p>
+        </div>
+        <input on:keypress={writeCmd} id="input" type="text" placeholder="Enter Command" class="input input-secondary bg-base-200 w-full " />
+      </div>
+      <div class="m-3">
+        <div class="stats w-96 bg-base-200 shadow-xl image-full">
+          <div class="stat">
+            <div class="stat-title">IP Address:</div>
+            <div class="stat-value">arthmc.xyz:{port}</div>
+            <div class="stat-desc">
+              Conufsed? Learn <a class="link link-accent">how to join servers</a>.
+            </div>
+          </div>
+        </div>
+        </div>
+    
+      
+     
+    </div>
+  </div>
