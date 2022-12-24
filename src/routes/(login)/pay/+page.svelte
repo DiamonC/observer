@@ -4,18 +4,19 @@
   import { browser } from "$app/environment";
   var email: string = "";
   //get subs and servers from localstorage
+  var subs = 0;
   if (browser) {
-    var subs = localStorage.getItem("subs");
-  var servers = localStorage.getItem("servers");
+   subs = localStorage.getItem("subs");
+
   }
   //set email to the value of localstorage.getItem("email") if window is defined
-  if (typeof window !== "undefined") {
+  if (browser) {
     email = localStorage.getItem("accountEmail");
     console.log(email);
   }
   function subscribe() {
     //set localstorage item "subscribed" to true if localstorage is defined
-    if (typeof localStorage !== "undefined") {
+    if (browser) {
       localStorage.setItem("subscribed", "true");
     }
   }
