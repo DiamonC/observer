@@ -1,10 +1,13 @@
 <script lang="ts">
   import { createServer } from "$lib/scripts/req";
   import { t, locale, locales } from "$lib/scripts/i18n";
+  import { browser } from "$app/environment";
   var email: string = "";
   //get subs and servers from localstorage
-  var subs = localStorage.getItem("subs");
+  if (browser) {
+    var subs = localStorage.getItem("subs");
   var servers = localStorage.getItem("servers");
+  }
   //set email to the value of localstorage.getItem("email") if window is defined
   if (typeof window !== "undefined") {
     email = localStorage.getItem("accountEmail");
