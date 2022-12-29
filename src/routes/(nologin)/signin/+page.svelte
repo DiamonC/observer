@@ -23,7 +23,7 @@
           ><img
             alt="metamastk logo"
             style="width:2.5ch"
-            src="https://metamask.io/icons/icon-96x96.png?v=48400a28770e10dd52a8c0e539aeb282"
+            src="metamask.png"
           />{$t("signin.metamask")}</button
         >
       </div>
