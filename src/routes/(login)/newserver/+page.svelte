@@ -83,6 +83,7 @@ console.log(cmd);
       snapshot = true;
     } else {
       worldgen = true;
+      snapshot = false;
     }
   }
 
@@ -122,10 +123,11 @@ console.log(cmd);
             <option>Mohist</option>
             <option>Spigot</option>
           </select>
-          <label class="label" for="softwareDropdown"
-          >Minecraft Version</label
-        >
+
         { #if snapshot == false} 
+        <label class="label" for="softwareDropdown"
+        >Minecraft Version</label
+      >
         <select
         bind:value={version}
         on:change={checkV}
@@ -150,10 +152,11 @@ console.log(cmd);
           <option>1.8.8</option>
 
         </select>
-        <label class="label" for="softwareDropdown"
-        >Gamemode</label
-      >
+
       { /if }
+      <label class="label" for="softwareDropdown"
+      >Gamemode</label
+    >
       <select
         id="gamemodeDropdown"
         name="gamemodeDropdown"

@@ -105,10 +105,12 @@ function writeCmd() {
     let input = document.getElementById("input").value;
   //if key pressed is enter, send alert
   if (event.keyCode == 13) {
+    getStatus();
     console.log("sending " + input + " to " + id)
     writeTerminal(id, input);
     //clear input
     document.getElementById("input").value = "";
+
   }
   
 
@@ -123,7 +125,7 @@ function readCmd() {
         //set rt to response
         rt = response;
         if (browser) {
-            console.log(rt)
+
             //todo: fix everything being on one line
           
             //set terminal's text to rt
