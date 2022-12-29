@@ -320,7 +320,6 @@ export function readTerminal(id: number) {
   return fetch(apiurl + "terminal", req)
     .then((res) => res.text())
     .then((input: string) => {
-      console.log("" + JSON.stringify(input));
       if (input.indexOf("400") > -1) {
         return "error";
       } else {
