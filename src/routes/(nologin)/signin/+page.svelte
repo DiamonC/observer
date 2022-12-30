@@ -16,14 +16,14 @@
           ><img
             alt="microsoft logo"
             style="width:2.5ch"
-            src="discord.ico"
+            src="discord.svg"
           />{$t("signin.discord")}</button
         >
         <button class="btn btn-primary btn-icon-text text-2xs btn-disabled"
           ><img
             alt="metamastk logo"
             style="width:2.5ch"
-            src="metamask.png"
+            src="metamask.svg"
           />{$t("signin.metamask")}</button
         >
       </div>
