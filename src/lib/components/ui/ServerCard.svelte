@@ -78,7 +78,7 @@
   }
 
 let v = version;
-if (version == ( "latest")) {
+if (version == ( "latest" ) || version == ( "Latest")) {
   v = ""
 }
 function getStatus() {
