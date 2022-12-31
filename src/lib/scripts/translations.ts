@@ -86,6 +86,11 @@ export default {
     "newserver.l.setadmin": "Enter Admin",
     "newserver.l.gamemode": "Gamemode",
     "newserver.enteruname": "Enter Minecraft Ussername",
+    "button.starting": "Starting",
+    "button.stop2": "  Stop",
+    "button.starting2": "  Starting",
+    "button.restart2": "  Restart",
+    "button.start2": "  Start",
   },
   "es-ES": {
     "homepage.title": "Sus servidores",
@@ -176,5 +181,10 @@ export default {
     "newserver.l.setadmin": "Establecer Administrador",
     "newserver.l.gamemode": "Modo de juego",
     "newserver.enteruname": "Ingrese el nombre de usuario de Minecraft",
+    "button.starting": "Iniciando",
+    "button.stop2": "  Parar",
+    "button.starting2": "  Iniciando",
+    "button.restart2": "  Reiniciar",
+    "button.start2": "  Encender",
   },
 };
