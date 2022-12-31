@@ -43,8 +43,7 @@
 
   onMount(async () => {
     if (browser) {
-      //switch for your url
-      check();
+      //check();
     }
   });
 
@@ -100,7 +99,7 @@
 </script>
 
 {#if navType === "default"}
-  <div class="navbar bg-base-300 px-4" on:click={check}>
+  <div class="navbar bg-base-300 px-4">
     <div class="hidden sm:block flex-1">
       <a class="btn btn-ghost normal-case text-xl invisible sm:visible" href="/"
         ><img src="/images/sitelogo.svg" alt="Arth" width="75" height="75" /></a
