@@ -1,7 +1,7 @@
 <script lang="ts">
   import { src_url_equal } from "svelte/internal";
   import { changeServerState } from "$lib/scripts/req.js";
-  
+
   import { getServer } from "$lib/scripts/req.js";
   import { t, locale, locales } from "$lib/scripts/i18n";
   import { browser } from "$app/environment";
@@ -11,7 +11,7 @@
   let starttext = "Start";
   let online = true;
   let email = localStorage.getItem("accountEmail");
-  let po = '?';
+  let po = "?";
   let apo = 0;
   let lock = false;
   //Software variables
@@ -39,7 +39,7 @@
   software = uppercaseFirstLetter(software);
 
   let tname: string;
-  
+
   tname = name.toLowerCase().replace(/ /g, "-");
   function setName() {
     localStorage.setItem("serverName", name);
@@ -62,14 +62,13 @@
   }
   status();
   function start() {
-    
     if (!lock) {
       if (state == "true") {
-      changeServerState("restart", id, email);
-    } else if (state == "false") {
-      changeServerState("start", id, email);
-    }
-    lock = true;
+        changeServerState("restart", id, email);
+      } else if (state == "false") {
+        changeServerState("start", id, email);
+      }
+      lock = true;
     }
   }
 
@@ -77,32 +76,28 @@
     changeServerState("stop", id, email);
   }
 
-let v = version;
-if (version == ( "latest" ) || version == ( "Latest")) {
-  v = ""
-}
-function getStatus() {
-
-  getServer(id).then((data) => {
-   
-    if (data.state != state) {
-      lock = false;
-    }
-    state = data.state;
-    console.log("state " + state)
-    status();
-  });
-}
+  let v = version;
+  if (version == "latest" || version == "Latest") {
+    v = "";
+  }
+  function getStatus() {
+    getServer(id).then((data) => {
+      if (data.state != state) {
+        lock = false;
+      }
+      state = data.state;
+      console.log("state " + state);
+      status();
+    });
+  }
   //Run status function every 5 seconds if theyre still on this page
   if (browser) {
     setInterval(function () {
-      if (window.location.pathname=="/") {
+      if (window.location.pathname == "/") {
         getStatus();
       }
     }, 5000);
-
   }
-
 </script>
 
 <div class="m-3">
@@ -116,13 +111,19 @@ function getStatus() {
       <div class="card-actions justify-end pt-4">
         <!-- placeholder for now? -->
         <div class="grow space-x-1.5 flex">
-          <a href="/server/{tname}"><button on:click={setName} class="btn btn-primary btn-sm h-9"
-            >Info</button
-          ></a>
-          <button on:click={start} type="submit" class="btn btn-success btn-sm h-9"
-            >{starttext}</button
+          <a href="/server/{tname}"
+            ><button on:click={setName} class="btn btn-primary btn-sm h-9"
+              >Info</button
+            ></a
           >
-          <button on:click={stop} class="btn btn-error btn-{stopcolor} btn-sm h-9 stop-btn"
+          <button
+            on:click={start}
+            type="submit"
+            class="btn btn-success btn-sm h-9">{starttext}</button
+          >
+          <button
+            on:click={stop}
+            class="btn btn-error btn-{stopcolor} btn-sm h-9 stop-btn"
             >{$t("button.stop")}</button
           >
         </div>

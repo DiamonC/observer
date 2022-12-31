@@ -20,13 +20,12 @@
   //if accountEmail is longer than 20 characters
   if ($accountEmail.length > 20) {
     //slice it to 20 characters
-     accountEmailChopped = $accountEmail.slice(0, 20);
-    accountEmailChopped+="...";
+    accountEmailChopped = $accountEmail.slice(0, 20);
+    accountEmailChopped += "...";
   } else {
     //else, just use accountEmail
-     accountEmailChopped = $accountEmail;
+    accountEmailChopped = $accountEmail;
   }
-
 </script>
 
 {#if loginStatus === true}

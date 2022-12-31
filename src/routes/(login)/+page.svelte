@@ -5,8 +5,6 @@
   import { browser, dev } from "$app/environment";
   import { goto } from "$app/navigation";
 
-
-  
   // NOTE: the element that is using one of the theme attributes must be in the DOM on mount
 
   //Example
@@ -27,14 +25,13 @@
   console.log("yo" + email);
   // getServers and store "amount" given in the response in a variable
   getServers(email).then((response) => {
-    
-    if(browser) {
-    console.log(response);
-    if (response.amount != "undefined") {
-      id = response.amount;
+    if (browser) {
+      console.log(response);
+      if (response.amount != "undefined") {
+        id = response.amount;
+      }
+      DOM(response);
     }
-    DOM(response);
-  }
   });
   function DOM(res2: string) {
     for (var i = 0; i < id; i++) {
@@ -56,7 +53,6 @@
             software: serverLoader,
             state: serverState,
             id: serverID,
-
           },
         });
       }
@@ -68,7 +64,6 @@
   if (id == 0) {
     showmsg = false;
   }
-
 </script>
 
 <div class="flex flex-col items-center space-y-20 mb-12">
@@ -77,9 +72,13 @@
       {$t("homepage.title")}
     </div>
     {#if showmsg}
-    <div class="divider"></div>
-        Looks like you dont have any servers. Click <a class="link link-primary" href="/newserver"> here</a> to make one.
-
+      <div class="divider" />
+      Looks like you dont have any servers. Click<a
+        class="link link-primary"
+        href="/newserver"
+      >
+        here</a
+      > to make one.
     {/if}
     <div class="flex flex-wrap justify-center" id="serverList">
       <!-- <ServerCard name="Server Name" loader="Loader" version="Version" /> -->

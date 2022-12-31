@@ -12,14 +12,11 @@
   import { url } from "inspector";
   import { setDefaultResultOrder } from "dns";
 
-
   //sends user to /signin if localstorage token is ""
   if (browser) {
     if (localStorage.getItem("token") == "") {
       goto("/signin");
     }
-
-    
   }
   let enablePay = true;
   let login = false;
@@ -31,7 +28,7 @@
     locale.set(navigator.language);
   }
   if (browser) {
-    console.log("yooooo" + window.location.pathname)
+    console.log("yooooo" + window.location.pathname);
     if (localStorage.getItem("token") == null) {
       localStorage.setItem("token", "");
     }
@@ -40,54 +37,66 @@
     } else {
       login = false;
     }
-    
   }
   console.log(login);
   export let navType: NavType;
-  
 
-onMount(async () => {
-  if (browser) {
-    //switch for your url
-    check();
-    
-      
-  }
-});
-
-   
-
-function check() {
-  setTimeout(function () {
-
-
-  switch (window.location.pathname) {
-  case "/":
-  document.getElementById("servers").classList.add("text-accent-content");
-        document.getElementById("servers2").classList.add("text-accent-content");
-
-        document.getElementById("pay").classList.remove("text-accent-content");
-        document.getElementById("newserver").classList.remove("text-accent-content");
-        break;
-      case "/pay":
-        document.getElementById("pay").classList.add("text-accent-content");
-
-        document.getElementById("servers").classList.remove("text-accent-content");
-        document.getElementById("servers2").classList.remove("text-accent-content");
-        document.getElementById("newserver").classList.remove("text-accent-content");
-        break;
-      case "/newserver":
-        document.getElementById("newserver").classList.add("text-accent-content");
-
-        document.getElementById("servers").classList.remove("text-accent-content");
-        document.getElementById("servers2").classList.remove("text-accent-content");
-        document.getElementById("pay").classList.remove("text-accent-content"); 
-        break;
+  onMount(async () => {
+    if (browser) {
+      //switch for your url
+      check();
     }
-  }, 100);
-}
+  });
 
+  function check() {
+    setTimeout(function () {
+      switch (window.location.pathname) {
+        case "/":
+          document
+            .getElementById("servers")
+            .classList.add("text-accent-content");
+          document
+            .getElementById("servers2")
+            .classList.add("text-accent-content");
 
+          document
+            .getElementById("pay")
+            .classList.remove("text-accent-content");
+          document
+            .getElementById("newserver")
+            .classList.remove("text-accent-content");
+          break;
+        case "/pay":
+          document.getElementById("pay").classList.add("text-accent-content");
+
+          document
+            .getElementById("servers")
+            .classList.remove("text-accent-content");
+          document
+            .getElementById("servers2")
+            .classList.remove("text-accent-content");
+          document
+            .getElementById("newserver")
+            .classList.remove("text-accent-content");
+          break;
+        case "/newserver":
+          document
+            .getElementById("newserver")
+            .classList.add("text-accent-content");
+
+          document
+            .getElementById("servers")
+            .classList.remove("text-accent-content");
+          document
+            .getElementById("servers2")
+            .classList.remove("text-accent-content");
+          document
+            .getElementById("pay")
+            .classList.remove("text-accent-content");
+          break;
+      }
+    }, 100);
+  }
 </script>
 
 {#if navType === "default"}
@@ -98,18 +107,19 @@ function check() {
       >
     </div>
     <div class="flex-1 md:flex-none space-x-2 navbar-end">
-      <ul class="invisible md:visible md:space-x-0 menu menu-horizontal p-0" id="servers">
+      <ul
+        class="invisible md:visible md:space-x-0 menu menu-horizontal p-0"
+        id="servers"
+      >
         <li>
-          <a href="/" class="nav btn btn-ghost rounded-lg ">{$t("navbar.servers")}</a
+          <a href="/" class="nav btn btn-ghost rounded-lg "
+            >{$t("navbar.servers")}</a
           >
           <!-- todo: get font back to normal and find out why the button is square-->
         </li>
-
       </ul>
 
-      <Home/>
-
-
+      <Home />
 
       {#if enablePay === true}
         <Billing />
@@ -118,7 +128,6 @@ function check() {
       <ThemeToggle />
       <AccountButton loginStatus={login} />
     </div>
-    
   </div>
 {:else if navType === "welcome"}
   <div class="navbar fixed justify-between px-6">
