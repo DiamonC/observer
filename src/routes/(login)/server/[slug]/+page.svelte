@@ -5,7 +5,7 @@
   import { getServer } from "$lib/scripts/req.js";
   import  Admin  from "$lib/components/icons/admin.svelte";
   import  Banned  from "$lib/components/icons/banned.svelte";
-  import  User  from "$lib/components/icons/user.svelte";
+  import  {t, locale, locales} from "$lib/scripts/i18n";
   let name:string = "-";
   let tname:string;
   let url:string;
@@ -154,15 +154,15 @@ if (browser) {
 <div class="yo h-[75vh] h-screen">
 <div class=" flex justify-between">
 <div class='space-x-2'>
-<a href="/" class="btn btn-info "><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>  Back</a>
-<a on:click={del} href="/" class="btn btn-warning "><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>  Delete</a>
+<a href="/" class="btn btn-info "><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>  {$t("button.back")}</a>
+<a on:click={del} href="/" class="btn btn-warning "><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>  {$t("button.delete")}</a>
 
 </div>
 <!-- TODO: these should be on the right, add an if for not reaching the backend -->
 <div class="space-x-2">
 { #if state == "true" }
-<a on:click={start} class="btn btn-success"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-repeat"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>  Restart</a>
-<a on:click={stop} class="btn btn-error"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-stop-circle"><circle cx="12" cy="12" r="10"></circle><rect x="9" y="9" width="6" height="6"></rect></svg>  Stop</a>
+<a on:click={start} class="btn btn-success"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-repeat"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>  {$t("button.restart")}</a>
+<a on:click={stop} class="btn btn-error"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-stop-circle"><circle cx="12" cy="12" r="10"></circle><rect x="9" y="9" width="6" height="6"></rect></svg>  {$t("button.stop")}</a>
 {:else if state == "false"}
 <a on:click={start} class="btn btn-success"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-play-circle"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>  Start</a>
 <a href="/" class="btn btn-disabled "><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-stop-circle"><circle cx="12" cy="12" r="10"></circle><rect x="9" y="9" width="6" height="6"></rect></svg>  Stop</a>
@@ -267,10 +267,10 @@ if (browser) {
     <div class="m-3">
       <div class="stats bg-base-200 shadow-xl image-full">
         <div class="stat">
-          <div class="stat-title">IP Address:</div>
+          <div class="stat-title">{$t("server.ip")}</div>
           <div class="stat-value">arthmc.xyz:{port}</div>
           <div class="stat-desc">
-            Conufsed? Learn <a class="link link-accent">how to join servers</a>.
+            {$t("server.howtojoin")} <a class="link link-accent">{$t("server.howtojoin2")}</a>.
           </div>
         </div>
       </div>

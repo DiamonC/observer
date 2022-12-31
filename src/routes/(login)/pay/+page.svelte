@@ -75,7 +75,7 @@
           {#if subs == 0}
           {$t("button.subscribe")}
           {:else}
-          New Subscription
+          {$t("button.newsubscribe")}
           {/if}
        </a
       >

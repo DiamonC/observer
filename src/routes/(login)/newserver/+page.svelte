@@ -155,7 +155,7 @@ console.log(cmd);
 
       { /if }
       <label class="label" for="softwareDropdown"
-      >Gamemode</label
+      >{$t("newserver.l.gamemode")}</label
     >
       <select
         id="gamemodeDropdown"
@@ -175,12 +175,12 @@ console.log(cmd);
             placeholder="{$t('general.ex')} My Minecraft Server"
           />
 
-          <label class="label" for="3">Set Admin</label>
+          <label class="label" for="3">{$t("newserver.l.setadmin")}</label>
           <input
             id="adminInput"
             class="input-bordered input-primary input w-full bg-base-300"
             type="text"
-            placeholder="Enter Minecraft Username"
+            placeholder={$t("newserver.enteruname")}
           />
 {#if worldgen}
 <div class="p-2" />
