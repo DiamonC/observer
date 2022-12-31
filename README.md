@@ -2,7 +2,7 @@
 
 # About Observer
 
-Observer is a frontend for Arth Panel, an open-source & self-hosted minecraft server panel. Observer is meant to be run as a docker container, and is made with HTML/CSS/JS, Node, SvelteKit, TailwindCSS, and DaisyUI. For testing purposes, there is an instance of observer running at https://servers.arthmc.xyz/
+Observer is a frontend for Arth Panel, a lightweight self-hosted Minecraft server panel. Observer is meant to be run as a docker container, and is made with HTML/CSS/JS, Node, SvelteKit, TailwindCSS, and DaisyUI. For testing purposes, there is an instance of observer running at https://servers.arthmc.xyz/
 
 ## How to Run
 
@@ -10,7 +10,8 @@ Observer is a frontend for Arth Panel, an open-source & self-hosted minecraft se
 2. Run the image with `sudo docker run -p 3000:3000 arthmc/observer:latest`. To change the port, replace the first 3000 with the port number you want.
 
 ## Other Requirenments
-- By default, observer will connect to Arth's quartz backend. To create your own functioning service you will need to set up a [quartz](https://github.com/arthmc/quartz) backend.  
+
+- By default, observer will connect to Arth's quartz backend. To create your own functioning service you will need to set up a [quartz](https://github.com/arthmc/quartz) backend.
 - Arth Panel also uses a pocketbase backend to more securely manage accounts. By default it'll point to out pocketbase, but to start your own service you need to [setup](https://github.com/pocketbase/pocketbase) your own.
 
 # Contributing
@@ -21,36 +22,36 @@ Observer is a frontend for Arth Panel, an open-source & self-hosted minecraft se
 
 ## Contributing Guidelines
 
-- Please format your code with Prettier, or an alternative that achieves the same results.  
+- Please format your code with Prettier, or an alternative that achieves the same results.
 - Please use [feather](https://feathericons.com) for svg icons & use webp for raster images whenever possible. If you're wondering what tools have been used to make images like the arth logo (seen on arthmc.xyz) and the favicon, they were made with Lunacy.
 
-### Check out our [backend](https://github.com/arthmc/quartz)'s progress  
+### Check out our [backend](https://github.com/arthmc/quartz)'s progress
 
 ## Why Arth Panel?
-The main difference between Arth Panel and an alternative like pufferpanel or pterodactyl is that it's meant to work in a way so that if an issue were to occur, you could easily just SSH into the machine and run the jar directly in a folder, so you know that your server's uptime is not dependant on a panel someone else made working flawlessly.  
 
-## Planned Pages
+The main difference between Arth Panel and an alternative like pufferpanel or pterodactyl is that it's meant to work in a way so that if an issue were to occur, you could easily just SSH into the machine and run the jar directly in a folder, so you know that your server's uptime is not dependant on a panel someone else made working flawlessly.
+
+## Pages
 
 ```
 /servers (Where all servers you have access too are listed)
 /settings (Configure things like site URL)
 /newserver (Page to create a new server)
-/pay (manage subscription)
+/setup (Page for the panel owner to set everything up)
+/pay (manage subscriptions)
 /subscription-success (stripe redricts users to this page, which has a button to create a server)
 /server/[server technicalname] (page showing eventually terminal)
 /signin
-/account (manage account/profile)
-/billing (add to your balance and view your balance as well as next charges)
 ```
 
 # To-do list
+
 ✅ Setup a basic node application with Svelte, Tailwind, & DaisyUI.  
 ✅ Navbar with Arth Panel, Servers, & Settings on left. On right: Night/darkmode button, Create server button, Account button.  
 ✅ Basic UI for all planned pages  
-🔨 Communication with backend  
-🔨 Subscriptions with stripe  
-❌ Basic UI and function for terminal on the frontend  
-❌ Web Terminal using WebSockets  
+✅ Communication with backend  
+✅ Subscriptions with stripe  
+✅ Basic UI and function for terminal on the frontend  
 ❌ Signin via discord  
 ❓ Subscriptions with paypal  
-❓ Decentralized options for accounts and/or paynments  
+❓ Decentralized options for accounts and/or paynments
