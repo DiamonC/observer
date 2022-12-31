@@ -30,7 +30,7 @@
 </script>
 
 {#if loginStatus === true}
-  <div class="flex-none gap-2">
+  <div class="flex-none gap-2 " id="navbtn">
     <div class="dropdown dropdown-end">
       <label
         tabindex="0"
