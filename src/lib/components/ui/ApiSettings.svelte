@@ -1,6 +1,6 @@
 <script>
   import { apiurl, pburl } from "$lib/scripts/req";
-	import { t } from "$lib/scripts/i18n";
+  import { t } from "$lib/scripts/i18n";
 </script>
 
 <p class="label">{$t("settings.l.quartz")}</p>

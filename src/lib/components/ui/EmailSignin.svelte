@@ -16,7 +16,11 @@
       x.type = "password";
     }
   }
-
+  function enterPwd() {
+    if (event.keyCode == 13) {
+      submit();
+    }
+  }
   //set goodPwd to false if length of the element with id="pwd" is less than 8
   function checkPwd() {
     if (document.getElementById("pwd").value.length < 8) {
@@ -161,6 +165,7 @@
           <input
             type="password"
             id="pwd"
+            on:keypress={enterPwd}
             placeholder={$t("signin.l.pwd")}
             class="input w-full max-w-xs"
           />

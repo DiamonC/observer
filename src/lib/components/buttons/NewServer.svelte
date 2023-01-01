@@ -1,4 +1,4 @@
-<a href="/newserver" class="btn btn-ghost btn-circle">
+<a href="/newserver" id="newserver" class="nav btn btn-ghost btn-circle ">
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"

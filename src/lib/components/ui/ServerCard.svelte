@@ -1,14 +1,19 @@
 <script lang="ts">
   import { src_url_equal } from "svelte/internal";
   import { changeServerState } from "$lib/scripts/req.js";
-  import { getServerInfo } from "$lib/scripts/req.js";
+
+  import { getServer } from "$lib/scripts/req.js";
   import { t, locale, locales } from "$lib/scripts/i18n";
+  import { browser } from "$app/environment";
   //Status variables
   let stopcolor = "info";
   let startcolor = "info";
   let starttext = "Start";
-  let online = false;
-
+  let online = true;
+  let email = localStorage.getItem("accountEmail");
+  let po = "?";
+  let apo = 0;
+  let lock = false;
   //Software variables
   type serverType =
     | "paper"
@@ -25,32 +30,74 @@
   export let name: string;
   export let version: string;
   export let software: string;
+  export let state: string;
   export let id: number;
-
   function uppercaseFirstLetter(string: string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
-  let tname: string;
-  
-  tname = name.toLowerCase().replace(/ /g, "-");
+  software = uppercaseFirstLetter(software);
 
+  let tname: string;
+
+  tname = name.toLowerCase().replace(/ /g, "-");
+  function setName() {
+    localStorage.setItem("serverName", name);
+    localStorage.setItem("serverID", id);
+  }
   function status() {
-    if (online == true) {
+    if (state == "true") {
       stopcolor = "error";
       startcolor = "warning";
       starttext = $t("button.restart");
-    } else if (online == false) {
+    } else if (state == "false") {
       stopcolor = "disabled";
       startcolor = "success";
       starttext = $t("button.start");
+    } else if (state == "starting") {
+      stopcolor = "error";
+      startcolor = "disabled";
+      starttext = "Starting";
     }
   }
   status();
   function start() {
-    changeServerState("start", id);
+    if (!lock) {
+      if (state == "true") {
+        changeServerState("restart", id, email);
+      } else if (state == "false") {
+        changeServerState("start", id, email);
+      }
+      lock = true;
+    }
   }
-  //getServerInfo(serverName);
+
+  function stop() {
+    changeServerState("stop", id, email);
+  }
+
+  let v = version;
+  if (version == "latest" || version == "Latest") {
+    v = "";
+  }
+  function getStatus() {
+    getServer(id).then((data) => {
+      if (data.state != state) {
+        lock = false;
+      }
+      state = data.state;
+      console.log("state " + state);
+      status();
+    });
+  }
+  //Run status function every 5 seconds if theyre still on this page
+  if (browser) {
+    setInterval(function () {
+      if (window.location.pathname == "/") {
+        getStatus();
+      }
+    }, 5000);
+  }
 </script>
 
 <div class="m-3">
@@ -58,26 +105,30 @@
     <div class="card-body">
       <h2 class="card-title">{name}</h2>
       <p>
-        <b>{$t("version")}:</b>
-        {uppercaseFirstLetter(version)} |
-        <b>Software: </b>{uppercaseFirstLetter(software)}
+        arthmc.xyz:{10000 + parseInt(id)}
       </p>
       <!-- <div class="card-actions justify-beginning" /> -->
       <div class="card-actions justify-end pt-4">
         <!-- placeholder for now? -->
         <div class="grow space-x-1.5 flex">
-          <a href="/server/{tname}"><button class="btn btn-primary btn-sm h-9"
-            ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg></button
-          ></a>
-          <button on:click={start} type="submit" class="btn btn-{startcolor} btn-sm h-9"
-            >{starttext}</button
+          <a href="/server/{tname}"
+            ><button on:click={setName} class="btn btn-primary btn-sm h-9"
+              >Info</button
+            ></a
           >
-          <button class="btn btn-{stopcolor} btn-sm h-9 stop-btn"
+          <button
+            on:click={start}
+            type="submit"
+            class="btn btn-success btn-sm h-9">{starttext}</button
+          >
+          <button
+            on:click={stop}
+            class="btn btn-error btn-{stopcolor} btn-sm h-9 stop-btn"
             >{$t("button.stop")}</button
           >
         </div>
         <div class="self-center">
-          <div class="badge badge-outline">1/20</div>
+          <div class="badge badge-outline">{software} {v}</div>
         </div>
       </div>
     </div>
