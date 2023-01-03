@@ -12,6 +12,9 @@
   import Admin from "$lib/components/icons/admin.svelte";
   import Banned from "$lib/components/icons/banned.svelte";
   import { t, locale, locales } from "$lib/scripts/i18n";
+  import PluginResult from "$lib/components/ui/PluginResult.svelte";
+  import {searchPlugins} from "$lib/scripts/req.js";
+  import AddPlugin from "$lib/components/ui/AddPlugin.svelte";
   let name: string = "-";
   let tname: string;
   let url: string;
@@ -134,7 +137,14 @@
       }
     }, 5000);
   }
+
+ 
+
 </script>
+
+<style>
+
+</style>
 
 <div class="yo h-[75vh] h-screen">
   <div class=" flex justify-between">
@@ -469,7 +479,7 @@
         class="input input-secondary bg-base-200 w-5/6 xl:w-full "
       />
     </div>
-    <div class="m-3">
+    <div class="m-3 space-y-5">
       <div class="stats bg-base-200 shadow-xl image-full">
         <div class="stat">
           <div class="stat-title">{$t("server.ip")}</div>
@@ -479,7 +489,11 @@
             <a class="link link-accent">{$t("server.howtojoin2")}</a>.
           </div>
         </div>
+        
       </div>
+      
+
+      <AddPlugin/>
     </div>
   </div>
 </div>

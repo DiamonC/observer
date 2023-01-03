@@ -3,10 +3,58 @@ import { browser } from "$app/environment";
 import { goto } from "$app/navigation";
 export const apiurl = "https://api.arthmc.xyz/";
 export const pburl = "https://pb.arthmc.xyz/api/";
+export const lrurl = "https://api.modrinth.com/v2/";
 //set email from local storage to variable
 if (browser) {
   accountEmail.set(window.localStorage.getItem("accountEmail"));
 }
+
+export function getVersions(id: string) {
+  const req = {
+    method: "GET",
+  };
+  console.log("Request Sent: " + id);
+  return fetch(lrurl + "project/" + id + "/version", req)
+    .then((res) => res.text())
+    .then((input: string) => {
+      console.log("Response Recieved: " + input);
+
+      return JSON.parse(input);
+    })
+    .catch((err) => console.error(err));
+}
+export function searchPlugins(
+  software: string,
+  version: string,
+  query: string
+) {
+  if (version == "Latest") {
+    version = "1.19.3";
+  }
+  const req = {
+    method: "GET",
+  };
+  const params =
+    "?query=" +
+    query +
+    '&facets=[["categories:' +
+    software +
+    '"],["versions:' +
+    version +
+    '"]]' +
+    "&limit=10";
+
+  console.log("Request Sent: " + params);
+  return fetch(lrurl + "search" + params, req)
+    .then((res) => res.text())
+    .then((input: string) => {
+      console.log("Response Recieved: " + input);
+
+      return JSON.parse(input);
+    })
+    .catch((err) => console.error(err));
+}
+
 export function getSettings() {
   const req = {
     method: "GET",

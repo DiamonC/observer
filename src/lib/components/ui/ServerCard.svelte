@@ -44,6 +44,8 @@
   function setName() {
     localStorage.setItem("serverName", name);
     localStorage.setItem("serverID", id);
+    localStorage.setItem("serverSoftware", software);
+    localStorage.setItem("serverVersion", version);
   }
   function status() {
     if (state == "true") {
