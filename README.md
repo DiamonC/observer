@@ -1,5 +1,9 @@
 [![Get at Docker Hub](https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white)](https://hub.docker.com/r/arthmc/observer)
 
+### Warnings
+- Arth Panel is in beta and should not be used in production yet.
+- There are several issues with the docker image currently, and we reccomend running it directly for now.
+
 # About Observer
 
 Observer is a frontend for Arth Panel, a lightweight self-hosted Minecraft server panel. Observer is meant to be run as a docker container, and is made with HTML/CSS/JS, Node, SvelteKit, TailwindCSS, and DaisyUI. For testing purposes, there is an instance of observer running at https://servers.arthmc.xyz/
@@ -16,7 +20,7 @@ Observer is a frontend for Arth Panel, a lightweight self-hosted Minecraft serve
 
 ## How to run without docker
 
-1. Grab the source code with `git pull`
+1. Grab the source code with `git clone https://codeberg.org/arth/quartz`
 2. Install packages with `npm i`
 3. Build the source code with `CI= npm run build`
 4. Run with `node build`
