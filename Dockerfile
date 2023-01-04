@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64,linux/arm64,linux/arm/v7 node:18
+FROM --platform=linux/amd64,linux/arm node:18
 
 # Create app directory
 WORKDIR /usr/src/observer
