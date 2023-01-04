@@ -12,9 +12,18 @@ Observer is a frontend for Arth Panel, a lightweight self-hosted Minecraft serve
 ## Other Requirenments
 
 - By default, observer will connect to Arth's quartz backend. To create your own functioning service you will need to set up a [quartz](https://github.com/arthmc/quartz) backend.
-- Arth Panel also uses a pocketbase backend to more securely manage accounts. By default it'll point to out pocketbase, but to start your own service you need to [setup](https://github.com/pocketbase/pocketbase) your own.
+- Arth Panel also uses a pocketbase backend to more securely manage accounts. By default it'll point to our pocketbase, but to start your own service you need to [setup](https://github.com/pocketbase/pocketbase) your own.
+
+## How to run without docker
+
+1. Grab the source code with `git pull`
+2. Install packages with `npm i`
+3. Build the source code with `CI= npm run build`
+4. Run with node build
 
 # Contributing
+
+## How to run a dev server
 
 - Make sure you install the pagackes by running `npm i`
 - To run a dev server, enter the command `npm run dev`

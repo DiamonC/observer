@@ -12,6 +12,9 @@
   import Admin from "$lib/components/icons/admin.svelte";
   import Banned from "$lib/components/icons/banned.svelte";
   import { t, locale, locales } from "$lib/scripts/i18n";
+  import PluginResult from "$lib/components/ui/PluginResult.svelte";
+  import {searchPlugins} from "$lib/scripts/req.js";
+  import AddPlugin from "$lib/components/ui/AddPlugin.svelte";
   let name: string = "-";
   let tname: string;
   let url: string;
@@ -134,7 +137,14 @@
       }
     }, 5000);
   }
+
+ 
+
 </script>
+
+<style>
+
+</style>
 
 <div class="yo h-[75vh] h-screen">
   <div class=" flex justify-between">
@@ -326,135 +336,7 @@
   </div>
 
   <div class="space-x-7 flex justify-between p-10">
-    <div class="overflow-x-auto hidden">
-      <table class="table">
-        <!-- head -->
-        <thead>
-          <tr>
-            <th>Player</th>
-            <th>Role</th>
-          </tr>
-        </thead>
-        <tbody class="">
-          <!-- row 1 -->
-          <tr>
-            <td>Cy Ganderton</td>
-            <td><Admin /></td>
-          </tr>
-          <!-- row 2 -->
-          <tr>
-            <td>Hart Hagerty</td>
-            <td><Banned /></td>
-          </tr>
-          <!-- row 3 -->
-          <tr>
-            <td class="space-x-2"
-              ><input
-                type="text"
-                placeholder="Enter Username"
-                style="width: 16ch"
-                class="input bg-base-200"
-              /><select
-                tabindex="0"
-                class="select select-primary p-2 bg-base-100"
-                style="width: 10ch"
-              >
-                <option>Admin</option>
-                <option>Ban</option>
-                <option>Reset</option>
-              </select>
-            </td>
-            <td><a class="btn">Add</a></td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="overflow-x-auto">
-        <table class="table">
-          <!-- head -->
-          <thead>
-            <tr>
-              <th>Plugin</th>
-              <th />
-            </tr>
-          </thead>
-          <tbody class="">
-            <!-- row 1 -->
-            <tr>
-              <td>ArthCore</td>
-              <td
-                ><button class="btn btn-ghost btn-sm btn-circle"
-                  ><svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="feather feather-edit-3"
-                    ><path d="M12 20h9" /><path
-                      d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"
-                    /></svg
-                  ></button
-                ></td
-              >
-            </tr>
-            <!-- row 2 -->
-            <tr>
-              <td>PlayerPlot-Modded</td>
-              <td
-                ><button class="btn btn-ghost btn-sm btn-circle"
-                  ><svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="feather feather-edit-3"
-                    ><path d="M12 20h9" /><path
-                      d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"
-                    /></svg
-                  ></button
-                ></td
-              >
-            </tr>
-            <!-- row 3 -->
-            <tr class="flex justify-center">
-              <td
-                ><a class="btn btn-primary"
-                  ><svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="feather feather-upload"
-                    ><path
-                      d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
-                    /><polyline points="17 8 12 3 7 8" /><line
-                      x1="12"
-                      y1="3"
-                      x2="12"
-                      y2="15"
-                    /></svg
-                  ></a
-                ></td
-              >
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+
     <div>
       <div
         class="bg-base-300 h-96 rounded-xl shadow-xl overflow-auto w-5/6 xl:w-full"
@@ -469,7 +351,7 @@
         class="input input-secondary bg-base-200 w-5/6 xl:w-full "
       />
     </div>
-    <div class="m-3">
+    <div class="m-3 space-y-5 flex flex-col">
       <div class="stats bg-base-200 shadow-xl image-full">
         <div class="stat">
           <div class="stat-title">{$t("server.ip")}</div>
@@ -479,7 +361,11 @@
             <a class="link link-accent">{$t("server.howtojoin2")}</a>.
           </div>
         </div>
+        
       </div>
+      
+
+      <AddPlugin/>
     </div>
   </div>
 </div>
