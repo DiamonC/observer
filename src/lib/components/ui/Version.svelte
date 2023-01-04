@@ -1,13 +1,14 @@
 <script lang="ts">
-    import { getVersions } from "$lib/scripts/req";
+    import { sendVersion } from "$lib/scripts/req";
 
     import Versions from "$lib/components/ui/ChooseVersion.svelte";
+  import { browser } from "$app/environment";
 
      
   export let name: string;
   export let date: string;
   export let type: string;
-  export let id: string;
+  export let url: string;
 
 if (type == "release") {
     type = "";
@@ -21,7 +22,11 @@ if (type == "release") {
 let time = new Date(date).toLocaleString();
 
 function submit() {
-    
+    let id = "";
+    if (browser) {
+        id = localStorage.getItem("serverID");
+    }
+    sendVersion(url, id);
 }
 </script>
 

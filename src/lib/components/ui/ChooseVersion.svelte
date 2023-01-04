@@ -25,7 +25,7 @@
         getVersions(id).then((data) => {
             document.getElementById("list").innerHTML = "";
             data.forEach((version) => {
-                console.log(software + sVersion + "f")
+
                 if (version.name != vname && version.loaders.includes(software) && version.game_versions.includes(sVersion)) {
                     vname = version.name;
                     console.log(version.name + vname)
@@ -35,7 +35,7 @@
                         name: version.name,
                         date: version.date_published,
                         type: version.version_type,
-                        id: version.id,
+                        url: version.files[0].url,
 
                     },
                 });

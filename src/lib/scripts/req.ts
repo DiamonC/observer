@@ -9,6 +9,32 @@ if (browser) {
   accountEmail.set(window.localStorage.getItem("accountEmail"));
 }
 
+export function sendVersion(url: string, id: string) {
+  const req = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      pluginUrl: url,
+      id: id,
+    }),
+  };
+  console.log("Request Sent: " + req.body + url);
+
+  return fetch(apiurl + "server/addplugin", req)
+    .then((res) => res.text())
+    .then((input: string) => {
+      console.log("Response Recieved: " + input);
+
+      if (input.indexOf("400") > -1) {
+        return "error";
+      } else {
+        return "success";
+      }
+    })
+    .catch((err) => console.error(err));
+}
 export function getVersions(id: string) {
   const req = {
     method: "GET",
