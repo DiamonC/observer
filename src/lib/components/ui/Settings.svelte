@@ -2,14 +2,20 @@
   import { t, locale } from "$lib/scripts/i18n";
   import { onMount } from "svelte";
   import { getSettings } from "$lib/scripts/req";
+  import { disableScrollHandling } from "$app/navigation";
+  import { themeChange } from "theme-change";
+  let stripe = true;
   function readSettings() {
     getSettings().then((res) => {
       console.log("response:" + res.enablePay);
       //set element "webport"'s placeholder to res.webport
       //set checkbox "enablepay" to res.enablePay
-      if (res.enablePay == true) {
+      if (res.enablePay == false) {
+        stripe = false;
+      }
+      if (res.disableAuth == true) {
         //add checkked attribute to checkbox
-        //document.getElementById("enablepay").setAttribute("checked", "");
+        //document.getElementById("disableauth").setAttribute("checked", "");
       }
       document.getElementById("serversperuser").placeholder =
         res.serversPerUser;
@@ -50,9 +56,11 @@
   />
 </div>
 
+<p class="text p-2">{#if stripe}Payments via Stripe are enabled. Remove the stripe key on the backend to disable them.{:else}Payments via Stripe are disabled. Add a stripe key on the backend to enable themeChange.{/if}</p>
+
 <div class="cursor-pointer label">
-  <p class="label-text">{$t("settings.l.pay")}</p>
-  <input id="enablepay" type="checkbox" class="toggle toggle-primary" />
+  <p class="label-text">Require Authentication</p>
+  <input id="disableauth" type="checkbox" class="toggle toggle-primary" />
 </div>
 
 <div class="divider text-xl font-semibold mt-8 mb-6">

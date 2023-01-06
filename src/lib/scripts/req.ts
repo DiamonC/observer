@@ -90,6 +90,9 @@ export function getSettings() {
     .then((res) => res.text())
     .then((input: string) => {
       console.log("Response Recieved: " + input);
+      if (browser && window.localStorage.getItem("payEnabled") == "") {
+        window.localStorage.setItem("payEnabled", JSON.parse(input).enablePay);
+      }
 
       return JSON.parse(input);
     })
@@ -398,3 +401,6 @@ export function readTerminal(id: number) {
       }
     });
 }
+
+//check if stripe is enabled
+getSettings();
