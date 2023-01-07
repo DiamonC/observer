@@ -2,9 +2,6 @@
   import Helper from "$lib/components/ui/Helper.svelte";
   import { getSettings } from "$lib/scripts/req";
   import { t, locale, locales } from "$lib/scripts/i18n";
-  import { onMount } from "svelte";
-  import { apiurl } from "$lib/scripts/req";
-  import { pburl } from "$lib/scripts/req";
   import Settings from "$lib/components/ui/Settings.svelte";
   import ApiSettings from "$lib/components/ui/ApiSettings.svelte";
 </script>
