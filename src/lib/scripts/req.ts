@@ -179,7 +179,7 @@ export function loginEmail(em: string, pwd: string) {
 }
 
 export function changeServerState(reqstate: string, id: number, em: string) {
-  const url = apiurl + "server/" + id + "/" + reqstate + "?email=" + em;
+  const url = apiurl + "server/" + id + "/state/" + reqstate + "?email=" + em;
   const response = fetch(url, POST)
     .then((res) => res.text())
     .then((text) => console.log("Response Recieved: " + text))
