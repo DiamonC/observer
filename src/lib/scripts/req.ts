@@ -9,20 +9,20 @@ if (browser) {
   accountEmail.set(window.localStorage.getItem("accountEmail"));
 }
 
-export function sendVersion(url: string, id: string) {
-  const req = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      pluginUrl: url,
-      id: id,
-    }),
-  };
-  console.log("Request Sent: " + req.body + url);
+const GET = { method: "GET" };
+const POST = { method: "POST" };
+const DELETE = { method: "DELETE" };
 
-  return fetch(apiurl + "server/addplugin", req)
+export function sendVersion(link: string, id: string) {
+  const url =
+    apiurl +
+    "server/" +
+    id +
+    "/addplugin" +
+    "?pluginUrl=" +
+    encodeURIComponent(link);
+  console.log(url);
+  return fetch(url, POST)
     .then((res) => res.text())
     .then((input: string) => {
       console.log("Response Recieved: " + input);
@@ -36,11 +36,8 @@ export function sendVersion(url: string, id: string) {
     .catch((err) => console.error(err));
 }
 export function getVersions(id: string) {
-  const req = {
-    method: "GET",
-  };
-  console.log("Request Sent: " + id);
-  return fetch(lrurl + "project/" + id + "/version", req)
+  const url = lrurl + "project/" + id + "/version";
+  return fetch(url, GET)
     .then((res) => res.text())
     .then((input: string) => {
       console.log("Response Recieved: " + input);
@@ -57,10 +54,10 @@ export function searchPlugins(
   if (version == "Latest") {
     version = "1.19.3";
   }
-  const req = {
-    method: "GET",
-  };
-  const params =
+
+  const url =
+    lrurl +
+    "search" +
     "?query=" +
     query +
     '&facets=[["categories:' +
@@ -70,8 +67,7 @@ export function searchPlugins(
     '"]]' +
     "&limit=10";
 
-  console.log("Request Sent: " + params);
-  return fetch(lrurl + "search" + params, req)
+  return fetch(url, GET)
     .then((res) => res.text())
     .then((input: string) => {
       console.log("Response Recieved: " + input);
@@ -82,15 +78,12 @@ export function searchPlugins(
 }
 
 export function getSettings() {
-  const req = {
-    method: "GET",
-  };
   console.log("Request Sent");
-  return fetch(apiurl + "settings", req)
+  return fetch(apiurl + "settings", GET)
     .then((res) => res.text())
     .then((input: string) => {
       console.log("Response Recieved: " + input);
-      if (browser && window.localStorage.getItem("payEnabled") == "") {
+      if (browser) {
         window.localStorage.setItem("payEnabled", JSON.parse(input).enablePay);
       }
 
@@ -98,17 +91,11 @@ export function getSettings() {
     })
     .catch((err) => console.error(err));
 }
+
 export function getServers(em: string) {
-  console.log("hi" + em);
-  const req = {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      email: em,
-    },
-  };
+  const url = apiurl + "servers/" + "?email=" + em;
   console.log("Request Sent: Get Servers");
-  return fetch(apiurl + "servers", req)
+  return fetch(url, GET)
     .then((res) => res.text())
     .then((input: string) => {
       console.log("Response Recieved: " + input);
@@ -192,43 +179,8 @@ export function loginEmail(em: string, pwd: string) {
 }
 
 export function changeServerState(reqstate: string, id: number, em: string) {
-  let req3;
-  if (reqstate == "start") {
-    req3 = {
-      method: "POST",
-      headers: {
-        state: "start",
-        id: id,
-        email: em,
-      },
-    };
-  } else if (reqstate == "stop") {
-    req3 = {
-      method: "POST",
-      headers: {
-        state: "stop",
-        id: id,
-      },
-    };
-  } else if (reqstate == "restart") {
-    req3 = {
-      method: "POST",
-      headers: {
-        state: "restart",
-        id: id,
-      },
-    };
-  } else {
-    req3 = {
-      method: "POST",
-      headers: {
-        request: "x",
-      },
-    };
-  }
-  console.log("Request Sent: " + req3.headers);
-
-  const response = fetch(apiurl + "server", req3)
+  const url = apiurl + "server/" + id + "/state/" + reqstate + "?email=" + em;
+  const response = fetch(url, POST)
     .then((res) => res.text())
     .then((text) => console.log("Response Recieved: " + text))
     .catch((err) => console.error(err));
@@ -236,8 +188,20 @@ export function changeServerState(reqstate: string, id: number, em: string) {
   return "done";
 }
 
-export function createServer(n: string, s: string, v: string, a, c) {
-  const req4 = {
+export function createServer(
+  n: string,
+  s: string,
+  v: string,
+  a: any[],
+  c: any[]
+) {
+  const url =
+    apiurl +
+    "server/new?" +
+    "email=" +
+    window.localStorage.getItem("accountEmail");
+
+  const req = {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -247,14 +211,13 @@ export function createServer(n: string, s: string, v: string, a, c) {
       software: s,
       version: v,
       addons: a,
-      cmd: c,
-      email: window.localStorage.getItem("accountEmail"),
+      cmds: c,
     }),
   };
-  console.log("Request Sent: " + req4.body);
 
+  console.log("Request Sent: " + url);
   //if response is 409, send an alert, otherwise do nothing
-  const response = fetch(apiurl + "server/new", req4)
+  const response = fetch(url, req)
     .then((res) => res.text())
     .then((text) => {
       console.log("Response Recieved: " + text);
@@ -317,15 +280,8 @@ export function getPlayers(address: string) {
 }
 
 export function getServer(id: number) {
-  const req = {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      id: id,
-    },
-  };
-
-  return fetch(apiurl + "server/", req)
+  const url = apiurl + "server/" + id;
+  return fetch(url, GET)
     .then((res) => res.text())
     .then((input: string) => {
       if (input.indexOf("400") > -1) {
@@ -338,17 +294,9 @@ export function getServer(id: number) {
 }
 
 export function deleteServer(id: number) {
-  const req = {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      id: id,
-    }),
-  };
+  const url = apiurl + "server/" + id;
 
-  return fetch(apiurl + "server", req)
+  return fetch(url, DELETE)
     .then((res) => res.text())
     .then((input: string) => {
       if (input.indexOf("400") > -1) {
@@ -361,18 +309,10 @@ export function deleteServer(id: number) {
 }
 
 export function writeTerminal(id: number, cmd: string) {
-  const req = {
-    method: "POST",
-    headers: {
-      id: id,
-      cmd: cmd,
-    },
-  };
-  console.log("Request Sent: " + JSON.stringify(req));
-  return fetch(apiurl + "terminal", req)
+  const url = apiurl + "terminal/" + id + "?cmd=" + cmd;
+  return fetch(url, POST)
     .then((res) => res.text())
     .then((input: string) => {
-      console.log("" + req);
       if (input.indexOf("400") > -1) {
         return "error";
       } else {
@@ -383,14 +323,8 @@ export function writeTerminal(id: number, cmd: string) {
 }
 
 export function readTerminal(id: number) {
-  const req = {
-    method: "GET",
-    headers: {
-      id: id,
-    },
-  };
-  console.log("Request Sent: " + JSON.stringify(req));
-  return fetch(apiurl + "terminal", req)
+  const url = apiurl + "terminal/" + id;
+  return fetch(url, GET)
     .then((res) => res.text())
     .then((input: string) => {
       if (input.indexOf("400") > -1) {

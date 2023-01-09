@@ -347,7 +347,7 @@
         on:keypress={writeCmd}
         id="input"
         type="text"
-        placeholder="Enter Command"
+        placeholder={$t("p.enterCommand")}
         class="input input-secondary bg-base-200 w-5/6 xl:w-full "
       />
     </div>

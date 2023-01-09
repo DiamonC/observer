@@ -91,6 +91,15 @@ export default {
     "button.starting2": "  Starting",
     "button.restart2": "  Restart",
     "button.start2": "  Start",
+    "button.addplugin": "  Add Plugin",
+    "p.enterCommand": "Enter Command",
+    search: "Search",
+    "server.pluginsFromModrinth": "Plugins from Modrinth",
+    "settings.stripeOn":
+      "Payments via Stripe are enabled. Remove the stripe key on the backend to disable it.",
+    "settings.stripeOff":
+      "Payments via Stripe are disabled. Add a stripe key on the backend to enable it.",
+    "settings.requireAuth": "Require Authentication",
   },
   "es-ES": {
     "homepage.title": "Sus servidores",
@@ -186,5 +195,14 @@ export default {
     "button.starting2": "  Iniciando",
     "button.restart2": "  Reiniciar",
     "button.start2": "  Encender",
+    "button.addplugin": "  Añadir Plugin",
+    "p.enterCommand": "Ingrese el comando",
+    search: "Buscar",
+    "server.pluginsFromModrinth": "Plugins de Modrinth",
+    "settings.stripeOn":
+      "Los pagos a través de Stripe están habilitados. Elimine la tecla de banda en el backend para deshabilitarlos.",
+    "settings.stripeOff":
+      "Los pagos a través de Stripe están desactivados. Agregue una tecla de banda en el backend para habilitar themeChange.",
+    "settings.requireAuth": "Requiere autenticación",
   },
 };

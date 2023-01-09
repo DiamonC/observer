@@ -56,10 +56,10 @@
   />
 </div>
 
-<p class="text p-2">{#if stripe}Payments via Stripe are enabled. Remove the stripe key on the backend to disable them.{:else}Payments via Stripe are disabled. Add a stripe key on the backend to enable themeChange.{/if}</p>
+<p class="text p-2">{#if stripe}{$t("settings.stripeOn")}{:else}{$t("settings.stripeOff")}{/if}</p>
 
 <div class="cursor-pointer label">
-  <p class="label-text">Require Authentication</p>
+  <p class="label-text">{$t("settings.requireAuth")}</p>
   <input id="disableauth" type="checkbox" class="toggle toggle-primary" />
 </div>
 

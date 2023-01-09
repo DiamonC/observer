@@ -2,6 +2,7 @@
   import { browser } from "$app/environment";
 import {searchPlugins} from "$lib/scripts/req";
 import PluginResult from "./PluginResult.svelte";
+import { t } from "$lib/scripts/i18n";
 
     function search() {
 if (browser) {
@@ -39,7 +40,7 @@ if (browser) {
 
 </script>
 
-<label for="my-modal-5" class="btn" on:click={search}>Add Plugin</label>
+<label for="my-modal-5" class="btn" on:click={search}>{$t("button.addplugin")}</label>
 
 <!-- Put this part before </body> tag -->
 <input type="checkbox" id="my-modal-5" class="modal-toggle" />
@@ -48,15 +49,15 @@ if (browser) {
   <div class="modal-box w-11/12 max-w-5xl space-y-5">
 
     <div class="flex justify-between">
-        <h3 class="font-bold text-lg">Plugins from Modrinth</h3>
+        <h3 class="font-bold text-lg">{$t("server.pluginsFromModrinth")}</h3>
     <div class="modal-action">
         <label for="my-modal-5" class="btn btn-circle btn-sm btn-ghost"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></label>
       </div>
     </div>
 
     <div>
-      <input type="text" placeholder="Search" class="input input-bordered input-sm" id="search"/>
-      <button class="btn btn-sm btn-primary" on:click={search}>Search</button>
+      <input type="text" placeholder={$t("search")} class="input input-bordered input-sm" id="search"/>
+      <button class="btn btn-sm btn-primary" on:click={search}>{$t("search")}</button>
     </div>
     <div id="plugins" class="space-y-2">
       
