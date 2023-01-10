@@ -16,9 +16,9 @@ Observer is a frontend for Arth Panel, a lightweight self-hosted Minecraft serve
 <details>
 <summary>Arm-Based Device Instructions (Mac, Raspberry PI, More)</summary>
 <br>
-- clone https://codeberg.org/arth/observer/  
-- run `sudo docker buildx build --platform linux/arm64 . -t arthmc/observer:latest`  
-- run `sudo docker run -p 3000:3000 arthmc/observer:latest`  
+- clone https://codeberg.org/arth/observer/,  
+- run `sudo docker buildx build --platform linux/arm64 . -t arthmc/observer:latest`,  
+- run `sudo docker run -p 3000:3000 arthmc/observer:latest`,  
 
 </details>
 
