@@ -13,6 +13,15 @@ Observer is a frontend for Arth Panel, a lightweight self-hosted Minecraft serve
 1. Download the image from docker hub with the command `sudo docker pull arthmc/observer:latest`
 2. Run the image with `sudo docker run -p 3000:3000 arthmc/observer:latest`. To change the port, replace the first 3000 with the port number you want.
 
+<details>
+<summary>Arm-Based Device Instructions (Mac, Raspberry PI, More)</summary>
+<br>
+- clone https://codeberg.org/arth/observer/
+- run `sudo docker buildx build --platform linux/arm64 . -t arthmc/observer:latest`
+- run `sudo docker run -p 3000:3000 arthmc/observer:latest`
+
+</details>
+
 ## Other Requirements
 
 - By default, observer will connect to Arth's quartz backend. To create your own functioning service you will need to set up a [quartz](https://github.com/arthmc/quartz) backend.
