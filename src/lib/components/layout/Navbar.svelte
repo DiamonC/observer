@@ -11,14 +11,7 @@
   import { onMount } from "svelte";
   import { url } from "inspector";
   import { setDefaultResultOrder } from "dns";
-  let enablePay = true;
-  //sends user to /signin if localstorage token is ""
-  if (browser) {
-    enablePay = localStorage.getItem("payEnabled");
-    if (localStorage.getItem("token") == "") {
-      goto("/signin");
-    }
-  }
+
 
   
   let login = false;
@@ -48,7 +41,14 @@
       //check();
     }
   });
-
+  let enablePay = true;
+  //sends user to /signin if localstorage token is ""
+  if (browser) {
+    enablePay = localStorage.getItem("payEnabled");
+    if (localStorage.getItem("token") == "") {
+      goto("/signin");
+    }
+  }
   function check() {
     setTimeout(function () {
       switch (window.location.pathname) {
@@ -122,7 +122,7 @@
 
       <Home />
 
-      {#if enablePay === true}
+      {#if enablePay == "true"}
         <Billing />
       {/if}
       <NewServer />
