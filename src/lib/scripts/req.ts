@@ -84,7 +84,8 @@ export function getSettings() {
     .then((input: string) => {
       console.log("Response Recieved: " + input);
       if (browser) {
-        window.localStorage.setItem("payEnabled", JSON.parse(input).enablePay);
+        window.localStorage.setItem("enablePay", JSON.parse(input).enablePay);
+        window.localStorage.setItem("enableAuth", JSON.parse(input).enableAuth);
       }
 
       return JSON.parse(input);

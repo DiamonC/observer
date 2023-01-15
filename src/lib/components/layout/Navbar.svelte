@@ -42,10 +42,12 @@
     }
   });
   let enablePay = true;
+  let enableAuth = true;
   //sends user to /signin if localstorage token is ""
   if (browser) {
-    enablePay = localStorage.getItem("payEnabled");
-    if (localStorage.getItem("token") == "") {
+    enablePay = localStorage.getItem("enablePay");
+    enableAuth = localStorage.getItem("enableAuth");
+    if (localStorage.getItem("token") == "" && enableAuth) {
       goto("/signin");
     }
   }
@@ -127,7 +129,9 @@
       {/if}
       <NewServer />
       <ThemeToggle />
-      <AccountButton loginStatus={login} />
+      {#if enableAuth == "true"} 
+        <AccountButton loginStatus={login} />
+      {/if}
     </div>
   </div>
 {:else if navType === "welcome"}
