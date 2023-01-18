@@ -42,12 +42,13 @@
     }
   });
   let enablePay = true;
-  let enableAuth = true;
+  let enableAuth = false;
   //sends user to /signin if localstorage token is ""
   if (browser) {
     enablePay = localStorage.getItem("enablePay");
     enableAuth = localStorage.getItem("enableAuth");
-    if (localStorage.getItem("token") == "" && enableAuth) {
+    console.log("auth" + enableAuth)
+    if (localStorage.getItem("token") == "" && enableAuth != "false") {
       goto("/signin");
     }
   }

@@ -1,12 +1,21 @@
-import accountEmail from "$lib/stores/accountEmail";
+
 import { browser } from "$app/environment";
 import { goto } from "$app/navigation";
 export const apiurl = "https://api.arthmc.xyz/";
 export const pburl = "https://pb.arthmc.xyz/api/";
 export const lrurl = "https://api.modrinth.com/v2/";
+let em = "noemail"
+
+
+
 //set email from local storage to variable
 if (browser) {
-  accountEmail.set(window.localStorage.getItem("accountEmail"));
+  if(window.localStorage.getItem("enableAuth") == "false") {
+    em = "guest"
+    window.localStorage.setItem("accountEmail", "guest")
+  } else {
+  em = (window.localStorage.getItem("accountEmail"));
+  }
 }
 
 const GET = { method: "GET" };
@@ -93,7 +102,7 @@ export function getSettings() {
     .catch((err) => console.error(err));
 }
 
-export function getServers(em: string) {
+export function getServers() {
   const url = apiurl + "servers/" + "?email=" + em;
   console.log("Request Sent: Get Servers");
   return fetch(url, GET)
@@ -109,7 +118,7 @@ export function getServers(em: string) {
     })
     .catch((err) => console.error(err));
 }
-export function createUser(em: string, pwd: string) {
+export function createUser( pwd: string) {
   const req = {
     method: "POST",
     headers: {
@@ -137,7 +146,7 @@ export function createUser(em: string, pwd: string) {
     .catch((err) => console.error(err));
 }
 
-export function loginEmail(em: string, pwd: string) {
+export function loginEmail( pwd: string) {
   const req = {
     method: "POST",
     headers: {
@@ -179,7 +188,7 @@ export function loginEmail(em: string, pwd: string) {
     .catch((err) => console.error(err));
 }
 
-export function changeServerState(reqstate: string, id: number, em: string) {
+export function changeServerState(reqstate: string, id: number) {
   const url = apiurl + "server/" + id + "/state/" + reqstate + "?email=" + em;
   const response = fetch(url, POST)
     .then((res) => res.text())
